@@ -8,10 +8,21 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: "#0875e1",
+        dark: "#1E2535",
+        "primary-dark": "#005cbf",
+        "project-onboarding": "#17B9A7",
+        "embedded-portal": "#EFBC73",
+        "file-feed": "#CD2659",
+        "dynamic-portal": "#3A7CB9",
+        destructive: "#ef4444",
+      },
+    },
+    variants: {
+      extend: {
+        fill: ["group-hover"],
+        borderRadius: ["first", "last"],
       },
     },
   },
