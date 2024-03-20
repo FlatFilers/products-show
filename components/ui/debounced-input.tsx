@@ -28,7 +28,7 @@ const DebouncedInput = React.forwardRef<HTMLInputElement, DebounceInputProps>(
       }, debounce);
 
       return () => clearTimeout(timeout);
-    }, [value]);
+    }, [value, debounce, onChange]);
     return (
       <input
         {...props}
