@@ -1,4 +1,5 @@
 import SignupForm from "@/app/(auth)/signup/signup-form";
+import Link from "next/link";
 import SVG from "react-inlinesvg";
 
 export default function Page() {
@@ -12,6 +13,13 @@ export default function Page() {
       </div>
 
       <SignupForm />
+
+      <p className="flex justify-end text-gray-400 text-xs space-x-1">
+        <span>Already have an account?</span>
+        <Link href="/login" className="underline">
+          Login here
+        </Link>
+      </p>
     </div>
   );
 }
