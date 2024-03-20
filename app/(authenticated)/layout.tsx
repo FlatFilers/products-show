@@ -14,8 +14,8 @@ export default async function Layout({
   }
 
   return (
-    <div className="flex flex-row space-x-8">
-      <div>
+    <div className="bg-dark h-full text-white flex flex-row space-x-8">
+      <div className="flex flex-grow flex-col overflow-y-auto pt-5 bg-[#292D36]">
         Sidebar
         <SignOut />
       </div>
