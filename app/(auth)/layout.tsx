@@ -13,7 +13,7 @@ export default async function Layout({
   }
 
   return (
-    <div className="flex flex-row bg-dark h-full py-16">
+    <div className="flex flex-row h-full py-16">
       <div className="w-full px-8 md:max-w-md md:mx-auto">{children}</div>
     </div>
   );

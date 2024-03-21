@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         primary: "#0875e1",
         dark: "#1E2535",
+        "dark-gray": "#292D36",
         "primary-dark": "#005cbf",
         "project-onboarding": "#17B9A7",
         "embedded-portal": "#EFBC73",

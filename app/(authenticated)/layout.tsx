@@ -1,4 +1,5 @@
-import SignOut from "@/app/(authenticated)/sign-out";
+import { MobileNav } from "@/app/(authenticated)/mobile-nav";
+import { NavItems } from "@/app/(authenticated)/nav-items";
 import { getServerSession } from "@/lib/get-server-session";
 import { redirect } from "next/navigation";
 
@@ -14,12 +15,24 @@ export default async function Layout({
   }
 
   return (
-    <div className="bg-dark h-full text-white flex flex-row space-x-8">
-      <div className="flex flex-grow flex-col overflow-y-auto pt-5 bg-[#292D36]">
-        Sidebar
-        <SignOut />
+    <div className="h-full text-white flex flex-col lg:flex-row space-8 lg:space-0">
+      <div className="lg:hidden">
+        <MobileNav>
+          <NavItems />
+        </MobileNav>
       </div>
-      <div>{children}</div>
+
+      <div
+        className="hidden lg:flex flex-col"
+        style={{
+          background:
+            "linear-gradient(0deg, #161A23, #161A23), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
+        }}
+      >
+        <NavItems />
+      </div>
+
+      <div className="p-6">{children}</div>
     </div>
   );
 }
