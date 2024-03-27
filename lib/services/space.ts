@@ -17,12 +17,15 @@ export class SpaceService {
       spaceName,
     });
 
-    return await prismaClient.space.create({
-      data: {
-        workflowType,
-        flatfileSpaceId: flatfileSpace.id,
-        userId,
-      },
-    });
+    return await flatfileSpace;
+
+    // TODO: Save the space to the database
+    // return await prismaClient.space.create({
+    //   data: {
+    //     workflowType,
+    //     flatfileSpaceId: flatfileSpace.id,
+    //     userId,
+    //   },
+    // });
   }
 }

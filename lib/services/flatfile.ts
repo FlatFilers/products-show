@@ -8,18 +8,33 @@ export class FlatfileService {
     userId: string;
     spaceName: string;
   }) => {
-    const flatfile = this.flatfileClient();
-    const result = await flatfile.spaces.create({
-      name: spaceName,
-      environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
-      autoConfigure: true,
-      namespace: process.env.FLATFILE_NAMESPACE,
-      metadata: {
-        userId,
-      },
-    });
+    // const flatfile = this.flatfileClient();
+    // const result = await flatfile.spaces.create({
+    //   name: spaceName,
+    //   environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
+    //   autoConfigure: true,
+    //   namespace: process.env.FLATFILE_NAMESPACE,
+    //   metadata: {
+    //     userId,
+    //   },
+    // });
 
-    return result.data;
+    return await fetch("https://api.x.flatfile.com/v1/spaces", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.FLATFILE_API_KEY}`,
+      },
+      body: JSON.stringify({
+        name: spaceName,
+        environmentId: `${process.env.FLATFILE_ENVIRONMENT_ID}`,
+        autoConfigure: true,
+        namespace: `${process.env.FLATFILE_NAMESPACE}`,
+        metadata: {
+          userId,
+        },
+      }),
+    });
   };
 
   static flatfileClient() {
