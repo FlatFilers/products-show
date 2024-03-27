@@ -19,7 +19,7 @@ export class FlatfileService {
     //   },
     // });
 
-    return await fetch("https://api.x.flatfile.com/v1/spaces", {
+    const result = await fetch("https://api.x.flatfile.com/v1/spaces", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,6 +35,9 @@ export class FlatfileService {
         },
       }),
     });
+
+    const json = await result.json();
+    return json.data;
   };
 
   static flatfileClient() {
