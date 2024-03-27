@@ -1,5 +1,4 @@
 import { prismaClient } from "@/lib/prisma-client";
-import { Prisma } from "@prisma/client";
 import { FlatfileService } from "./flatfile";
 
 export class SpaceService {
@@ -22,6 +21,14 @@ export class SpaceService {
         workflowType,
         flatfileSpaceId: flatfileSpace.id,
         userId,
+      },
+    });
+  }
+
+  static async getSpace({ spaceId }: { spaceId: string }) {
+    return await prismaClient.space.findUnique({
+      where: {
+        id: spaceId,
       },
     });
   }
