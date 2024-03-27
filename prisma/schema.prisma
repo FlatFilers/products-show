@@ -22,10 +22,22 @@ model User {
   lastName    String
   companyName String
 
-  suppliers Supplier[]
-  Attribute Attribute[]
-  Category  Category[]
-  Product   Product[]
+  Space       Space[]
+  suppliers   Supplier[]
+  Attribute   Attribute[]
+  Category    Category[]
+  Product     Product[]
+}
+
+model Space {
+  id              String   @id @default(uuid()) @db.Uuid
+  createdAt       DateTime @default(now())
+  workflowType    String
+  flatfileSpaceId String   @unique
+  userId          String   @db.Uuid
+  User            User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, workflowType])
 }
 
 model Supplier {
