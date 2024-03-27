@@ -27,9 +27,9 @@ export class FlatfileService {
       },
       body: JSON.stringify({
         name: spaceName,
-        environmentId: `${process.env.FLATFILE_ENVIRONMENT_ID}`,
+        environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
         autoConfigure: true,
-        namespace: `${process.env.FLATFILE_NAMESPACE}`,
+        namespace: process.env.FLATFILE_NAMESPACE,
         metadata: {
           userId,
         },
