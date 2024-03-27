@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "reset-dev": "prisma migrate reset"
   },
   "dependencies": {
     "@flatfile/api": "^1.7.8",
