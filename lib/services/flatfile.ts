@@ -43,7 +43,6 @@ export class FlatfileService {
       (w: any) => w.id === "us_wb_dgxSXvb2"
     );
     const workbookId = workbook.id;
-    //
 
     console.log("workbookJson", workbookJson);
 
@@ -61,14 +60,85 @@ export class FlatfileService {
     const sheetJson = await sheetResult.json();
     console.log("SheetJson", sheetJson);
 
-    // const sheetIds = sheetJson.data.map((s: any) => s.id);
     const sheets = sheetJson.data;
 
     let records: {
-      attributes: any[];
-      suppliers: any[];
-      product_categories: any[];
-      products: any[];
+      attributes: {
+        attribute_id: {
+          value: string;
+        };
+        name: {
+          value: string;
+        };
+        value: {
+          value: string;
+        };
+        unit: {
+          value: string;
+        };
+      }[];
+      suppliers: {
+        supplier_id: {
+          value: string;
+        };
+        name: {
+          value: string;
+        };
+        email: {
+          value: string;
+        };
+        phone: {
+          value: string;
+        };
+        address: {
+          value: string;
+        };
+        city: {
+          value: string;
+        };
+        state: {
+          value: string;
+        };
+        country: {
+          value: string;
+        };
+      }[];
+      product_categories: {
+        category_id: {
+          value: string;
+        };
+        name: {
+          value: string;
+        };
+        description: {
+          value: string;
+        };
+      }[];
+      products: {
+        product_id: {
+          value: string;
+        };
+        name: {
+          value: string;
+        };
+        description: {
+          value: string;
+        };
+        category: {
+          value: string;
+        };
+        price: { value: string };
+        quantity: { value: string };
+        image_url: {
+          value: string;
+        };
+        supplier: {
+          value: string;
+        };
+        attribute: {
+          value: string;
+        };
+      }[];
     } = {
       attributes: [],
       suppliers: [],
@@ -92,7 +162,12 @@ export class FlatfileService {
 
       const json = await recordsResult.json();
 
-      records[key as keyof typeof records].push(json.data);
+      const data = json.data.records.map((r: any) => r.values);
+
+      records[key as keyof typeof records] = data;
+
+      console.log("json.data", json.data.records);
+      console.log("data", data);
 
       console.log("recordsResult", json);
     });
@@ -100,5 +175,7 @@ export class FlatfileService {
     await Promise.allSettled(ps);
 
     console.log("records", JSON.stringify(records));
+
+    return records;
   }
 }

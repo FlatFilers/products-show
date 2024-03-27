@@ -1,5 +1,5 @@
 import { unauthenticatedRoute } from "@/lib/api-helpers";
-import { FlatfileService } from "@/lib/services/flatfile";
+import { SyncService } from "@/lib/services/sync";
 import { NextRequest, NextResponse } from "next/server";
 import invariant from "ts-invariant";
 
@@ -12,7 +12,7 @@ export const GET = (
     invariant(spaceId, "No spaceId provided");
 
     try {
-      await FlatfileService.getRecordsForSpace({
+      await SyncService.syncSpace({
         flatfileSpaceId: "us_sp_V6Ep7AA8",
       });
     } catch (e) {
