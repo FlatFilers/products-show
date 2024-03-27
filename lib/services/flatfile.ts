@@ -30,18 +30,7 @@ export class FlatfileService {
 
     const flatfileSpaceId = space.flatfileSpaceId;
 
-    const result = await fetch(
-      `https://api.x.flatfile.com/v1/spaces/${flatfileSpaceId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.FLATFILE_API_KEY}`,
-        },
-      }
-    );
-
-    const json = await result.json();
-    return json.data;
+    const { data } = await api.spaces.get(flatfileSpaceId);
+    return data;
   };
 }
