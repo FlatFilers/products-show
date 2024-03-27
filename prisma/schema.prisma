@@ -23,10 +23,10 @@ model User {
   companyName String
 
   Space       Space[]
-  suppliers Supplier[]
-  Attribute Attribute[]
-  Category  Category[]
-  Product   Product[]
+  suppliers   Supplier[]
+  Attribute   Attribute[]
+  Category    Category[]
+  Product     Product[]
 }
 
 model Space {
