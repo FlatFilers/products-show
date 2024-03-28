@@ -1,5 +1,5 @@
 import api from "@flatfile/api";
-import { RecordDataWithLinks, Workbook } from "@flatfile/api/api";
+import { RecordDataWithLinks } from "@flatfile/api/api";
 
 export class FlatfileService {
   static createSpace = async ({
