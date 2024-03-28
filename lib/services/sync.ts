@@ -19,14 +19,14 @@ export class SyncService {
     for (const r of supplierRecords) {
       const mappedRecord = {
         userId: space.userId,
-        externalSupplierId: r.supplier_id.value,
-        name: r.name.value,
-        email: r.email.value,
-        phone: r.phone.value,
-        address: r.address.value,
-        city: r.city.value,
-        state: r.state.value,
-        country: r.country.value,
+        externalSupplierId: r.supplier_id.value as string,
+        name: r.name.value as string,
+        email: r.email.value as string,
+        phone: r.phone.value as string,
+        address: r.address.value as string,
+        city: r.city.value as string,
+        state: r.state.value as string,
+        country: r.country.value as string,
       };
 
       await prismaClient.supplier.upsert({
@@ -50,9 +50,9 @@ export class SyncService {
     for (const r of categoryRecords) {
       const mappedRecord = {
         userId: space.userId,
-        externalCategoryId: r.category_id.value,
-        name: r.name.value,
-        description: r.description.value,
+        externalCategoryId: r.category_id.value as string,
+        name: r.name.value as string,
+        description: r.description.value as string,
       };
 
       await prismaClient.category.upsert({
@@ -78,7 +78,7 @@ export class SyncService {
         where: {
           userId_externalCategoryId: {
             userId: space.userId,
-            externalCategoryId: r.category.value,
+            externalCategoryId: r.category.value as string,
           },
         },
       });
@@ -86,21 +86,21 @@ export class SyncService {
         where: {
           userId_externalSupplierId: {
             userId: space.userId,
-            externalSupplierId: r.supplier.value,
+            externalSupplierId: r.supplier.value as string,
           },
         },
       });
 
       const mappedRecord = {
         userId: space.userId,
-        externalProductId: r.product_id.value,
-        name: r.name.value,
-        description: r.description.value,
-        categoryId: category.id,
-        price: Number.parseFloat(r.price.value),
-        quantity: Number.parseFloat(r.quantity.value),
-        imageUrl: r.image_url.value,
-        supplierId: supplier.id,
+        externalProductId: r.product_id.value as string,
+        name: r.name.value as string,
+        description: r.description.value as string,
+        categoryId: category.id as string,
+        price: Number.parseFloat(r.price.value as string),
+        quantity: Number.parseFloat(r.quantity.value as string),
+        imageUrl: r.image_url.value as string,
+        supplierId: supplier.id as string,
       };
 
       await prismaClient.product.upsert({

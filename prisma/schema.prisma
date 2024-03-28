@@ -47,10 +47,10 @@ model Supplier {
   name               String
   email              String?  @db.Text
   phone              String?
-  address            String
-  city               String
-  state              String
-  country            String
+  address            String?
+  city               String?
+  state              String?
+  country            String?
 
   userId   String    @db.Uuid
   user     User      @relation(fields: [userId], references: [id])
