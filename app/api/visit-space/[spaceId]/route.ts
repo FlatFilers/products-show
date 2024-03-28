@@ -1,23 +1,25 @@
-import { FlatfileService } from "@/lib/services/flatfile";
 import { NextRequest, NextResponse } from "next/server";
 import invariant from "ts-invariant";
 import { authenticatedRoute } from "@/lib/api-helpers";
+import { SpaceService } from "@/lib/services/space";
 
 export const GET = async (request: NextRequest, context: { params: any }) => {
   return authenticatedRoute(request, context, async (_req, ctx) => {
     const spaceId = ctx.params.spaceId;
     invariant(spaceId, "Requires space id");
 
-    let space;
     try {
-      space = await FlatfileService.getSpace({
+      const guestLink = await SpaceService.getSpaceGuestLink({
         spaceId,
       });
-    } catch (e) {
-      console.error(`Error getting space for ${spaceId}`, e);
-      return new NextResponse("Error getting space", { status: 500 });
-    }
 
-    return NextResponse.json({ guestLink: space.guestLink }, { status: 200 });
+      return NextResponse.json({ guestLink }, { status: 200 });
+    } catch (e) {
+      console.error(`Error getting guest link for space ${spaceId}`, e);
+      return NextResponse.json(
+        { error: "Error getting guest link" },
+        { status: 500 }
+      );
+    }
   });
 };

@@ -21,15 +21,11 @@ export class FlatfileService {
     return data;
   };
 
-  static getSpace = async ({ spaceId }: { spaceId: string }) => {
-    const space = await SpaceService.getSpace({ spaceId });
-
-    if (!space) {
-      throw new Error(`Space not found for ${spaceId}`);
-    }
-
-    const flatfileSpaceId = space.flatfileSpaceId;
-
+  static getSpace = async ({
+    flatfileSpaceId,
+  }: {
+    flatfileSpaceId: string;
+  }) => {
     const { data } = await api.spaces.get(flatfileSpaceId);
     return data;
   };

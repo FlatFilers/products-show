@@ -25,11 +25,30 @@ export class SpaceService {
     });
   }
 
-  static async getSpace({ spaceId }: { spaceId: string }) {
-    return await prismaClient.space.findUnique({
-      where: {
-        id: spaceId,
-      },
-    });
+  static async getSpaceGuestLink({ spaceId }: { spaceId: string }) {
+    let space;
+    try {
+      space = await prismaClient.space.findUniqueOrThrow({
+        where: {
+          id: spaceId,
+        },
+      });
+    } catch (e) {
+      console.error(`Error getting space for ${spaceId}`, e);
+      throw Error("Could not get space");
+    }
+
+    try {
+      const flatfileSpace = await FlatfileService.getSpace({
+        flatfileSpaceId: space.flatfileSpaceId,
+      });
+      return flatfileSpace.guestLink;
+    } catch (e) {
+      console.error(
+        `Error getting Flatfile space for ${space.flatfileSpaceId}`,
+        e
+      );
+      throw Error("Could not get Flatfile space");
+    }
   }
 }
