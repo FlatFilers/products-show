@@ -8,18 +8,18 @@ export const GET = (
   context: { params: { flatfileSpaceId: string } }
 ) =>
   unauthenticatedRoute(req, context, async (rq, cxt) => {
-    const spaceId = context.params.flatfileSpaceId;
-    invariant(spaceId, "No spaceId provided");
+    const flatfileSpaceId = context.params.flatfileSpaceId;
+    invariant(flatfileSpaceId, "No spaceId provided");
 
     try {
       await SyncService.syncSpace({
-        flatfileSpaceId: "us_sp_V6Ep7AA8",
+        flatfileSpaceId,
       });
     } catch (e) {
       console.error(`Error upserting client:`, e);
 
       return NextResponse.json(
-        { message: `Error syncing space ${spaceId}` },
+        { message: `Error syncing space ${flatfileSpaceId}` },
         {
           status: 500,
         }

@@ -1,5 +1,5 @@
 import api from "@flatfile/api";
-import { RecordDataWithLinks } from "@flatfile/api/api";
+import { RecordDataWithLinks, Workbook } from "@flatfile/api/api";
 
 export class FlatfileService {
   static createSpace = async ({
@@ -37,7 +37,11 @@ export class FlatfileService {
       );
     }
 
-    const workbook = workbooks.data.find((w) => w.id === "us_wb_dgxSXvb2");
+    // TODO: There are two workbooks being created here, how can we identiy them?
+    const workbook = workbooks.data.sort((a, b) => {
+      return b.createdAt.getTime() - a.createdAt.getTime();
+    })[0];
+
     if (!workbook) {
       throw new Error(
         `No workbook found for flatfileSpaceId ${flatfileSpaceId}`
