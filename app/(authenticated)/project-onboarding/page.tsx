@@ -1,5 +1,5 @@
 import { WorkflowType } from "@/lib/workflow-type";
-import CreateSpaceForm from "./create-space-form";
+import CreateSpaceForm from "@/components/shared/create-space-form";
 
 export default function Page() {
   return (

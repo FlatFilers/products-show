@@ -40,7 +40,6 @@ export default function CreateSpaceForm({
     console.log("onSubmit", values);
 
     setIsPending(true);
-
     try {
       const result = await fetch("/api/create-space", {
         method: "POST",
@@ -62,7 +61,8 @@ export default function CreateSpaceForm({
         title: "Space creation successful!",
       });
 
-      router.push(`/project-onboarding/${json.spaceId}`);
+      const pathname = getPathname(values.workflowType);
+      router.push(`${pathname}/${json.spaceId}`);
     } catch (e) {
       console.error(e);
 
@@ -97,3 +97,21 @@ export default function CreateSpaceForm({
     </Form>
   );
 }
+
+interface WorkflowPathname {
+  [WorkflowType.ProjectOnboarding]: string;
+  [WorkflowType.FileFeed]: string;
+  [WorkflowType.Embed]: string;
+  [WorkflowType.Dynamic]: string;
+}
+
+const getPathname = (workflowType: WorkflowType): string => {
+  const paths: WorkflowPathname = {
+    [WorkflowType.ProjectOnboarding]: "/project-onboarding",
+    [WorkflowType.FileFeed]: "/file-feed",
+    [WorkflowType.Embed]: "/embedded-portal",
+    [WorkflowType.Dynamic]: "/dynamic",
+  };
+
+  return paths[workflowType];
+};
