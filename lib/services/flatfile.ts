@@ -1,9 +1,5 @@
 import api from "@flatfile/api";
-<<<<<<< HEAD
-import { SpaceService } from "./space";
-=======
 import { RecordDataWithLinks } from "@flatfile/api/api";
->>>>>>> main
 
 export class FlatfileService {
   static createSpace = async ({
