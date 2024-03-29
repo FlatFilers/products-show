@@ -1,8 +1,8 @@
 "use client";
 
 import HeaderContent from "@/app/(authenticated)/project-onboarding/header-content";
-import VisitSpaceForm from "@/app/(authenticated)/project-onboarding/visit-space-form";
 import { Step } from "@/components/shared/step-list";
+import VisitSpaceForm from "@/components/shared/visit-space-form";
 import {
   PROJECT_ONBOARDING_INITIAL_STEPS,
   PROJECT_ONBOARDING_ITEM,
