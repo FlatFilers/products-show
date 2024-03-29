@@ -25,6 +25,18 @@ export class SpaceService {
     });
   }
 
+  static async getSpaceForWorkflow({
+    userId,
+    workflowType,
+  }: {
+    userId: string;
+    workflowType: string;
+  }) {
+    return await prismaClient.space.findUnique({
+      where: { userId_workflowType: { userId, workflowType } },
+    });
+  }
+
   static async getSpace({ flatfileSpaceId }: { flatfileSpaceId: string }) {
     return await prismaClient.space.findUniqueOrThrow({
       where: { flatfileSpaceId },

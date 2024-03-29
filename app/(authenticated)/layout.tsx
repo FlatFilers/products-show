@@ -32,7 +32,7 @@ export default async function Layout({
         <NavItems />
       </div>
 
-      <div className="p-6">{children}</div>
+      <div className="p-6 md:p-16 lg:p-24">{children}</div>
     </div>
   );
 }

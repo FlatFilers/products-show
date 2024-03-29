@@ -12,5 +12,25 @@
   background: linear-gradient(93.58deg, #363e52 -2%, #2b3242 117.56%);
   box-shadow: 8.74046516418457px 9.711627960205078px 18.45209312438965px 0px
     #3d49644d inset;
-  @apply inline-flex flex-row justify-center items-center px-8 py-4 font-semibold rounded-xl cursor-pointer hover:brightness-90;
+  @apply inline-flex flex-row justify-center items-center px-8 py-6 font-semibold rounded-xl cursor-pointer hover:brightness-90;
+}
+
+.icon-project-onboarding path {
+  @apply fill-project-onboarding;
+  fill-opacity: 1;
+}
+
+.icon-file-feed path {
+  @apply fill-file-feed;
+  fill-opacity: 1;
+}
+
+.icon-embedded-portal path {
+  @apply fill-embedded-portal;
+  fill-opacity: 1;
+}
+
+.icon-dynamic-portal path {
+  @apply fill-dynamic-portal;
+  fill-opacity: 1;
 }
