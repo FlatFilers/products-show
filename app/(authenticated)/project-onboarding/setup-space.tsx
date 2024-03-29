@@ -10,26 +10,27 @@ import {
   SAMPLE_DATA_FILENAME,
 } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-project-onboarding-downloaded`;
 
 export default function SetupSpace() {
-  const needsSampleData = localStorage.getItem(STORAGE_KEY) !== "true";
+  const [steps, setSteps] = useState<Step[]>(PROJECT_ONBOARDING_INITIAL_STEPS);
 
-  const currentSteps: Step[] = needsSampleData
-    ? PROJECT_ONBOARDING_INITIAL_STEPS
-    : [
-        { ...PROJECT_ONBOARDING_INITIAL_STEPS[0], status: "complete" },
-        { ...PROJECT_ONBOARDING_INITIAL_STEPS[1], status: "current" },
-      ];
-  const [steps, setSteps] = useState<Step[]>(currentSteps);
+  useEffect(() => {
+    if (localStorage.getItem(STORAGE_KEY) === "true" && steps[0].status === "current") {
+      setSteps([
+        { ...steps[0], status: "complete" },
+        { ...steps[1], status: "current" },
+      ]);
+    }
+  }, [steps]);
 
   return (
     <div className="space-y-6">
       <HeaderContent item={PROJECT_ONBOARDING_ITEM} steps={steps} />
 
-      {needsSampleData && (
+      {steps[0].status === "current" && (
         <DownloadSampleData
           fileName={SAMPLE_DATA_FILENAME}
           onClick={() => {
@@ -43,7 +44,7 @@ export default function SetupSpace() {
         />
       )}
 
-      {!needsSampleData && (
+      {steps[0].status !== "current" && (
         <div className="text-white space-y-4 md:max-w-lg">
           <h2 className="text-2xl font-semibold">
             🎉 Great! Now let&apos;s setup Flatfile to import those records.

@@ -90,7 +90,7 @@ export default function CreateSpaceForm({
           </div>
         )}
 
-        <Button disabled={isPending} type="submit" className="w-full">
+        <Button disabled={isPending} type="submit">
           {isPending ? "Creating..." : "Create Space"}
         </Button>
       </form>

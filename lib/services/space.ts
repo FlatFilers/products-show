@@ -37,7 +37,17 @@ export class SpaceService {
     });
   }
 
-  static async getSpace({ flatfileSpaceId }: { flatfileSpaceId: string }) {
+  static async getSpace({ id }: { id: string }) {
+    return await prismaClient.space.findUniqueOrThrow({
+      where: { id },
+    });
+  }
+
+  static async getSpaceByFlatfileSpaceId({
+    flatfileSpaceId,
+  }: {
+    flatfileSpaceId: string;
+  }) {
     return await prismaClient.space.findUniqueOrThrow({
       where: { flatfileSpaceId },
     });
