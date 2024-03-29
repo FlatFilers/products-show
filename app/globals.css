@@ -15,6 +15,12 @@
   @apply inline-flex flex-row justify-center items-center px-8 py-4 lg:w-1/2 font-semibold rounded-xl cursor-pointer hover:brightness-90;
 }
 
+.card-bg {
+  box-shadow: 0px 48px 48px 0px #00000033;
+  background: #2e323c99;
+  @apply p-6 md:p-10 rounded-xl;
+}
+
 .icon-project-onboarding path {
   @apply fill-project-onboarding;
   fill-opacity: 1;
