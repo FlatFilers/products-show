@@ -5,8 +5,8 @@ export default function Page() {
   return (
     <div>
       <CreateSpaceForm
-        workflowType={WorkflowType.FileFeed}
-        spaceName={"File Feed"}
+        workflowType={WorkflowType.Embed}
+        spaceName={"Embedded Portal"}
       />
     </div>
   );

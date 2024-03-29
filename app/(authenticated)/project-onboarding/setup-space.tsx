@@ -1,6 +1,6 @@
 "use client";
 
-import CreateSpaceForm from "@/app/(authenticated)/project-onboarding/create-space-form";
+import CreateSpaceForm from "@/components/shared/create-space-form";
 import HeaderContent from "@/app/(authenticated)/project-onboarding/header-content";
 import DownloadSampleData from "@/components/shared/download-sample-data";
 import { Step } from "@/components/shared/step-list";

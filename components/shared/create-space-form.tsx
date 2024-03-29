@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { WorkflowType } from "@/lib/workflow-type";
@@ -26,6 +26,7 @@ export default function CreateSpaceForm({
   const [error, setError] = useState("");
 
   const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -40,7 +41,6 @@ export default function CreateSpaceForm({
     console.log("onSubmit", values);
 
     setIsPending(true);
-
     try {
       const result = await fetch("/api/create-space", {
         method: "POST",
@@ -62,7 +62,7 @@ export default function CreateSpaceForm({
         title: "Space creation successful!",
       });
 
-      router.push(`/project-onboarding/${json.spaceId}`);
+      router.push(`${pathname}/${json.spaceId}`);
     } catch (e) {
       console.error(e);
 
