@@ -12,7 +12,7 @@
   background: linear-gradient(93.58deg, #363e52 -2%, #2b3242 117.56%);
   box-shadow: 8.74046516418457px 9.711627960205078px 18.45209312438965px 0px
     #3d49644d inset;
-  @apply inline-flex flex-row justify-center items-center px-8 py-4 lg:w-1/2 font-semibold rounded-xl cursor-pointer hover:brightness-90;
+  @apply inline-flex flex-row justify-center items-center px-8 py-4 font-semibold rounded-xl cursor-pointer hover:brightness-90;
 }
 
 .icon-project-onboarding path {
@@ -33,4 +33,28 @@
 .icon-dynamic-portal path {
   @apply fill-dynamic-portal;
   fill-opacity: 1;
+}
+
+.nav-separator {
+  @apply text-[10px] uppercase font-light mb-2 pl-2 text-[#FFFFFF50];
+}
+
+.nav-item {
+  @apply hover:bg-[#2E323C] text-[#FFFFFF60] hover:text-[#FFFFFFCC] flex items-center px-3 py-2 text-sm font-light rounded-md;
+}
+.nav-item.active {
+  @apply bg-[#2E323C] text-[#FFFFFFCC];
+}
+
+.nav-item svg {
+  @apply fill-[#FFFFFF80] group-hover:fill-white w-[20px] h-[20px] mr-3;
+}
+.nav-item.active svg {
+  @apply fill-[#FFFFFF];
+}
+
+.card-bg {
+  box-shadow: 0px 48px 48px 0px #00000033;
+  background: #2e323c99;
+  @apply p-6 md:p-10 rounded-xl;
 }

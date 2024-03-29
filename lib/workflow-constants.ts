@@ -14,14 +14,23 @@ export const PROJECT_ONBOARDING_INITIAL_STEPS: Step[] = [
   },
 ];
 
-export type WorkflowItem = {
-  slug: string;
+type NavItem = {
   name: string;
   href: string;
   imageUri: string;
+};
+
+export type WorkflowItem = NavItem & {
+  slug: string;
   color: string;
   highlightColor: string;
   description: string;
+};
+
+export const HOME_ITEM: NavItem = {
+  name: "Home",
+  href: "/home",
+  imageUri: "/images/home.svg",
 };
 
 export const WORKFLOW_ITEMS: {
@@ -82,3 +91,26 @@ export const WORKFLOW_ITEMS: {
 
 export const PROJECT_ONBOARDING_ITEM =
   WORKFLOW_ITEMS[WorkflowType.ProjectOnboarding];
+
+export const RESOURCE_ITEMS: NavItem[] = [
+  {
+    name: "Suppliers",
+    href: "/suppliers",
+    imageUri: "/images/employees.svg",
+  },
+  {
+    name: "Products",
+    href: "/products",
+    imageUri: "/images/jobs.svg",
+  },
+  {
+    name: "Attributes",
+    href: "/attributes",
+    imageUri: "/images/departments.svg",
+  },
+  {
+    name: "Categories",
+    href: "/categories",
+    imageUri: "/images/benefit-plans.svg",
+  },
+];

@@ -5,46 +5,120 @@ import SVG from "react-inlinesvg";
 import SignOut from "@/app/(authenticated)/sign-out";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { WORKFLOW_ITEMS } from "@/lib/workflow-constants";
+import {
+  HOME_ITEM,
+  RESOURCE_ITEMS,
+  WORKFLOW_ITEMS,
+} from "@/lib/workflow-constants";
+import { signOut } from "next-auth/react";
 
 export const NavItems = () => {
   const path = usePathname();
 
   return (
-    <div className="h-full bg-dark-gray p-6 flex flex-col justify-between">
-      <div className="space-y-8">
-        <div className="flex justify-center items-center">
-          <Link href="/home">
-            <SVG src="/images/hcm-logo.svg" className="px-4" />
+    <div className="h-full bg-dark-gray flex flex-col justify-between">
+      <div className="flex justify-center items-center p-6 lg:p-4 ">
+        <Link href="/home">
+          <SVG src="/images/hcm-logo.svg" className="px-4" />
+        </Link>
+      </div>
+
+      <div
+        className="flex flex-col justify-between space-y-3 p-6 lg:p-4 h-full"
+        style={{
+          background:
+            "linear-gradient(0deg, #161A23, #161A23), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
+        }}
+      >
+        <div className="space-y-6">
+          <Link
+            href={HOME_ITEM.href}
+            className={clsx({
+              active: path.includes(HOME_ITEM.href),
+              "nav-item": true,
+            })}
+          >
+            <SVG src={HOME_ITEM.imageUri} />
+            {HOME_ITEM.name}
           </Link>
+
+          <div className="space-y-3">
+            <p className="nav-separator">Workflows</p>
+
+            <div className="space-y-3">
+              {Object.keys(WORKFLOW_ITEMS).map((key) => {
+                const item = WORKFLOW_ITEMS[key as keyof typeof WORKFLOW_ITEMS];
+
+                return (
+                  <Link
+                    key={item.slug}
+                    href={item.href}
+                    className={clsx({
+                      active: path.includes(item.href),
+                      "nav-item": true,
+                    })}
+                  >
+                    <SVG src={item.imageUri} />
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <p className="nav-separator">Data Tables</p>
+
+            <div className="space-y-3">
+              {RESOURCE_ITEMS.map((item) => {
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={clsx({
+                      active: path.includes(item.href),
+                      "nav-item": true,
+                    })}
+                  >
+                    <SVG src={item.imageUri} />
+                    {item.name}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col space-y-3">
-          {Object.keys(WORKFLOW_ITEMS).map((key) => {
-            const item = WORKFLOW_ITEMS[key as keyof typeof WORKFLOW_ITEMS];
+          <a
+            key="Activity Log"
+            href="/activity-log"
+            className={`
+            ${path === "/activity-log" ? "active" : ""} nav-item group`}
+          >
+            <SVG src={"/images/activity-log.svg"} />
+            Activity Log
+          </a>
 
-            return (
-              <Link
-                key={item.slug}
-                href={item.href}
-                className={clsx({
-                  "bg-[#2E323C] text-[#FFFFFFCC]": path.includes(item.href),
-                  "flex flex-row items-center space-x-2 hover:bg-[#2E323C] text-[#FFFFFF60] hover:text-[#FFFFFFCC] px-3 py-2 text-sm font-light rounded-md":
-                    true,
-                })}
-              >
-                <SVG
-                  src={item.imageUri}
-                  className="group-hover:fill-white w-[20px] h-[20px] mr-3"
-                />
-                {item.name}
-              </Link>
-            );
-          })}
+          <a
+            key="api-docs"
+            href="/api-docs"
+            target="_blank"
+            className={`
+            ${path === "/api-docs" ? "active" : ""} nav-item group`}
+          >
+            <SVG src={"/images/api-doc.svg"} />
+            Products.Show API Docs
+          </a>
+
+          <div className="flex flex-col w-full border-t-2 border-[#FFFFFF25] pt-2 mt-2">
+            <a href="#" onClick={() => signOut()} className="nav-item group">
+              <SVG src={"/images/logout.svg"} />
+              Sign Out
+            </a>
+          </div>
         </div>
       </div>
-
-      <SignOut />
     </div>
   );
 };
