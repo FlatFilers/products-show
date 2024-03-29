@@ -14,8 +14,6 @@ export class SyncService {
 
     const supplierRecords = records.suppliers;
 
-    console.log("sup records", JSON.stringify(supplierRecords));
-
     for (const r of supplierRecords) {
       const mappedRecord = {
         userId: space.userId,

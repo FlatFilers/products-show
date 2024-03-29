@@ -29,7 +29,6 @@ export class FlatfileService {
     const workbooks = await api.workbooks.list({
       spaceId: flatfileSpaceId,
     });
-    console.log("workbooks", workbooks);
 
     if (!workbooks?.data) {
       throw new Error(
@@ -52,7 +51,6 @@ export class FlatfileService {
     const sheets = await api.sheets.list({
       workbookId,
     });
-    console.log("sheets", sheets);
 
     if (!sheets?.data) {
       throw new Error(
@@ -84,13 +82,9 @@ export class FlatfileService {
       records[key as keyof typeof records] = recordsResult.data.records.map(
         (r) => r.values
       );
-
-      console.log("recordsResult.data.records", recordsResult.data.records);
     });
 
     await Promise.allSettled(ps);
-
-    console.log("records", JSON.stringify(records));
 
     return records;
   }
