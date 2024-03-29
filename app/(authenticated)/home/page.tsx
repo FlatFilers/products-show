@@ -59,17 +59,17 @@ export default function Home() {
               <Link
                 key={item.slug}
                 href={item.href}
-                className={`card-bg flex flex-col justify-between space-y-6 text-white border-2 border-transparent rounded-xl p-6 transform hover:scale-[101%] transition duration-200`}
+                className={`card-bg flex flex-col justify-between space-y-6 text-white border-2 border-transparent ${item.highlightColor} rounded-xl p-6 transform hover:scale-[101%] transition duration-200`}
               >
-                {/* TODO: Add highlightColor */}
                 <div className="">
                   <div className="flex flex-row items-center mb-2">
                     <img src={item.imageUri} className="mr-3" />
                     <p className="text-xl font-semibold">{item.name}</p>
                   </div>
 
-                  <div className={`mb-6 border-t-[2px] w-[20px]`}></div>
-                  {/* TODO: Add item color */}
+                  <div
+                    className={`mb-6 border-t-[2px] w-[20px] ${item.color}`}
+                  ></div>
 
                   <p className="leading-8">{item.description}</p>
                 </div>
