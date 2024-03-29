@@ -5,34 +5,22 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { WorkflowType } from "@/lib/workflow-type";
 
 const formSchema = z.object({
-  workflowType: z.nativeEnum(WorkflowType),
-  spaceName: z.string(),
+  spaceId: z.string(),
 });
 
-export default function CreateSpaceForm({
-  workflowType,
-  spaceName,
-}: {
-  workflowType: WorkflowType;
-  spaceName: string;
-}) {
+export default function VisitSpaceForm({ spaceId }: { spaceId: string }) {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
-
-  const router = useRouter();
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      workflowType,
-      spaceName,
+      spaceId,
     },
   });
 
@@ -42,37 +30,34 @@ export default function CreateSpaceForm({
     setIsPending(true);
 
     try {
-      const result = await fetch("/api/create-space", {
-        method: "POST",
+      const result = await fetch(`/api/visit-space/${spaceId}`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
       });
 
-      console.log("Creating space", result);
+      console.log("Visiting space", result);
 
       if (!result.ok) {
-        throw new Error("Error creating space");
+        throw new Error("Error visiting space");
       }
 
       const json = await result.json();
+      const guestLink = json.guestLink;
 
-      toast({
-        title: "Space creation successful!",
-      });
-
-      router.push(`/project-onboarding/${json.spaceId}`);
+      window.open(guestLink, "_blank");
     } catch (e) {
       console.error(e);
 
       toast({
-        title: "Error creating space",
+        title: "Error visiting space",
         description: (e as Error).message,
       });
-      setIsPending(false);
       setError((e as Error).message);
     }
+
+    setIsPending(false);
   }
 
   return (
@@ -91,7 +76,7 @@ export default function CreateSpaceForm({
         )}
 
         <Button disabled={isPending} type="submit" className="w-full">
-          {isPending ? "Creating space..." : "Create space"}
+          {isPending ? "Loading..." : "Visit Flatfile Space"}
         </Button>
       </form>
     </Form>

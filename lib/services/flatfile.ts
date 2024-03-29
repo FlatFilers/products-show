@@ -21,6 +21,15 @@ export class FlatfileService {
     return data;
   };
 
+  static getSpace = async ({
+    flatfileSpaceId,
+  }: {
+    flatfileSpaceId: string;
+  }) => {
+    const { data } = await api.spaces.get(flatfileSpaceId);
+    return data;
+  };
+
   static async getRecordsForSpace({
     flatfileSpaceId,
   }: {

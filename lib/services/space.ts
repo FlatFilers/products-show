@@ -1,5 +1,4 @@
 import { prismaClient } from "@/lib/prisma-client";
-import { Prisma } from "@prisma/client";
 import { FlatfileService } from "./flatfile";
 
 export class SpaceService {
@@ -30,5 +29,19 @@ export class SpaceService {
     return await prismaClient.space.findUniqueOrThrow({
       where: { flatfileSpaceId },
     });
+  }
+
+  static async getSpaceGuestLink({ spaceId }: { spaceId: string }) {
+    const space = await prismaClient.space.findUniqueOrThrow({
+      where: {
+        id: spaceId,
+      },
+    });
+
+    const flatfileSpace = await FlatfileService.getSpace({
+      flatfileSpaceId: space.flatfileSpaceId,
+    });
+
+    return flatfileSpace.guestLink;
   }
 }
