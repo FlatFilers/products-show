@@ -19,6 +19,8 @@ export type WorkflowItem = {
   name: string;
   href: string;
   imageUri: string;
+  color: string;
+  highlightColor: string;
   description: string;
 };
 
@@ -31,10 +33,10 @@ export const WORKFLOW_ITEMS: {
     href: "/project-onboarding",
     imageUri: "/images/project-onboarding.svg",
     // heroUri: "/images/project-onboarding-hero.svg",
-    // color: "border-project-onboarding text-project-onboarding",
+    color: "border-project-onboarding text-project-onboarding",
     // hoverColor:
     //   "group-hover:border-project-onboarding group-hover:text-project-onboarding",
-    // highlightColor: "hover:border-project-onboarding",
+    highlightColor: "hover:border-project-onboarding",
     description:
       "Flatfile enables multiple team members to collaborate over the course of a project in real-time, validating, transforming, and loading data into HCM.Show while ensuring everyone is on the same page.",
   },
@@ -44,10 +46,10 @@ export const WORKFLOW_ITEMS: {
     href: "/embedded-portal",
     imageUri: "/images/embedded-portal.svg",
     // heroUri: "/images/embedded-portal-hero.svg",
-    // color: "border-embedded-portal text-embedded-portal",
+    color: "border-embedded-portal text-embedded-portal",
     // hoverColor:
     //   "group-hover:border-embedded-portal group-hover:text-embedded-portal",
-    // highlightColor: "hover:border-embedded-portal",
+    highlightColor: "hover:border-embedded-portal",
     description:
       "Flatfile's deeply configurable import experience is available right inside HCM Show. See how Flatfile simplifies the data onboarding process, eliminating the need for manual data mapping and significantly reducing errors.",
   },
@@ -57,9 +59,9 @@ export const WORKFLOW_ITEMS: {
     href: "/file-feed",
     imageUri: "/images/file-feed.svg",
     // heroUri: "/images/file-feed-hero.svg",
-    // color: "border-file-feed text-file-feed",
+    color: "border-file-feed text-file-feed",
     // hoverColor: "group-hover:border-file-feed group-hover:text-file-feed",
-    // highlightColor: "hover:border-file-feed",
+    highlightColor: "hover:border-file-feed",
     description:
       "Flatfile automatically picks up a file from an external source and initiates data onboarding on behalf of users. After the file is retrieved, users can take advantage of Flatfile's mapping engine and data table to provide them with a streamlined import experience.",
   },
@@ -69,10 +71,10 @@ export const WORKFLOW_ITEMS: {
     href: "/dynamic-portal",
     imageUri: "/images/dynamic-portal.svg",
     // heroUri: "/images/dynamic-portal-hero.svg",
-    // color: "border-dynamic-portal text-dynamic-portal",
+    color: "border-dynamic-portal text-dynamic-portal",
     // hoverColor:
     //   "group-hover:border-dynamic-portal group-hover:text-dynamic-portal",
-    // highlightColor: "hover:border-dynamic-portal",
+    highlightColor: "hover:border-dynamic-portal",
     description:
       "Flatfile’s configuration can be updated based on the settings from within the HCM Show application, allowing for fields to be added and picklist values to be updated. These changes are then reflected in an embedded iFrame modal.",
   },
