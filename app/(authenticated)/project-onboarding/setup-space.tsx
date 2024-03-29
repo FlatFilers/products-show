@@ -4,38 +4,30 @@ import CreateSpaceForm from "@/app/(authenticated)/project-onboarding/create-spa
 import HeaderContent from "@/app/(authenticated)/project-onboarding/header-content";
 import DownloadSampleData from "@/components/shared/download-sample-data";
 import { Step } from "@/components/shared/step-list";
-import { WORKFLOW_ITEMS } from "@/lib/workflow-items";
+import {
+  PROJECT_ONBOARDING_INITIAL_STEPS,
+  PROJECT_ONBOARDING_ITEM,
+  SAMPLE_DATA_FILENAME,
+} from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
 import { useState } from "react";
 
-const SAMPLE_DATA_FILENAME = "/jobs_employees.xlsx";
-const ITEM = WORKFLOW_ITEMS[WorkflowType.ProjectOnboarding];
 const STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-project-onboarding-downloaded`;
-const INITIAL_STEPS: Step[] = [
-  {
-    name: "Download Sample Data",
-    status: "current",
-  },
-  {
-    name: "Setup Flatfile",
-    status: "upcoming",
-  },
-];
 
 export default function SetupSpace() {
   const needsSampleData = localStorage.getItem(STORAGE_KEY) !== "true";
 
   const currentSteps: Step[] = needsSampleData
-    ? INITIAL_STEPS
+    ? PROJECT_ONBOARDING_INITIAL_STEPS
     : [
-        { ...INITIAL_STEPS[0], status: "complete" },
-        { ...INITIAL_STEPS[1], status: "current" },
+        { ...PROJECT_ONBOARDING_INITIAL_STEPS[0], status: "complete" },
+        { ...PROJECT_ONBOARDING_INITIAL_STEPS[1], status: "current" },
       ];
   const [steps, setSteps] = useState<Step[]>(currentSteps);
 
   return (
     <div className="space-y-6">
-      <HeaderContent item={ITEM} steps={steps} />
+      <HeaderContent item={PROJECT_ONBOARDING_ITEM} steps={steps} />
 
       {needsSampleData && (
         <DownloadSampleData

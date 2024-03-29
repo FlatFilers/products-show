@@ -1,4 +1,4 @@
-import VisitSpaceForm from "../visit-space-form";
+import Workspace from "@/app/(authenticated)/project-onboarding/workspace";
 
 export default async function Page({
   params,
@@ -9,9 +9,5 @@ export default async function Page({
 }) {
   const spaceId = params.spaceId;
 
-  return (
-    <div>
-      <VisitSpaceForm spaceId={spaceId} />
-    </div>
-  );
+  return <Workspace spaceId={spaceId} />;
 }
