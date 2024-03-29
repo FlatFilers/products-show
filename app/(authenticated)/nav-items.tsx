@@ -5,7 +5,7 @@ import SVG from "react-inlinesvg";
 import SignOut from "@/app/(authenticated)/sign-out";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import { WORKFLOW_ITEMS } from "@/lib/workflow-items";
+import { WORKFLOW_ITEMS } from "@/lib/workflow-constants";
 
 export const NavItems = () => {
   const path = usePathname();

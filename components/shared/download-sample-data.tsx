@@ -18,7 +18,7 @@ export default function DownloadSampleData({
       <p className="">First, download the sample data. 👇</p>
 
       <a
-        className={`button-bg space-x-2 w-full md:w-1/2 inline-flex items-center justify-center rounded-md border px-4 py-2 text-sm font-semibold shadow-sm`}
+        className={`button-bg space-x-2 w-full md:w-1/4 inline-flex items-center justify-center rounded-md border px-4 py-2 text-sm font-semibold shadow-sm`}
         download={fileName}
         href={fileName}
         onClick={onClick}

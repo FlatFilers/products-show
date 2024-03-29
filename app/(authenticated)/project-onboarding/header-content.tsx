@@ -1,7 +1,7 @@
 "use client";
 
 import StepList, { Step } from "@/components/shared/step-list";
-import { WorkflowItem } from "@/lib/workflow-items";
+import { WorkflowItem } from "@/lib/workflow-constants";
 import SVG from "react-inlinesvg";
 
 export default function HeaderContent({
