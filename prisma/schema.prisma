@@ -22,11 +22,11 @@ model User {
   lastName    String
   companyName String
 
-  Space       Space[]
-  suppliers   Supplier[]
-  Attribute   Attribute[]
-  Category    Category[]
-  Product     Product[]
+  Space     Space[]
+  suppliers Supplier[]
+  Attribute Attribute[]
+  Category  Category[]
+  Product   Product[]
 }
 
 model Space {
@@ -41,30 +41,33 @@ model Space {
 }
 
 model Supplier {
-  id        String   @id @default(uuid()) @db.Uuid
-  createdAt DateTime @default(now())
-  name      String
-  email     String?  @db.Text
-  phone     String?
-  address   String
-  city      String
-  state     String
-  country   String
+  id                 String   @id @default(uuid()) @db.Uuid
+  createdAt          DateTime @default(now())
+  externalSupplierId String
+  name               String
+  email              String?  @db.Text
+  phone              String?
+  address            String?
+  city               String?
+  state              String?
+  country            String?
 
   userId   String    @db.Uuid
   user     User      @relation(fields: [userId], references: [id])
   products Product[]
+
+  @@unique([userId, externalSupplierId])
 }
 
 model Product {
-  id          String   @id @default(uuid()) @db.Uuid
-  createdAt   DateTime @default(now())
-  productId   String
-  name        String
-  description String?
-  price       Float
-  quantity    Int
-  imageUrl    String?
+  id                String   @id @default(uuid()) @db.Uuid
+  createdAt         DateTime @default(now())
+  externalProductId String
+  name              String
+  description       String?
+  price             Float
+  quantity          Int
+  imageUrl          String?
 
   categoryId String      @db.Uuid
   category   Category    @relation(fields: [categoryId], references: [id])
@@ -74,34 +77,34 @@ model Product {
   user       User        @relation(fields: [userId], references: [id])
   attributes Attribute[]
 
-  @@unique([userId, productId])
+  @@unique([userId, externalProductId])
 }
 
 model Attribute {
-  id          String   @id @default(uuid()) @db.Uuid
-  createdAt   DateTime @default(now())
-  attributeId String
-  name        String
-  value       String
-  unit        String?
+  id                  String   @id @default(uuid()) @db.Uuid
+  createdAt           DateTime @default(now())
+  externalAttributeId String
+  name                String
+  value               String
+  unit                String?
 
   userId   String    @db.Uuid
   user     User      @relation(fields: [userId], references: [id])
   products Product[]
 
-  @@unique([userId, attributeId])
+  @@unique([userId, externalAttributeId])
 }
 
 model Category {
-  id          String   @id @default(uuid()) @db.Uuid
-  createdAt   DateTime @default(now())
-  categoryId  String
-  name        String
-  description String?
+  id                 String   @id @default(uuid()) @db.Uuid
+  createdAt          DateTime @default(now())
+  externalCategoryId String
+  name               String
+  description        String?
 
   userId   String    @db.Uuid
   user     User      @relation(fields: [userId], references: [id])
   products Product[]
 
-  @@unique([userId, categoryId])
+  @@unique([userId, externalCategoryId])
 }
