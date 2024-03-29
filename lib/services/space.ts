@@ -25,7 +25,29 @@ export class SpaceService {
     });
   }
 
-  static async getSpace({ flatfileSpaceId }: { flatfileSpaceId: string }) {
+  static async getSpaceForWorkflow({
+    userId,
+    workflowType,
+  }: {
+    userId: string;
+    workflowType: string;
+  }) {
+    return await prismaClient.space.findUnique({
+      where: { userId_workflowType: { userId, workflowType } },
+    });
+  }
+
+  static async getSpace({ id }: { id: string }) {
+    return await prismaClient.space.findUniqueOrThrow({
+      where: { id },
+    });
+  }
+
+  static async getSpaceByFlatfileSpaceId({
+    flatfileSpaceId,
+  }: {
+    flatfileSpaceId: string;
+  }) {
     return await prismaClient.space.findUniqueOrThrow({
       where: { flatfileSpaceId },
     });
