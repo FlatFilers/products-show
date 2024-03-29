@@ -23,7 +23,7 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
         <p className="text-2xl">Your Flatfile space is configured. 🎉</p>
 
         <div className="flex flex-col md:flex-row justify-between lg:justify-start lg:space-x-12 space-y-12 md:space-y-0">
-          <div className="md:max-w-md space-y-2">
+          <div className="md:max-w-md space-y-4">
             <p className="font-semibold">Upload Records in Flatfile</p>
             <p>
               Click the &ldquo;Visit Flatfile Space&rdquo; button below to
@@ -39,20 +39,18 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
               page to review the data within the application.
             </p>
 
-            <div className="space-y-4">
-              <VisitSpaceForm spaceId={spaceId} />
+            <VisitSpaceForm spaceId={spaceId} />
 
-              <p className="text-xs block text-gray-400">
-                To download the sample data again{" "}
-                <a
-                  className="underline text-gray-400"
-                  download={SAMPLE_DATA_FILENAME}
-                  href={SAMPLE_DATA_FILENAME}
-                >
-                  click here.
-                </a>
-              </p>
-            </div>
+            <p className="text-xs block text-gray-400">
+              To download the sample data again{" "}
+              <a
+                className="underline text-gray-400"
+                download={SAMPLE_DATA_FILENAME}
+                href={SAMPLE_DATA_FILENAME}
+              >
+                click here.
+              </a>
+            </p>
           </div>
         </div>
       </div>

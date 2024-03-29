@@ -43,31 +43,33 @@ export default function SetupSpace() {
         />
       )}
 
-      <div className="text-white space-y-4 md:max-w-lg">
-        <h2 className="text-2xl font-semibold">
-          🎉 Great! Now let&apos;s setup Flatfile to import those records.
-        </h2>
-        <p className="">
-          Click the button below and we&apos;ll configure the upload space and
-          invite you to it. 👇
-        </p>
+      {!needsSampleData && (
+        <div className="text-white space-y-4 md:max-w-lg">
+          <h2 className="text-2xl font-semibold">
+            🎉 Great! Now let&apos;s setup Flatfile to import those records.
+          </h2>
+          <p className="">
+            Click the button below and we&apos;ll configure the upload space and
+            invite you to it. 👇
+          </p>
 
-        <CreateSpaceForm
-          workflowType={WorkflowType.ProjectOnboarding}
-          spaceName={"Project Onboarding"}
-        />
+          <CreateSpaceForm
+            workflowType={WorkflowType.ProjectOnboarding}
+            spaceName={"Project Onboarding"}
+          />
 
-        <p className="text-xs block text-gray-400">
-          To download the sample data again,{" "}
-          <a
-            className={`text-gray-400 underline`}
-            download={SAMPLE_DATA_FILENAME}
-            href={SAMPLE_DATA_FILENAME}
-          >
-            click here.
-          </a>
-        </p>
-      </div>
+          <p className="text-xs block text-gray-400">
+            To download the sample data again,{" "}
+            <a
+              className={`text-gray-400 underline`}
+              download={SAMPLE_DATA_FILENAME}
+              href={SAMPLE_DATA_FILENAME}
+            >
+              click here.
+            </a>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
