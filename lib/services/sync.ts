@@ -4,7 +4,9 @@ import { SpaceService } from "@/lib/services/space";
 
 export class SyncService {
   static async syncSpace({ flatfileSpaceId }: { flatfileSpaceId: string }) {
-    const space = await SpaceService.getSpace({ flatfileSpaceId });
+    const space = await SpaceService.getSpaceByFlatfileSpaceId({
+      flatfileSpaceId,
+    });
 
     const records = await FlatfileService.getRecordsForSpace({
       flatfileSpaceId,

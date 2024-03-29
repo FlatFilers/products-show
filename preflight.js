@@ -4,6 +4,7 @@ VARS = [
   "FLATFILE_NAMESPACE",
   "FLATFILE_API_KEY",
   "FLATFILE_ENVIRONMENT_ID",
+  "NEXT_PUBLIC_APP_ID",
 ];
 
 function preflight() {
