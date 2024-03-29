@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import SignOut from "@/app/(authenticated)/sign-out";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import {
