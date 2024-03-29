@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { WorkflowType } from "@/lib/workflow-type";
@@ -26,6 +26,7 @@ export default function CreateSpaceForm({
   const [error, setError] = useState("");
 
   const router = useRouter();
+  const pathname = usePathname();
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,7 +62,6 @@ export default function CreateSpaceForm({
         title: "Space creation successful!",
       });
 
-      const pathname = getPathname(values.workflowType);
       router.push(`${pathname}/${json.spaceId}`);
     } catch (e) {
       console.error(e);
@@ -97,21 +97,3 @@ export default function CreateSpaceForm({
     </Form>
   );
 }
-
-interface WorkflowPathname {
-  [WorkflowType.ProjectOnboarding]: string;
-  [WorkflowType.FileFeed]: string;
-  [WorkflowType.Embed]: string;
-  [WorkflowType.Dynamic]: string;
-}
-
-const getPathname = (workflowType: WorkflowType): string => {
-  const paths: WorkflowPathname = {
-    [WorkflowType.ProjectOnboarding]: "/project-onboarding",
-    [WorkflowType.FileFeed]: "/file-feed",
-    [WorkflowType.Embed]: "/embedded-portal",
-    [WorkflowType.Dynamic]: "/dynamic",
-  };
-
-  return paths[workflowType];
-};
