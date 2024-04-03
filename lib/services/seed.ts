@@ -3,8 +3,6 @@ import { UserService } from "@/lib/services/user";
 
 export class SeedService {
   static async seed() {
-    console.log("Seeding...");
-
     const user = await this.upsertUser();
 
     await this.upsertAttributes(user.id);
