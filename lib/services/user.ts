@@ -64,7 +64,7 @@ export class UserService {
     return isValid ? user : null;
   }
 
-  private static async hashPassword(plaintextPassword: string): Promise<string> {
+  static async hashPassword(plaintextPassword: string): Promise<string> {
     return await bcrypt.hash(plaintextPassword, 10);
   }
 
