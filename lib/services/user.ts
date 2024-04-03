@@ -1,4 +1,5 @@
 import { prismaClient } from "@/lib/prisma-client";
+import { SeedService } from "@/lib/services/seed";
 import { Prisma } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 
@@ -17,7 +18,7 @@ export class UserService {
     companyName: string;
   }) {
     try {
-      return await prismaClient.user.create({
+      const user = await prismaClient.user.create({
         data: {
           email,
           firstName,
@@ -26,6 +27,10 @@ export class UserService {
           companyName,
         },
       });
+
+      await SeedService.upsertAttributes(user.id);
+
+      return user;
     } catch (e) {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         // The .code property can be accessed in a type-safe manner

@@ -50,7 +50,7 @@ export class SeedService {
     }
   }
 
-  static async upsertUser() {
+  private static async upsertUser() {
     const data = {
       email: "test@test.com",
       password: await UserService.hashPassword("asdfasdf"),
