@@ -131,10 +131,10 @@ export const apiAuthenticatedRoute = async (
       "Invalid listener auth token"
     );
 
-    const userId = request.headers.get("x-user-id");
-    invariant(userId, "No x-user-id header provided");
+    const flatfileSpaceId = request.headers.get("x-space-id");
+    invariant(flatfileSpaceId, "No x-space-id header provided");
 
-    const user = await UserService.findUserOrThrow({ userId });
+    const user = await UserService.findUserBySpaceOrThrow({ flatfileSpaceId });
 
     let res = await requestHandler(request, {
       ...context,

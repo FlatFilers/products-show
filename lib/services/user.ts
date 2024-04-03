@@ -1,5 +1,6 @@
 import { prismaClient } from "@/lib/prisma-client";
 import { SeedService } from "@/lib/services/seed";
+import { SpaceService } from "@/lib/services/space";
 import { Prisma } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 
@@ -69,10 +70,18 @@ export class UserService {
     return isValid ? user : null;
   }
 
-  static async findUserOrThrow({ userId }: { userId: string }) {
+  static async findUserBySpaceOrThrow({
+    flatfileSpaceId,
+  }: {
+    flatfileSpaceId: string;
+  }) {
+    const space = await SpaceService.getSpaceByFlatfileSpaceId({
+      flatfileSpaceId,
+    });
+
     return await prismaClient.user.findUniqueOrThrow({
       where: {
-        id: userId,
+        id: space.userId,
       },
     });
   }
