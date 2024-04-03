@@ -5,7 +5,7 @@ export interface SessionUser {
   firstName: string;
   lastName: string;
   email: string;
-  organizationName: string;
+  companyName: string;
 }
 
 declare module "next-auth" {
@@ -22,7 +22,7 @@ declare module "next-auth" {
     firstName: string;
     lastName: string;
     email: string;
-    organizationName: string;
+    companyName: string;
   }
 }
 

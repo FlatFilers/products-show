@@ -5,6 +5,7 @@ import invariant from "ts-invariant";
 import { Prisma } from "@prisma/client";
 import { ZodError } from "zod";
 import { SessionUser } from "@/nextauth";
+import { UserService } from "@/lib/services/user";
 
 type RequestHandler = (
   req: NextRequest,
@@ -109,6 +110,35 @@ export const authenticatedRoute = async (
     let res = await requestHandler(request, {
       ...context,
       user: session.user,
+    });
+    return res;
+  } catch (e) {
+    return baseErrorHandler(e);
+  }
+};
+
+export const apiAuthenticatedRoute = async (
+  request: NextRequest,
+  context: { params: any } | null,
+  requestHandler: AuthenticatedRequestHandler
+) => {
+  try {
+    const listenerAuthToken = request.headers.get("x-listener-auth");
+
+    invariant(
+      listenerAuthToken &&
+        listenerAuthToken === process.env.LISTENER_AUTH_TOKEN,
+      "Invalid listener auth token"
+    );
+
+    const userId = request.headers.get("x-user-id");
+    invariant(userId, "No x-user-id header provided");
+
+    const user = await UserService.findUserOrThrow({ userId });
+
+    let res = await requestHandler(request, {
+      ...context,
+      user,
     });
     return res;
   } catch (e) {

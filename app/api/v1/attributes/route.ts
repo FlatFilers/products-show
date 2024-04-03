@@ -1,19 +1,14 @@
-import { unauthenticatedRoute } from "@/lib/api-helpers";
+import { apiAuthenticatedRoute } from "@/lib/api-helpers";
 import { AttributeService } from "@/lib/services/attribute";
 import { NextRequest, NextResponse } from "next/server";
-import invariant from "ts-invariant";
 
 export const GET = (
   req: NextRequest,
   context: { params: { userId: string } }
 ) =>
-  unauthenticatedRoute(req, context, async (rq, cxt) => {
-    const searchParams = rq.nextUrl.searchParams;
-    const userId = searchParams.get("userId");
-    invariant(userId, "No userId provided");
-
+  apiAuthenticatedRoute(req, context, async (rq, cxt) => {
     const attributes = await AttributeService.getAll({
-      userId,
+      userId: cxt.user.id,
     });
 
     const mappedAttributes = attributes.map((a) => {
@@ -21,6 +16,7 @@ export const GET = (
         name: a.name,
         value: a.value,
         unit: a.unit,
+        externalId: a.externalAttributeId,
       };
     });
 
