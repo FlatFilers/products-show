@@ -69,6 +69,14 @@ export class UserService {
     return isValid ? user : null;
   }
 
+  static async findUserOrThrow({ userId }: { userId: string }) {
+    return await prismaClient.user.findUniqueOrThrow({
+      where: {
+        id: userId,
+      },
+    });
+  }
+
   static async hashPassword(plaintextPassword: string): Promise<string> {
     return await bcrypt.hash(plaintextPassword, 10);
   }
