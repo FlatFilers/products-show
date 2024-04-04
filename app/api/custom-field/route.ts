@@ -22,3 +22,16 @@ export const POST = async (request: NextRequest, context: { params: any }) => {
     return NextResponse.json({ customField }, { status: 201 });
   });
 };
+
+export const DELETE = async (
+  request: NextRequest,
+  context: { params: any }
+) => {
+  return authenticatedRoute(request, context, async (rq, cxt) => {
+    await CustomFieldService.delete({
+      userId: cxt.user.id,
+    });
+
+    return NextResponse.json({}, { status: 201 });
+  });
+};

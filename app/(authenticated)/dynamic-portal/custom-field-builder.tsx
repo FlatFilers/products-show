@@ -30,7 +30,7 @@ export const CustomFieldBuilder = ({ customField, setCustomField }: Props) => {
       JSON.parse(formData.get("customField") as string);
 
     try {
-      const response = await fetch("/api/save-custom-field", {
+      const response = await fetch("/api/custom-field", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

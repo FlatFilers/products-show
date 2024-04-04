@@ -115,7 +115,7 @@ export default function Workspace({
       },
     },
     closeSpace: {
-      operation: "contacts:submit", // todo: what do we put here?
+      operation: "contacts:submit",
       onClose: () => setShowSpace(false),
     },
   };
@@ -125,17 +125,14 @@ export default function Workspace({
 
     try {
       if (confirm("Reset workspace options?")) {
-        const response = await fetch("/api/v1/reset-workspace", {
-          method: "POST",
+        const response = await fetch("/api/custom-field", {
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
         });
 
         if (!response.ok) {
-          toast({
-            title: "Error resetting workspace",
-          });
           throw new Error("Error resetting workspace");
         }
 
@@ -147,6 +144,10 @@ export default function Workspace({
       }
     } catch (error) {
       console.error("Error Resetting Workspace:", error);
+
+      toast({
+        title: "Error resetting workspace",
+      });
     }
   };
 

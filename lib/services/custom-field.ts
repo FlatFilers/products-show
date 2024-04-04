@@ -25,4 +25,12 @@ export class CustomFieldService {
       update: data,
     });
   }
+
+  static async delete({ userId }: { userId: string }) {
+    return await prismaClient.customField.delete({
+      where: {
+        userId,
+      },
+    });
+  }
 }
