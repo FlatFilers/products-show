@@ -92,6 +92,8 @@ export const WORKFLOW_ITEMS: {
 export const PROJECT_ONBOARDING_ITEM =
   WORKFLOW_ITEMS[WorkflowType.ProjectOnboarding];
 
+export const EMBEDDED_PORTAL_ITEM = WORKFLOW_ITEMS[WorkflowType.Embed];
+
 export const RESOURCE_ITEMS: NavItem[] = [
   {
     name: "Suppliers",

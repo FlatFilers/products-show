@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { ISpace, initializeFlatfile } from "@flatfile/react";
 import { Button } from "@/components/ui/button";
+import {
+  ArrowsPointingInIcon,
+  ArrowsPointingOutIcon,
+} from "@heroicons/react/24/outline";
 
 export default function EmbeddedPortal({
   flatfileSpaceId,
