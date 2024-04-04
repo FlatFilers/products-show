@@ -1,7 +1,7 @@
-import { useSpace } from "@flatfile/react";
+import { ISpace, useSpace } from "@flatfile/react";
 
 type Props = {
-  spaceProps: any;
+  spaceProps: ISpace;
 };
 
 const EmbeddedSpace = ({ spaceProps }: Props) => {
