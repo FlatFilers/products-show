@@ -1,4 +1,4 @@
-import VisitSpaceForm from "@/components/shared/visit-space-form";
+import EmbeddedPortal from "@/app/(authenticated)/embedded-portal/embedded-portal";
 
 export default async function Page({
   params,
@@ -11,7 +11,7 @@ export default async function Page({
 
   return (
     <div>
-      <VisitSpaceForm spaceId={spaceId} />
+      <EmbeddedPortal />
     </div>
   );
 }
