@@ -4,31 +4,34 @@ import { useState } from "react";
 import { ISpace, initializeFlatfile } from "@flatfile/react";
 import { Button } from "@/components/ui/button";
 
-export default function EmbeddedPortal() {
-  const spaceProps: ISpace = {
-    space: {
-      id: "",
-      accessToken: "",
-    },
-    namespace: "",
-    environmentId: "",
-  };
-
+export default function EmbeddedPortal({
+  flatfileSpaceId,
+  flatfileSpaceAccessToken,
+}: {
+  flatfileSpaceId: string;
+  flatfileSpaceAccessToken: string;
+}) {
   const [showSpace, setShowSpace] = useState(false);
 
+  const spaceProps: ISpace = {
+    space: {
+      id: flatfileSpaceId,
+      accessToken: flatfileSpaceAccessToken,
+    },
+    namespace: process.env.NEXT_PUBLIC_FLATFILE_NAMESPACE as string,
+    environmentId: process.env.NEXT_PUBLIC_FLATFILE_ENVIRONMENT_ID as string,
+  };
   const { Space, OpenEmbed } = initializeFlatfile({
     ...spaceProps,
     closeSpace: {
-      operation: "submitActionFg",
+      operation: "contacts:submit",
       onClose: () => setShowSpace(false),
     },
   });
 
   const onOpenSpace = async () => {
     setShowSpace(!showSpace);
-    await fetch("/api/get-embedded-space/get-embedded-space", {
-      method: "GET",
-    });
+    OpenEmbed();
   };
 
   return (
