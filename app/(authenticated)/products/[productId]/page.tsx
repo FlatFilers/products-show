@@ -9,7 +9,7 @@ export default async function Page({
     productId: string;
   };
 }) {
-  invariant(params.productId, "Category id not found");
+  invariant(params.productId, "Product ID not found");
   const productId = params.productId;
   const product = await ProductService.getProduct(productId);
   invariant(product, "Product not found");

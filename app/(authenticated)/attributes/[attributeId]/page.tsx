@@ -8,7 +8,7 @@ export default async function Page({
     attributeId: string;
   };
 }) {
-  invariant(params.attributeId, "Category id not found");
+  invariant(params.attributeId, "Attribute ID not found");
   const attributeId = params.attributeId;
   const attribute = await AttributeService.getAttribute(attributeId);
   invariant(attribute, "Attribute not found");

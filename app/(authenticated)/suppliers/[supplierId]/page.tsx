@@ -8,7 +8,7 @@ export default async function Page({
     supplierId: string;
   };
 }) {
-  invariant(params.supplierId, "Supplier id not found");
+  invariant(params.supplierId, "Supplier ID not found");
   const supplierId = params.supplierId;
   const supplier = await SupplierService.getSupplier(supplierId);
   invariant(supplier, "Supplier not found");

@@ -8,7 +8,7 @@ export default async function Page({
     categoryId: string;
   };
 }) {
-  invariant(params.categoryId, "Category id not found");
+  invariant(params.categoryId, "Category ID not found");
   const categoryId = params.categoryId;
   const category = await CategoryService.getCategory(categoryId);
   invariant(category, "Category not found");
