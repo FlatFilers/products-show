@@ -22,11 +22,12 @@ model User {
   lastName    String
   companyName String
 
-  Space     Space[]
-  suppliers Supplier[]
-  Attribute Attribute[]
-  Category  Category[]
-  Product   Product[]
+  Space       Space[]
+  suppliers   Supplier[]
+  Attribute   Attribute[]
+  Category    Category[]
+  Product     Product[]
+  CustomField CustomField?
 }
 
 model Space {
@@ -107,4 +108,20 @@ model Category {
   products Product[]
 
   @@unique([userId, externalCategoryId])
+}
+
+model CustomField {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  type        String
+  required    Boolean
+  dateFormat  String?
+  decimals    Int?
+  enumOptions Json?   @db.JsonB
+
+  userId String @unique @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
 }
