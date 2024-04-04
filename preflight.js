@@ -5,6 +5,7 @@ VARS = [
   "FLATFILE_API_KEY",
   "FLATFILE_ENVIRONMENT_ID",
   "NEXT_PUBLIC_APP_ID",
+  "LISTENER_AUTH_TOKEN",
 ];
 
 function preflight() {

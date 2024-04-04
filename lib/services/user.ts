@@ -1,4 +1,6 @@
 import { prismaClient } from "@/lib/prisma-client";
+import { SeedService } from "@/lib/services/seed";
+import { SpaceService } from "@/lib/services/space";
 import { Prisma } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 
@@ -17,7 +19,7 @@ export class UserService {
     companyName: string;
   }) {
     try {
-      return await prismaClient.user.create({
+      const user = await prismaClient.user.create({
         data: {
           email,
           firstName,
@@ -26,6 +28,10 @@ export class UserService {
           companyName,
         },
       });
+
+      await SeedService.upsertAttributes(user.id);
+
+      return user;
     } catch (e) {
       if (e instanceof Prisma.PrismaClientKnownRequestError) {
         // The .code property can be accessed in a type-safe manner
@@ -64,7 +70,23 @@ export class UserService {
     return isValid ? user : null;
   }
 
-  private static async hashPassword(plaintextPassword: string): Promise<string> {
+  static async findUserBySpaceOrThrow({
+    flatfileSpaceId,
+  }: {
+    flatfileSpaceId: string;
+  }) {
+    const space = await SpaceService.getSpaceByFlatfileSpaceId({
+      flatfileSpaceId,
+    });
+
+    return await prismaClient.user.findUniqueOrThrow({
+      where: {
+        id: space.userId,
+      },
+    });
+  }
+
+  static async hashPassword(plaintextPassword: string): Promise<string> {
     return await bcrypt.hash(plaintextPassword, 10);
   }
 

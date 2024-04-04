@@ -1,8 +1,8 @@
 import { prismaClient } from "@/lib/prisma-client";
 
 export class AttributeService {
-  static async getAttributesForUser(userId: string) {
-    return prismaClient.attribute.findMany({
+  static async getAll({ userId }: { userId: string }) {
+    return await prismaClient.attribute.findMany({
       where: {
         userId,
       },
