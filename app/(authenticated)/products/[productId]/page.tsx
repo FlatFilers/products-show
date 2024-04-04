@@ -1,6 +1,7 @@
 import { ProductService } from "@/lib/services/product";
 import Link from "next/link";
 import invariant from "ts-invariant";
+import Image from "next/image";
 
 export default async function Page({
   params,
@@ -17,9 +18,22 @@ export default async function Page({
   return (
     <div className="px-4 sm:px-6 lg:px-8 w-1/2">
       <div className="resource-show">
-        <div>
-          <h3>{product.name}</h3>
-          <p>Product details</p>
+        <div className="flex justify-between items-center align-middle">
+          <div>
+            <h3>{product.name}</h3>
+            <p>Product details</p>
+          </div>
+          {product.imageUrl && (
+            <div>
+              <Image
+                src={product.imageUrl}
+                alt="Product Image"
+                width={100}
+                height={100}
+                className="mr-4"
+              />
+            </div>
+          )}
         </div>
         <div>
           <dl>
