@@ -5,23 +5,147 @@ import { WorkflowType } from "@/lib/workflow-type";
 import SVG from "react-inlinesvg";
 import { blueprint } from "@/lib/dynamic/blueprint";
 import { CustomFieldBuilder } from "@/app/(authenticated)/dynamic-portal/custom-field-builder";
-import { CustomField, DEFAULT_CUSTOM_FIELD } from "@/lib/dynamic/field-options";
-import { useState } from "react";
+import {
+  Option,
+  CustomField,
+  DEFAULT_CUSTOM_FIELD,
+  DYNAMIC_FIELD_KEY,
+} from "@/lib/dynamic/field-options";
+import { FormEvent, useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import dynamic from "next/dynamic";
+import { type ISpace } from "@flatfile/react";
+import { SheetConfig } from "@flatfile/api/api";
+import { listener } from "@/lib/dynamic/listener";
+
+const DynamicEmbeddedSpace = dynamic(
+  () => import("@/components/shared/embedded-space"),
+  {
+    loading: () => <div></div>,
+    ssr: false,
+  }
+);
+
+const generateConfig = ({
+  sheet,
+  customFieldConfig,
+}: {
+  sheet: SheetConfig;
+  customFieldConfig: any;
+}) => {
+  const filteredConfig = {
+    name: sheet.name,
+    sheets: [
+      {
+        name: sheet.name,
+        slug: sheet.slug,
+        fields: [...sheet.fields, ...[customFieldConfig]],
+      },
+    ],
+    actions: sheet.actions,
+  };
+  // console.log("filteredConfig", filteredConfig);
+
+  return filteredConfig;
+};
+
+const customOptionsConfig = (options: Option[]) => {
+  const mappedOptions = options.map((o) => {
+    return {
+      value: o.input,
+      label: o.output,
+    };
+  });
+
+  return {
+    config: { options: mappedOptions },
+  };
+};
 
 export default function Workspace() {
   const item = WORKFLOW_ITEMS[WorkflowType.Dynamic];
   const sheet = blueprint[0];
 
+  const [showSpace, setShowSpace] = useState(false);
   const [customField, setCustomField] = useState<CustomField>(
     // dbCustomField ?? DEFAULT_CUSTOM_FIELD
     DEFAULT_CUSTOM_FIELD
   );
+  const { toast } = useToast();
 
-  // const workbookConfig = {
-  //   name: sheet.name,
-  //   blueprint,
-  //   actions: sheet.actions,
-  // };
+  const customFieldConfig = {
+    key: DYNAMIC_FIELD_KEY,
+    type: customField.type,
+    label: customField.name,
+    description: "Custom field",
+    ...(customField.required && { constraints: [{ type: "required" }] }),
+    ...(customField.type === "enum" &&
+      customField.enumOptions &&
+      customOptionsConfig(customField.enumOptions)),
+  };
+
+  const spaceProps: ISpace = {
+    publishableKey: process.env.NEXT_PUBLIC_FLATFILE_PUBLISHABLE_KEY,
+    environmentId: process.env.NEXT_PUBLIC_FLATFILE_ENVIRONMENT_ID,
+    name: "Dynamic Portal",
+    // themeConfig: theme("#71a3d2", "#3A7CB9"),
+    listener,
+    // document,
+    workbook: generateConfig({
+      sheet,
+      customFieldConfig,
+    }),
+    spaceInfo: {
+      // userId,
+    },
+    sidebarConfig: {
+      showDataChecklist: false,
+      showSidebar: true,
+    },
+    spaceBody: {
+      // languageOverride: language,
+      metadata: {
+        customFieldValidations: {
+          decimals: customField.decimals,
+          dateFormat: customField.dateFormat,
+        },
+      },
+    },
+    closeSpace: {
+      operation: "contacts:submit", // todo: what do we put here?
+      onClose: () => setShowSpace(false),
+    },
+  };
+
+  const handleResetSubmit = async (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    try {
+      if (confirm("Reset workspace options?")) {
+        const response = await fetch("/api/v1/reset-workspace", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          toast({
+            title: "Error resetting workspace",
+          });
+          throw new Error("Error resetting workspace");
+        }
+
+        setCustomField(DEFAULT_CUSTOM_FIELD);
+
+        toast({
+          title: "Workspace was reset",
+        });
+      }
+    } catch (error) {
+      console.error("Error Resetting Workspace:", error);
+    }
+  };
 
   return (
     <div className="text-white space-y-8 md:relative lg:max-w-3xl">
@@ -93,6 +217,35 @@ export default function Workspace() {
           </div>
         </div>
       </div>
+
+      <div className="space-y-4">
+        <div className="space-y-1">
+          <p className="font-semibold">Generate your workspace</p>
+          <p className="text-gray-400 text-sm">
+            Click to generate the workspace with your custom config and input
+            your data.
+          </p>
+        </div>
+
+        <div className="flex flex-row items-center space-x-8">
+          <button
+            onClick={() => setShowSpace(!showSpace)}
+            className={`space-x-2 px-4 py-2 inline-flex items-center justify-center rounded-md border text-sm font-medium shadow-sm button-bg`}
+          >
+            <SVG
+              src="/images/sparkles-icon.svg"
+              className="w-4 h-4 fill-white"
+            />
+            <span>{showSpace ? "Close Portal" : "Open Portal"}</span>
+          </button>
+
+          <button onClick={handleResetSubmit} className="underline text-xs">
+            Reset Workspace
+          </button>
+        </div>
+      </div>
+
+      {showSpace && <DynamicEmbeddedSpace spaceProps={spaceProps} />}
     </div>
   );
 }
