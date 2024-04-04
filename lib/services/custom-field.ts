@@ -2,6 +2,14 @@ import { prismaClient } from "@/lib/prisma-client";
 import { Prisma } from "@prisma/client";
 
 export class CustomFieldService {
+  static async get({ userId }: { userId: string }) {
+    return await prismaClient.customField.findUnique({
+      where: {
+        userId,
+      },
+    });
+  }
+
   static async upsert({
     userId,
     data,

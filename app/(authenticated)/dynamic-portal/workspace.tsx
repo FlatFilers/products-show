@@ -62,14 +62,17 @@ const customOptionsConfig = (options: Option[]) => {
   };
 };
 
-export default function Workspace() {
+export default function Workspace({
+  savedCustomField,
+}: {
+  savedCustomField: CustomField | null;
+}) {
   const item = WORKFLOW_ITEMS[WorkflowType.Dynamic];
   const sheet = blueprint[0];
 
   const [showSpace, setShowSpace] = useState(false);
   const [customField, setCustomField] = useState<CustomField>(
-    // dbCustomField ?? DEFAULT_CUSTOM_FIELD
-    DEFAULT_CUSTOM_FIELD
+    savedCustomField || DEFAULT_CUSTOM_FIELD
   );
   const { toast } = useToast();
 
