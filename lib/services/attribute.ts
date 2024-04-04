@@ -8,4 +8,12 @@ export class AttributeService {
       },
     });
   }
+
+  static async getAttribute(attributeId: string) {
+    return prismaClient.attribute.findUniqueOrThrow({
+      where: {
+        id: attributeId,
+      },
+    });
+  }
 }
