@@ -42,17 +42,17 @@ export default async function Page({
         <div className="flex flex-col md:flex-row justify-between lg:justify-start lg:space-x-12 space-y-12 md:space-y-0">
           <div className="md:max-w-md">
             <p className="font-semibold mb-4">Launch Flatfile</p>
-            <p>
-              Launch Flatfile via the “Import Benefit Elections” button below.
-            </p>
+            <p>Launch Flatfile via the “Import" button below.</p>
             <p>
               Use the Sidebar in the embedded application to guide you through
               the import process!
             </p>
-            <EmbeddedPortal
-              flatfileSpaceId={flatfileSpace.id}
-              flatfileSpaceAccessToken={flatfileSpace.accessToken as string}
-            />
+            <div className="mt-8">
+              <EmbeddedPortal
+                flatfileSpaceId={flatfileSpace.id}
+                flatfileSpaceAccessToken={flatfileSpace.accessToken as string}
+              />
+            </div>
           </div>
         </div>
       </div>

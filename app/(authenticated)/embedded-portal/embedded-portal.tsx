@@ -42,7 +42,12 @@ export default function EmbeddedPortal({
     <div className="content">
       <div>
         <Button className="contrast" onClick={onOpenSpace}>
-          {showSpace === true ? "Close" : "Open"} Space
+          {showSpace ? "Close Portal" : "Import...Something?"}
+          {showSpace ? (
+            <ArrowsPointingInIcon className="w-4 h-4 ml-2" />
+          ) : (
+            <ArrowsPointingOutIcon className="w-4 h-4 ml-2" />
+          )}
         </Button>
         {showSpace && <Space />}
       </div>
