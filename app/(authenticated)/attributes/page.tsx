@@ -14,9 +14,7 @@ import { AttributeService } from "@/lib/services/attribute";
 export default async function Page() {
   const session = await getServerSession();
   invariant(session?.user, "User must be logged in");
-  const attributes = await AttributeService.getAttributesForUser(
-    session.user.id
-  );
+  const attributes = await AttributeService.getAll({ userId: session.user.id });
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 text-white">
