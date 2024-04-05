@@ -7,7 +7,7 @@ import { Step } from "@/components/shared/step-list";
 import {
   PROJECT_ONBOARDING_INITIAL_STEPS,
   SAMPLE_DATA_FILENAME,
-  WORKFLOW_ITEMS,
+  WorkflowItem,
 } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
 import { useEffect, useState } from "react";
@@ -15,11 +15,12 @@ import { useEffect, useState } from "react";
 export default function SetupSpace({
   workflowType,
   storageKey,
+  item,
 }: {
   workflowType: WorkflowType;
   storageKey: string;
+  item: WorkflowItem;
 }) {
-  const item = WORKFLOW_ITEMS[workflowType];
   const [steps, setSteps] = useState<Step[]>(
     item.steps || PROJECT_ONBOARDING_INITIAL_STEPS
   );
