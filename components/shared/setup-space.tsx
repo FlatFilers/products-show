@@ -6,19 +6,30 @@ import DownloadSampleData from "@/components/shared/download-sample-data";
 import { Step } from "@/components/shared/step-list";
 import {
   PROJECT_ONBOARDING_INITIAL_STEPS,
-  PROJECT_ONBOARDING_ITEM,
   SAMPLE_DATA_FILENAME,
+  WorkflowItem,
 } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-project-onboarding-downloaded`;
-
-export default function SetupSpace() {
-  const [steps, setSteps] = useState<Step[]>(PROJECT_ONBOARDING_INITIAL_STEPS);
+export default function SetupSpace({
+  workflowType,
+  storageKey,
+  item,
+}: {
+  workflowType: WorkflowType;
+  storageKey: string;
+  item: WorkflowItem;
+}) {
+  const [steps, setSteps] = useState<Step[]>(
+    item.steps || PROJECT_ONBOARDING_INITIAL_STEPS
+  );
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY) === "true" && steps[0].status === "current") {
+    if (
+      localStorage.getItem(storageKey) === "true" &&
+      steps[0].status === "current"
+    ) {
       setSteps([
         { ...steps[0], status: "complete" },
         { ...steps[1], status: "current" },
@@ -28,13 +39,13 @@ export default function SetupSpace() {
 
   return (
     <div className="space-y-6">
-      <HeaderContent item={PROJECT_ONBOARDING_ITEM} steps={steps} />
+      <HeaderContent item={item} steps={steps} />
 
       {steps[0].status === "current" && (
         <DownloadSampleData
           fileName={SAMPLE_DATA_FILENAME}
           onClick={() => {
-            localStorage.setItem(STORAGE_KEY, "true");
+            localStorage.setItem(storageKey, "true");
 
             setSteps([
               { ...steps[0], status: "complete" },
@@ -54,10 +65,7 @@ export default function SetupSpace() {
             invite you to it. 👇
           </p>
 
-          <CreateSpaceForm
-            workflowType={WorkflowType.ProjectOnboarding}
-            spaceName={"Project Onboarding"}
-          />
+          <CreateSpaceForm workflowType={workflowType} spaceName={item.name} />
 
           <p className="text-xs block text-gray-400">
             To download the sample data again,{" "}
