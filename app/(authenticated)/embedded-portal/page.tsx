@@ -2,8 +2,10 @@ import { WorkflowType } from "@/lib/workflow-type";
 import { SpaceService } from "@/lib/services/space";
 import invariant from "ts-invariant";
 import { getServerSession } from "@/lib/get-server-session";
-import SetupSpace from "@/app/(authenticated)/project-onboarding/setup-space";
 import { redirect } from "next/navigation";
+import SetupSpace from "@/components/shared/setup-space";
+
+const STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-embedded-portal-downloaded`;
 
 export default async function Page() {
   const session = await getServerSession();
@@ -18,5 +20,7 @@ export default async function Page() {
     redirect(`/embedded-portal/${space.id}`);
   }
 
-  return <SetupSpace workflowType={WorkflowType.Embed} />;
+  return (
+    <SetupSpace workflowType={WorkflowType.Embed} storageKey={STORAGE_KEY} />
+  );
 }

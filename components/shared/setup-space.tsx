@@ -6,35 +6,23 @@ import DownloadSampleData from "@/components/shared/download-sample-data";
 import { Step } from "@/components/shared/step-list";
 import {
   PROJECT_ONBOARDING_INITIAL_STEPS,
-  PROJECT_ONBOARDING_ITEM,
   SAMPLE_DATA_FILENAME,
-  EMBEDDED_PORTAL_ITEM,
+  WORKFLOW_ITEMS,
 } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-project-onboarding-downloaded`;
-const EMBED_STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-embedded-portal-downloaded`;
-
 export default function SetupSpace({
   workflowType,
+  storageKey,
 }: {
   workflowType: WorkflowType;
+  storageKey: string;
 }) {
-  const [steps, setSteps] = useState<Step[]>(PROJECT_ONBOARDING_INITIAL_STEPS);
-
-  let storageKey;
-  let item;
-  let spaceName;
-  if (workflowType === WorkflowType.Embed) {
-    storageKey = EMBED_STORAGE_KEY;
-    item = EMBEDDED_PORTAL_ITEM;
-    spaceName = "Embedded Portal";
-  } else {
-    storageKey = STORAGE_KEY;
-    item = PROJECT_ONBOARDING_ITEM;
-    spaceName = "Project Onboarding";
-  }
+  const item = WORKFLOW_ITEMS[workflowType];
+  const [steps, setSteps] = useState<Step[]>(
+    item.steps || PROJECT_ONBOARDING_INITIAL_STEPS
+  );
 
   useEffect(() => {
     if (
@@ -76,7 +64,7 @@ export default function SetupSpace({
             invite you to it. 👇
           </p>
 
-          <CreateSpaceForm workflowType={workflowType} spaceName={spaceName} />
+          <CreateSpaceForm workflowType={workflowType} spaceName={item.name} />
 
           <p className="text-xs block text-gray-400">
             To download the sample data again,{" "}

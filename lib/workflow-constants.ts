@@ -14,6 +14,17 @@ export const PROJECT_ONBOARDING_INITIAL_STEPS: Step[] = [
   },
 ];
 
+export const EMBEDDED_PORTAL_INITIAL_STEPS: Step[] = [
+  {
+    name: "Download Sample Data",
+    status: "current",
+  },
+  {
+    name: "Setup Flatfile",
+    status: "upcoming",
+  },
+];
+
 type NavItem = {
   name: string;
   href: string;
@@ -25,6 +36,7 @@ export type WorkflowItem = NavItem & {
   color: string;
   highlightColor: string;
   description: string;
+  steps?: Step[];
 };
 
 export const HOME_ITEM: NavItem = {
@@ -48,6 +60,7 @@ export const WORKFLOW_ITEMS: {
     highlightColor: "hover:border-project-onboarding",
     description:
       "Flatfile enables multiple team members to collaborate over the course of a project in real-time, validating, transforming, and loading data into HCM.Show while ensuring everyone is on the same page.",
+    steps: PROJECT_ONBOARDING_INITIAL_STEPS,
   },
   [WorkflowType.Embed]: {
     slug: "embedded-portal",
@@ -61,6 +74,7 @@ export const WORKFLOW_ITEMS: {
     highlightColor: "hover:border-embedded-portal",
     description:
       "Flatfile's deeply configurable import experience is available right inside HCM Show. See how Flatfile simplifies the data onboarding process, eliminating the need for manual data mapping and significantly reducing errors.",
+    steps: EMBEDDED_PORTAL_INITIAL_STEPS,
   },
   [WorkflowType.FileFeed]: {
     slug: "file-feed",
