@@ -25,6 +25,9 @@ export const EMBEDDED_PORTAL_INITIAL_STEPS: Step[] = [
   },
 ];
 
+export const PROJECT_ONBOARDING_STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-project-onboarding-downloaded`;
+export const EMBEDDED_PORTAL_STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-embedded-portal-downloaded`;
+
 type NavItem = {
   name: string;
   href: string;
