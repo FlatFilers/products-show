@@ -7,12 +7,12 @@ import {
   ArrowsPointingInIcon,
   ArrowsPointingOutIcon,
 } from "@heroicons/react/24/outline";
-import HeaderContent from "@/app/(authenticated)/project-onboarding/header-content";
 import {
   EMBEDDED_PORTAL_ITEM,
   EMBEDDED_PORTAL_INITIAL_STEPS,
 } from "@/lib/workflow-constants";
 import { Step } from "@/components/shared/step-list";
+import HeaderContent from "@/components/shared/header-content";
 
 export default function EmbeddedPortal({
   flatfileSpaceId,
