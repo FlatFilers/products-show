@@ -4,16 +4,18 @@ import { RecordDataWithLinks } from "@flatfile/api/api";
 export class FlatfileService {
   static createSpace = async ({
     userId,
+    flatfileNamespace,
     spaceName,
   }: {
     userId: string;
+    flatfileNamespace: string;
     spaceName: string;
   }) => {
     const { data } = await api.spaces.create({
       name: spaceName,
       environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
       autoConfigure: true,
-      namespace: process.env.FLATFILE_NAMESPACE,
+      namespace: flatfileNamespace,
       metadata: {
         userId,
       },

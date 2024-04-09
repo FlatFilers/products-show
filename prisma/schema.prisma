@@ -28,6 +28,7 @@ model User {
   Category    Category[]
   Product     Product[]
   CustomField CustomField?
+  Action      Action[]
 }
 
 model Space {
@@ -123,5 +124,17 @@ model CustomField {
   enumOptions Json?   @db.JsonB
 
   userId String @unique @db.Uuid
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Action {
+  id        String   @id @default(uuid()) @db.Uuid
+  createdAt DateTime @default(now())
+
+  type        String
+  description String
+  metadata    Json   @default("{}") @db.JsonB
+
+  userId String @db.Uuid
   user   User   @relation(fields: [userId], references: [id])
 }
