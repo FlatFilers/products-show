@@ -3,18 +3,40 @@
 import HeaderContent from "@/components/shared/header-content";
 import { Step } from "@/components/shared/step-list";
 import VisitSpaceForm from "@/components/shared/visit-space-form";
+import { FilefeedEvent } from "@/lib/action";
+import { Event } from "@/app/(authenticated)/file-feed/[spaceId]/event";
 import {
   FILE_FEED_INITIAL_STEPS,
   FILE_FEED_ITEM,
 } from "@/lib/workflow-constants";
+import { useState, useEffect } from "react";
 
-export default function Workspace({ spaceId }: { spaceId: string }) {
+export default function Workspace({
+  spaceId,
+  initialEvents,
+}: {
+  spaceId: string;
+  initialEvents: FilefeedEvent[];
+}) {
   const steps: Step[] = [
     { ...FILE_FEED_INITIAL_STEPS[0], status: "complete" },
     { ...FILE_FEED_INITIAL_STEPS[1], status: "current" },
   ];
 
-  const events: any = [];
+  const [events, setEvents] = useState<FilefeedEvent[]>(initialEvents);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      fetch("/api/filefeed-events").then((res) => {
+        res.json().then((res: { actions: FilefeedEvent[] }) => {
+          console.log("actions", res.actions);
+
+          setEvents(res.actions);
+        });
+      });
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -90,7 +112,7 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
             {events &&
               events.length > 0 &&
               events.map((a, i) => {
-                return <tr key={i}>{/* <Event event={a} /> */}</tr>;
+                return <tr key={i}>{<Event event={a} />}</tr>;
               })}
           </tbody>
         </table>
