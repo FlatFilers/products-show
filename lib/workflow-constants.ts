@@ -25,6 +25,17 @@ export const EMBEDDED_PORTAL_INITIAL_STEPS: Step[] = [
   },
 ];
 
+export const FILE_FEED_INITIAL_STEPS: Step[] = [
+  {
+    name: "Setup Flatfile",
+    status: "current",
+  },
+  {
+    name: "Listen for File Uploads",
+    status: "upcoming",
+  },
+];
+
 export const PROJECT_ONBOARDING_STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-project-onboarding-downloaded`;
 export const EMBEDDED_PORTAL_STORAGE_KEY = `${process.env.NEXT_PUBLIC_APP_ID}-embedded-portal-downloaded`;
 
@@ -108,6 +119,7 @@ export const WORKFLOW_ITEMS: {
 
 export const PROJECT_ONBOARDING_ITEM =
   WORKFLOW_ITEMS[WorkflowType.ProjectOnboarding];
+export const FILE_FEED_ITEM = WORKFLOW_ITEMS[WorkflowType.FileFeed];
 
 export const EMBEDDED_PORTAL_ITEM = WORKFLOW_ITEMS[WorkflowType.Embed];
 

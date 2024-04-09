@@ -1,7 +1,7 @@
 "use client";
 
 import CreateSpaceForm from "@/components/shared/create-space-form";
-import HeaderContent from "@/app/(authenticated)/project-onboarding/header-content";
+import HeaderContent from "@/components/shared/header-content";
 import DownloadSampleData from "@/components/shared/download-sample-data";
 import { Step } from "@/components/shared/step-list";
 import {
@@ -35,7 +35,7 @@ export default function SetupSpace({
         { ...steps[1], status: "current" },
       ]);
     }
-  }, [steps]);
+  }, [steps, storageKey]);
 
   return (
     <div className="space-y-6">

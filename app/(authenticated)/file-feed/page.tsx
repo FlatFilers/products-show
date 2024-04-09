@@ -1,13 +1,22 @@
 import { WorkflowType } from "@/lib/workflow-type";
-import CreateSpaceForm from "@/components/shared/create-space-form";
+import { SpaceService } from "@/lib/services/space";
+import invariant from "ts-invariant";
+import { getServerSession } from "@/lib/get-server-session";
+import { redirect } from "next/navigation";
+import SetupSpace from "@/app/(authenticated)/file-feed/setup-space";
 
-export default function Page() {
-  return (
-    <div>
-      <CreateSpaceForm
-        workflowType={WorkflowType.FileFeed}
-        spaceName={"File Feed"}
-      />
-    </div>
-  );
+export default async function Page() {
+  const session = await getServerSession();
+  invariant(session?.user, "User must be logged in");
+
+  const space = await SpaceService.getSpaceForWorkflow({
+    userId: session.user.id,
+    workflowType: WorkflowType.FileFeed,
+  });
+
+  if (space) {
+    redirect(`/file-feed/${space.id}`);
+  }
+
+  return <SetupSpace />;
 }
