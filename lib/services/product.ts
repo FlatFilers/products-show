@@ -1,8 +1,8 @@
 import { prismaClient } from "@/lib/prisma-client";
 
 export class ProductService {
-  static async getProductsForUser(userId: string) {
-    return prismaClient.product.findMany({
+  static async getAll({ userId }: { userId: string }) {
+    return await prismaClient.product.findMany({
       where: {
         userId,
       },
