@@ -1,21 +1,20 @@
 import api from "@flatfile/api";
 import { RecordDataWithLinks } from "@flatfile/api/api";
+import { ReadStream } from "fs";
 
 export class FlatfileService {
   static createSpace = async ({
     userId,
-    flatfileNamespace,
     spaceName,
   }: {
     userId: string;
-    flatfileNamespace: string;
     spaceName: string;
   }) => {
     const { data } = await api.spaces.create({
       name: spaceName,
       environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
       autoConfigure: true,
-      namespace: flatfileNamespace,
+      namespace: process.env.FLATFILE_NAMESPACE,
       metadata: {
         userId,
       },
@@ -98,5 +97,18 @@ export class FlatfileService {
     await Promise.allSettled(ps);
 
     return records;
+  }
+
+  static async postFileToSpace({
+    flatfileSpaceId,
+    file,
+  }: {
+    flatfileSpaceId: string;
+    file: ReadStream;
+  }) {
+    return await api.files.upload(file, {
+      spaceId: flatfileSpaceId,
+      environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
+    });
   }
 }
