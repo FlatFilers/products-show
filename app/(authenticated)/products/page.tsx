@@ -14,7 +14,7 @@ import { ProductService } from "@/lib/services/product";
 export default async function Page() {
   const session = await getServerSession();
   invariant(session?.user, "User must be logged in");
-  const products = await ProductService.getProductsForUser(session.user.id);
+  const products = await ProductService.getAll({ userId: session.user.id });
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 text-white">

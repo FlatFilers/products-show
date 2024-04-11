@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+let nextConfig = {};
+if (process.env.NODE_ENV === "development") {
+  nextConfig = {
+    images: {
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "loremflickr.com",
+          port: "",
+          pathname: "/100/100/**",
+        },
+      ],
+    },
+  };
+}
 
 import preflight from "./preflight.js";
 
