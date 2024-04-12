@@ -51,16 +51,20 @@ export default async function Page() {
                       <TableCell>{product.name}</TableCell>
                       <TableCell>{product.description || "-"}</TableCell>
                       <TableCell>
-                        <Link href={`/categories/${product.category.id}`}>
-                          {product.category.name}
-                        </Link>
+                        {product.category && (
+                          <Link href={`/categories/${product.category.id}`}>
+                            {product.category.name}
+                          </Link>
+                        )}
                       </TableCell>
                       <TableCell>{product.price}</TableCell>
                       <TableCell>{product.quantity}</TableCell>
                       <TableCell>
-                        <Link href={`/suppliers/${product.supplier.id}`}>
-                          {product.supplier.name}
-                        </Link>
+                        {product.supplier && (
+                          <Link href={`/suppliers/${product.supplier.id}`}>
+                            {product.supplier.name}
+                          </Link>
+                        )}
                       </TableCell>
                     </TableRow>
                   ))}

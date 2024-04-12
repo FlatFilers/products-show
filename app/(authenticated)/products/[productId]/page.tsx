@@ -47,12 +47,14 @@ export default async function Page({
             </div>
             <div>
               <dt>Category</dt>
-              <Link
-                className="underline"
-                href={`/categories/${product.category.id}`}
-              >
-                {product.category.name}
-              </Link>
+              {product.category && (
+                <Link
+                  className="underline"
+                  href={`/categories/${product.category.id}`}
+                >
+                  {product.category.name}
+                </Link>
+              )}
             </div>
             <div>
               <dt>Price</dt>
@@ -64,12 +66,14 @@ export default async function Page({
             </div>
             <div>
               <dt>Supplier</dt>
-              <Link
-                className="underline"
-                href={`/suppliers/${product.supplier.id}`}
-              >
-                {product.supplier.name}
-              </Link>
+              {product.supplier && (
+                <Link
+                  className="underline"
+                  href={`/suppliers/${product.supplier.id}`}
+                >
+                  {product.supplier.name}
+                </Link>
+              )}
             </div>
           </dl>
         </div>
