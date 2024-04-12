@@ -1,20 +1,30 @@
+import { WorkflowType } from "@/lib/workflow-type";
 import api from "@flatfile/api";
 import { RecordDataWithLinks } from "@flatfile/api/api";
 import { ReadStream } from "fs";
 
+const NAMESPACE_FOR_WORKFLOW = {
+  [WorkflowType.ProjectOnboarding]: process.env.FLATFILE_PROJECT_NAMESPACE,
+  [WorkflowType.Embed]: process.env.FLATFILE_EMBED_NAMESPACE,
+  [WorkflowType.FileFeed]: process.env.FLATFILE_FILEFEED_NAMESPACE,
+  [WorkflowType.Dynamic]: process.env.FLATFILE_DYNAMIC_NAMESPACE,
+};
+
 export class FlatfileService {
   static createSpace = async ({
     userId,
+    workflowType,
     spaceName,
   }: {
     userId: string;
+    workflowType: WorkflowType;
     spaceName: string;
   }) => {
     const { data } = await api.spaces.create({
       name: spaceName,
       environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
       autoConfigure: true,
-      namespace: process.env.FLATFILE_NAMESPACE,
+      namespace: NAMESPACE_FOR_WORKFLOW[workflowType],
       metadata: {
         userId,
       },

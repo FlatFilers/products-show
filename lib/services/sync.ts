@@ -74,7 +74,7 @@ export class SyncService {
     const productRecords = records.products;
 
     for (const r of productRecords) {
-      const category = await prismaClient.category.findUniqueOrThrow({
+      const category = await prismaClient.category.findUnique({
         where: {
           userId_externalCategoryId: {
             userId: space.userId,
@@ -82,7 +82,7 @@ export class SyncService {
           },
         },
       });
-      const supplier = await prismaClient.supplier.findUniqueOrThrow({
+      const supplier = await prismaClient.supplier.findUnique({
         where: {
           userId_externalSupplierId: {
             userId: space.userId,
@@ -96,11 +96,11 @@ export class SyncService {
         externalProductId: r.product_id.value as string,
         name: r.name.value as string,
         description: r.description.value as string,
-        categoryId: category.id as string,
         price: Number.parseFloat(r.price.value as string),
         quantity: Number.parseFloat(r.quantity.value as string),
         imageUrl: r.image_url.value as string,
-        supplierId: supplier.id as string,
+        categoryId: category ? (category.id as string) : undefined,
+        supplierId: supplier ? (supplier.id as string) : undefined,
       };
 
       await prismaClient.product.upsert({

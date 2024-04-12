@@ -1,5 +1,6 @@
 import { prismaClient } from "@/lib/prisma-client";
 import { FlatfileService } from "./flatfile";
+import { WorkflowType } from "@/lib/workflow-type";
 
 export class SpaceService {
   static async createSpace({
@@ -13,6 +14,7 @@ export class SpaceService {
   }) {
     const flatfileSpace = await FlatfileService.createSpace({
       userId,
+      workflowType: workflowType as WorkflowType,
       spaceName,
     });
 

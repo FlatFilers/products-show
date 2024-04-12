@@ -16,7 +16,7 @@ export const GET = (
         flatfileSpaceId,
       });
     } catch (e) {
-      console.error(`Error upserting client:`, e);
+      console.error(`Error syncing space:`, e);
 
       return NextResponse.json(
         { message: `Error syncing space ${flatfileSpaceId}` },

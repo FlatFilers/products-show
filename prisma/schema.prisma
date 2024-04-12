@@ -71,10 +71,10 @@ model Product {
   quantity          Int
   imageUrl          String?
 
-  categoryId String      @db.Uuid
-  category   Category    @relation(fields: [categoryId], references: [id])
-  supplierId String      @db.Uuid
-  supplier   Supplier    @relation(fields: [supplierId], references: [id])
+  categoryId String?     @db.Uuid
+  category   Category?   @relation(fields: [categoryId], references: [id])
+  supplierId String?     @db.Uuid
+  supplier   Supplier?   @relation(fields: [supplierId], references: [id])
   userId     String      @db.Uuid
   user       User        @relation(fields: [userId], references: [id])
   attributes Attribute[]
