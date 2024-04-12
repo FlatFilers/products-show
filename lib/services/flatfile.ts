@@ -1,5 +1,5 @@
 import api from "@flatfile/api";
-import { RecordDataWithLinks } from "@flatfile/api/api";
+import { DocumentConfig, RecordDataWithLinks } from "@flatfile/api/api";
 import { ReadStream } from "fs";
 
 export class FlatfileService {
@@ -110,5 +110,26 @@ export class FlatfileService {
       spaceId: flatfileSpaceId,
       environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
     });
+  }
+
+  static async createDocument({
+    flatfileSpaceId,
+    document,
+  }: {
+    flatfileSpaceId: string;
+    document: DocumentConfig;
+  }) {
+    const spaceId = flatfileSpaceId;
+    return await api.documents.create(spaceId, document);
+  }
+
+  static async updateSpace({
+    flatfileSpaceId,
+    options = {},
+  }: {
+    flatfileSpaceId: string;
+    options: Record<string, any>;
+  }) {
+    return await api.spaces.update(flatfileSpaceId, options);
   }
 }

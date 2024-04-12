@@ -35,6 +35,11 @@ export const POST = async (request: NextRequest, context: { params: any }) => {
       });
     }
 
+    await SpaceService.addDocumentAndThemeToSpace({
+      flatfileSpaceId: space.flatfileSpaceId,
+      workflowType: space.workflowType,
+    });
+
     return NextResponse.json({ spaceId: space.id }, { status: 201 });
   });
 };

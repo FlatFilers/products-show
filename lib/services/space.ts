@@ -1,5 +1,6 @@
 import { prismaClient } from "@/lib/prisma-client";
 import { FlatfileService } from "./flatfile";
+import { themeLookup } from "@/lib/theme-and-document";
 
 export class SpaceService {
   static async createSpace({
@@ -65,5 +66,39 @@ export class SpaceService {
     });
 
     return flatfileSpace.guestLink;
+  }
+
+  static async addDocumentAndThemeToSpace({
+    flatfileSpaceId,
+    workflowType,
+  }: {
+    flatfileSpaceId: string;
+    workflowType: string;
+  }) {
+    const { theme, document } = themeLookup[workflowType];
+
+    const workflowDocument = await FlatfileService.createDocument({
+      flatfileSpaceId,
+      document,
+    });
+
+    const themeAndDocumentId = {
+      translationsPath:
+        "https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json",
+      metadata: {
+        sidebarConfig: {
+          showSidebar: true,
+          defaultPage: {
+            documentId: workflowDocument.data.id,
+          },
+        },
+        theme,
+      },
+    };
+
+    await FlatfileService.updateSpace({
+      flatfileSpaceId,
+      options: themeAndDocumentId,
+    });
   }
 }
