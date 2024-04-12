@@ -6,22 +6,22 @@ const sheet: SheetConfig = {
   slug: "benefit-elections-sheet",
   readonly: false,
   fields: [
-    //Validate against exisitng Employess in DB. If not found, throw an error in Flatfile. Open question around whether this could be a ReferenceField with a lookup to the Employee table.  What should happen if an Emplpyee is not found?  Should we create a new Employee record in Flatfile or should that occur in HCM.Show?
+    //Validate against exisitng Employess in DB. If not found, throw an error in Flatfile. Open question around whether this could be a ReferenceField with a lookup to the Employee table.  What should happen if an Emplpyee is not found?  Should we create a new Employee record in Flatfile or should that occur in plm.show?
 
     {
       key: "employeeId",
       label: "Employee ID",
-      description: "Employee ID for existing Employee in HCM.Show.",
+      description: "Employee ID for existing Employee in plm.show.",
       type: "string",
       constraints: [{ type: "required" }],
     },
 
-    // Validate against exisitng benefit plans in DB. If not found, throw an error in Flatfile. Open question around whether this could be a ReferenceField with a lookup to the Benefit Plan table.  What should happen if a Benefit Plan is not found?  Should we create a new Benefit Plan record in Flatfile or should that occur in HCM.Show?
+    // Validate against exisitng benefit plans in DB. If not found, throw an error in Flatfile. Open question around whether this could be a ReferenceField with a lookup to the Benefit Plan table.  What should happen if a Benefit Plan is not found?  Should we create a new Benefit Plan record in Flatfile or should that occur in plm.show?
 
     {
       key: "benefitPlan",
       label: "Benefit Plan",
-      description: "Benefit Plan for existing Benefit Plan in HCM.Show.",
+      description: "Benefit Plan for existing Benefit Plan in plm.show.",
       type: "string",
       constraints: [{ type: "required" }],
     },

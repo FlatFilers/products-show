@@ -35,7 +35,7 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
               space.
             </p>
             <p>
-              Once the data is uploaded and loaded into HCM Show, return to this
+              Once the data is uploaded and loaded into PLM Show, return to this
               page to review the data within the application.
             </p>
 

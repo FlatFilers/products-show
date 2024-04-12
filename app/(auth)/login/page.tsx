@@ -6,8 +6,8 @@ export default function Page() {
   return (
     <div className="space-y-8">
       <div className="flex flex-col items-center space-y-8">
-        <SVG src="/images/hcm-logo.svg" />
-        <p className="text-white text-center text-xl">Sign in to HCM.show</p>
+        <span className="text-5xl">📦</span>
+        <p className="text-white text-center text-xl">Sign in to plm.show</p>
       </div>
 
       <LoginForm />

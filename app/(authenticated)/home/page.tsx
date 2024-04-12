@@ -12,13 +12,13 @@ export default function Home() {
             {/* TODO: Change text */}
             <div className="md:max-w-4xl space-y-8 font-light leading-7">
               <p>
-                During the search for HCM solutions, our HR Director discovered
-                HCM.show, a sleek and fully-functional HCM SaaS product that
+                During the search for PLM solutions, our HR Director discovered
+                plm.show, a sleek and fully-functional PLM SaaS product that
                 made all other options seem like clunky relics from the past.
               </p>
 
               <p>
-                As they delved deeper into the capabilities of HCM.show, they
+                As they delved deeper into the capabilities of plm.show, they
                 realized they needed a reliable method for capturing,
                 validating, and loading job information, employee data, and
                 benefit elections into the system.
@@ -45,10 +45,7 @@ export default function Home() {
             </div>
           </div>
 
-          <img
-            src="/images/hcm-home.svg"
-            className="mb-4 scale-75 md:mb-0 md:scale-100"
-          />
+          <span className="text-5xl">📦</span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">

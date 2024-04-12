@@ -17,8 +17,9 @@ export const NavItems = () => {
   return (
     <div className="h-full bg-dark-gray flex flex-col justify-between">
       <div className="flex justify-center items-center p-6 lg:p-4 ">
-        <Link href="/home">
-          <SVG src="/images/hcm-logo.svg" className="px-4" />
+        <Link href="/home" className="flex flex-col items-center space-y-2">
+          <span className="text-3xl">📦</span>
+          <span className="font-semibold">plm.show</span>
         </Link>
       </div>
 
@@ -111,7 +112,11 @@ export const NavItems = () => {
           </a>
 
           <div className="flex flex-col w-full border-t-2 border-[#FFFFFF25] pt-2 mt-2">
-            <a href="#" onClick={() => signOut()} className="nav-item group">
+            <a
+              href="#"
+              onClick={() => signOut({ callbackUrl: "/login" })}
+              className="nav-item group"
+            >
               <SVG src={"/images/logout.svg"} />
               Sign Out
             </a>

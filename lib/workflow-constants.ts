@@ -73,7 +73,7 @@ export const WORKFLOW_ITEMS: {
     //   "group-hover:border-project-onboarding group-hover:text-project-onboarding",
     highlightColor: "hover:border-project-onboarding",
     description:
-      "Flatfile enables multiple team members to collaborate over the course of a project in real-time, validating, transforming, and loading data into HCM.Show while ensuring everyone is on the same page.",
+      "Flatfile enables multiple team members to collaborate over the course of a project in real-time, validating, transforming, and loading data into plm.show while ensuring everyone is on the same page.",
     steps: PROJECT_ONBOARDING_INITIAL_STEPS,
   },
   [WorkflowType.Embed]: {
@@ -87,7 +87,7 @@ export const WORKFLOW_ITEMS: {
     //   "group-hover:border-embedded-portal group-hover:text-embedded-portal",
     highlightColor: "hover:border-embedded-portal",
     description:
-      "Flatfile's deeply configurable import experience is available right inside HCM Show. See how Flatfile simplifies the data onboarding process, eliminating the need for manual data mapping and significantly reducing errors.",
+      "Flatfile's deeply configurable import experience is available right inside PLM Show. See how Flatfile simplifies the data onboarding process, eliminating the need for manual data mapping and significantly reducing errors.",
     steps: EMBEDDED_PORTAL_INITIAL_STEPS,
   },
   [WorkflowType.FileFeed]: {
@@ -113,7 +113,7 @@ export const WORKFLOW_ITEMS: {
     //   "group-hover:border-dynamic-portal group-hover:text-dynamic-portal",
     highlightColor: "hover:border-dynamic-portal",
     description:
-      "Flatfile’s configuration can be updated based on the settings from within the HCM Show application, allowing for fields to be added and picklist values to be updated. These changes are then reflected in an embedded iFrame modal.",
+      "Flatfile’s configuration can be updated based on the settings from within the PLM Show application, allowing for fields to be added and picklist values to be updated. These changes are then reflected in an embedded iFrame modal.",
   },
 };
 
