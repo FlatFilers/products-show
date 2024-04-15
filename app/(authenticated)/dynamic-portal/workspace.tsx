@@ -104,9 +104,6 @@ export default function Workspace({
       // userId,
     },
     sidebarConfig: {
-      defaultPage: {
-        documentId: "document",
-      },
       showDataChecklist: false,
       showSidebar: true,
     },
