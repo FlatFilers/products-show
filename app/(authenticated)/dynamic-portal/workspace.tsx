@@ -17,8 +17,6 @@ import dynamic from "next/dynamic";
 import { type ISpace } from "@flatfile/react";
 import { SheetConfig } from "@flatfile/api/api";
 import { listener } from "@/lib/dynamic/listener";
-import { theme } from "@/lib/dynamic/theme";
-import { document } from "@/lib/dynamic/document";
 
 const DynamicEmbeddedSpace = dynamic(
   () => import("@/components/shared/embedded-space"),
@@ -93,9 +91,9 @@ export default function Workspace({
     publishableKey: process.env.NEXT_PUBLIC_FLATFILE_PUBLISHABLE_KEY,
     environmentId: process.env.NEXT_PUBLIC_FLATFILE_ENVIRONMENT_ID,
     name: "Dynamic Portal",
-    themeConfig: theme,
+    // themeConfig: theme("#71a3d2", "#3A7CB9"),
     listener,
-    document,
+    // document,
     workbook: generateConfig({
       sheet,
       customFieldConfig,
@@ -104,9 +102,6 @@ export default function Workspace({
       // userId,
     },
     sidebarConfig: {
-      defaultPage: {
-        documentId: "document",
-      },
       showDataChecklist: false,
       showSidebar: true,
     },
