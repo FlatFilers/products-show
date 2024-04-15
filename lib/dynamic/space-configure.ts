@@ -6,7 +6,11 @@ export function spaceConfigure(listener: FlatfileListener) {
   listener.use(
     configureSpace({
       space: {
-        // add theme here
+        metadata: {
+          theme: {
+            // add theme here
+          },
+        },
       },
       workbooks: [
         {
