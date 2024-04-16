@@ -81,13 +81,13 @@ export const document = {
   </div>
   
   <div class="box">
-  <h2>2. Import the Benefit Elections Data</h2>
-  <p>Click "Import" and select the benefit elections data. Follow the mapping instructions in Flatfile to complete the import. Once the data has been mapped, it will be loaded into Flatfile's table UI, where validations and transformations have been applied.</p>
+  <h2>2. Import the Products Data</h2>
+  <p>Click "Import" and select the products data. Follow the mapping instructions in Flatfile to complete the import. Once the data has been mapped, it will be loaded into Flatfile's table UI, where validations and transformations have been applied.</p>
   </div>
   
   <div class="box">
   <h2>3. Validate and Transform Data</h2>
-  <p>Make sure to verify that your data is correctly formatted and transformed by Flatfile. Flatfile will handle formatting dates, rounding amounts, and validating the existence of employees and benefit plans for you! If there are any issues or errors, you can easily address them within Flatfile's user interface.</p>
+  <p>Make sure to verify that your data is correctly formatted and transformed by Flatfile. Flatfile will handle formatting dates, rounding amounts, and validating the existence of products for you! If there are any issues or errors, you can easily address them within Flatfile's user interface.</p>
   </div>
   
   <div class="box">
@@ -97,7 +97,7 @@ export const document = {
   
   <div class="box">
   <h2>5. Return to PLM.Show</h2>
-  <p>Once you have loaded the data from Flatfile to PLM Show, return to PLM.Show and navigate to the Data Templates section within the application to view the benefit elections data that you have just loaded.</p>
+  <p>Once you have loaded the data from Flatfile to PLM Show, return to PLM.Show and navigate to the Data Templates section within the application to view the products data that you have just loaded.</p>
   </div>
   
   <!-- left -->
