@@ -1,105 +1,220 @@
-import { SheetConfig } from "@flatfile/api/api";
+import { SheetConfig, Property } from "@flatfile/api/api";
 
-// Benefit Elections Sheet
-const sheet: SheetConfig = {
-  name: "Benefit Elections",
-  slug: "benefit-elections-sheet",
+const products: SheetConfig = {
+  name: "Products",
+  slug: "products-sheet",
   readonly: false,
   fields: [
-    //Validate against exisitng Employess in DB. If not found, throw an error in Flatfile. Open question around whether this could be a ReferenceField with a lookup to the Employee table.  What should happen if an Emplpyee is not found?  Should we create a new Employee record in Flatfile or should that occur in plm.show?
-
     {
-      key: "employeeId",
-      label: "Employee ID",
-      description: "Employee ID for existing Employee in plm.show.",
+      key: "product_id",
+      label: "Product ID",
       type: "string",
-      constraints: [{ type: "required" }],
+      constraints: [
+        { type: "required" },
+        { type: "unique" },
+        { type: "external", validator: "length", config: { min: 1, max: 50 } },
+      ],
     },
-
-    // Validate against exisitng benefit plans in DB. If not found, throw an error in Flatfile. Open question around whether this could be a ReferenceField with a lookup to the Benefit Plan table.  What should happen if a Benefit Plan is not found?  Should we create a new Benefit Plan record in Flatfile or should that occur in plm.show?
-
     {
-      key: "benefitPlan",
-      label: "Benefit Plan",
-      description: "Benefit Plan for existing Benefit Plan in plm.show.",
+      key: "name",
+      label: "Product Name",
       type: "string",
-      constraints: [{ type: "required" }],
+      constraints: [
+        { type: "required" },
+        { type: "external", validator: "length", config: { min: 2, max: 100 } },
+      ],
     },
-
-    //Required checkbox → “required: true” validation
-
     {
-      key: "currentlyEnrolled",
-      label: "Currently Enrolled",
-      description: "Is the employee currently enrolled in this benefit plan?",
-      type: "boolean",
-      constraints: [{ type: "required" }],
-    },
-
-    //Date fields have a date format selection → updated target date format for SmartDateField
-
-    {
-      key: "coverageStartDate",
-      label: "Coverage Start Date",
-      description:
-        "Date coverage begins for this benefit plan. Must be formatted as yyyy-MM-dd",
-      type: "date",
-      constraints: [{ type: "required" }],
-    },
-
-    //Round to two decimal places → validation / compute on Number fields for decimal places (trim and validate)
-
-    {
-      key: "employerContribution",
-      label: "Employer Contribution",
+      key: "description",
+      label: "Description",
       type: "string",
-      description:
-        "Employer contribution for this benefit plan per plan frequency.",
+      constraints: [
+        { type: "external", validator: "length", config: { max: 1000 } },
+      ],
+    },
+    {
+      key: "category",
+      label: "Category",
+      type: "reference",
+      config: {
+        ref: "product_categories",
+        key: "category_id",
+        relationship: "has-one",
+      },
       constraints: [{ type: "required" }],
+    },
+    {
+      key: "price",
+      label: "Price",
+      type: "number",
+      constraints: [
+        { type: "required" },
+        {
+          type: "external",
+          validator: "numberRange",
+          config: { min: 0, max: 1000000 },
+        },
+      ],
+    },
+    {
+      key: "quantity",
+      label: "Quantity",
+      type: "number",
+      constraints: [
+        { type: "required" },
+        {
+          type: "external",
+          validator: "numberRange",
+          config: { min: 0, max: 1000000 },
+        },
+      ],
     },
 
     {
-      key: "benefitCoverageType",
-      label: "Benefit Coverage Type",
+      key: "currency",
+      label: "Currency",
       type: "enum",
-      description:
-        "Indicates the type of insurance, retirement savings, or other benefits that are provided by an employer to an employee.",
-      constraints: [{ type: "required" }],
+      description: "Currency used for the total monetary value of the product",
       config: {
         options: [
-          {
-            value: "Insurance_Coverage_Type_Insurance",
-            label: "Insurance",
-          },
-
-          {
-            value: "Health_Care_Coverage_Type_Medical",
-            label: "Medical",
-          },
-          {
-            value: "Health_Care_Coverage_Type_Dental",
-            label: "Dental",
-          },
-          {
-            value: "Retirement_Savings_Coverage_Type_Retirement",
-            label: "Retirement",
-          },
-          {
-            value: "Additional_Benefits_Coverage_Type_Other",
-            label: "Other",
-          },
+          { value: "USD", label: "US Dollar" },
+          { value: "EUR", label: "Euro" },
+          { value: "GBP", label: "British Pound" },
+          { value: "JPY", label: "Japanese Yen" },
+          { value: "CAD", label: "Canadian Dollar" },
+          { value: "AUD", label: "Australian Dollar" },
+          { value: "CHF", label: "Swiss Franc" },
+          { value: "CNY", label: "Chinese Yuan" },
+          { value: "HKD", label: "Hong Kong Dollar" },
+          { value: "SGD", label: "Singapore Dollar" },
         ],
       },
+      constraints: [{ type: "required" }],
     },
-  ],
-  actions: [
+
     {
-      operation: "dedupe-benefit-elections",
-      mode: "background",
-      label: "Dedupe benefit elections",
-      description: "Remove duplicate benefit elections",
+      key: "total_value",
+      label: "Total Value",
+      type: "number",
+      description:
+        "Total monetary value of the product (price × quantity) in provided currency",
+      readonly: true,
+      constraints: [
+        { type: "computed" },
+        {
+          type: "external",
+          validator: "numberRange",
+          config: { min: 0, max: 1000000 },
+        },
+      ],
+    },
+
+    {
+      key: "total_value_usd",
+      label: "Total Value USD",
+      type: "number",
+      description:
+        "Total monetary value of the product (price × quantity) in provided currency",
+      readonly: true,
+      constraints: [
+        { type: "computed" },
+        {
+          type: "external",
+          validator: "numberRange",
+          config: { min: 0, max: 1000000 },
+        },
+      ],
+    },
+
+    {
+      key: "image_url",
+      label: "Image URL",
+      type: "string",
+      description: "URL of the product image",
+      constraints: [{ type: "external", validator: "url" }],
+    },
+    {
+      key: "supplier",
+      label: "Supplier",
+      type: "reference",
+      config: {
+        ref: "suppliers",
+        key: "supplier_id",
+        relationship: "has-one",
+      },
+      constraints: [{ type: "required" }],
+    },
+    {
+      key: "attribute",
+      label: "Attribute",
+      type: "reference",
+      config: {
+        ref: "attributes",
+        key: "attribute_id",
+        relationship: "has-many",
+      },
+    },
+    {
+      key: "is_active",
+      label: "Is Active",
+      type: "boolean",
+      description: "Indicates if the product is currently active",
+      constraints: [
+        { type: "required" },
+        { type: "external", validator: "boolean" },
+      ],
+    },
+    {
+      key: "created_at",
+      label: "Created At",
+      type: "date",
+      description: "The date when the product was created",
+      constraints: [
+        { type: "required" },
+        {
+          type: "external",
+          validator: "date",
+          config: { format: "yyyy-MM-dd" },
+        },
+      ],
+    },
+    {
+      key: "updated_at",
+      label: "Updated At",
+      type: "date",
+      description: "The date when the product was last updated",
+      constraints: [
+        { type: "required" },
+        {
+          type: "external",
+          validator: "date",
+          config: { format: "yyyy-MM-dd" },
+        },
+      ],
     },
   ],
+  actions: [],
 };
+
+function modifySheet(originalSheet: SheetConfig): SheetConfig {
+  const modifiedFields: Property[] = originalSheet.fields.map((field) => {
+    if (field.type === "reference") {
+      const modifiedField: Property = {
+        ...field,
+        type: "string",
+        config: undefined,
+      };
+      return modifiedField;
+    }
+    return field;
+  });
+
+  return {
+    ...originalSheet,
+    fields: modifiedFields,
+  };
+}
+
+const sheet = modifySheet(products);
 
 export const blueprint = [sheet];
