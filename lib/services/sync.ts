@@ -142,6 +142,10 @@ export class SyncService {
       });
     }
 
+    const productIds = productRecords?.map((r) => r.product_id.value as string);
+
     console.log("Done upserting products.");
+
+    return productIds;
   }
 }
