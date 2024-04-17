@@ -12,6 +12,13 @@ export class SeedService {
     await this.upsertProducts(user.id);
   }
 
+  static async reseed({ userId }: { userId: string }) {
+    await this.upsertAttributes(userId);
+    await this.upsertCategories(userId);
+    await this.upsertSuppliers(userId);
+    await this.upsertProducts(userId);
+  }
+
   static async upsertAttributes(userId: string) {
     const attrs = [
       {
