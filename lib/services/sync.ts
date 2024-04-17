@@ -69,6 +69,33 @@ export class SyncService {
 
     console.log("Done upserting categories.");
 
+    console.log("Upserting attributes...");
+
+    const attributeRecords = records.attributes;
+
+    for (const r of attributeRecords) {
+      const mappedRecord = {
+        userId: space.userId,
+        externalAttributeId: r.attribute_id.value as string,
+        name: r.name.value as string,
+        value: r.value.value as string,
+        unit: r.unit.value as string,
+      };
+
+      await prismaClient.attribute.upsert({
+        where: {
+          userId_externalAttributeId: {
+            userId: space.userId,
+            externalAttributeId: mappedRecord.externalAttributeId,
+          },
+        },
+        create: mappedRecord,
+        update: mappedRecord,
+      });
+    }
+
+    console.log("Done upserting attributes.");
+
     console.log("Upserting products...");
 
     const productRecords = records.products;
