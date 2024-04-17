@@ -59,7 +59,7 @@ export const INITIAL_OPTIONS: Option[] = [
 export const DYNAMIC_FIELD_KEY = "dynamicCustomField";
 
 export const DEFAULT_CUSTOM_FIELD: CustomField = {
-  name: "Birthdate",
+  name: "Date last ordered",
   type: "date",
   required: true,
   dateFormat: "YYYY-MM-DD",

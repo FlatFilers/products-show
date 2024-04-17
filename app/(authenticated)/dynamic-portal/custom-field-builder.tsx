@@ -77,7 +77,7 @@ export const CustomFieldBuilder = ({ customField, setCustomField }: Props) => {
           name="custom-field-name"
           type="text"
           className="text-dark border border-dark text-sm rounded px-2 py-2"
-          placeholder="Birthdate"
+          placeholder="Date last ordered"
           value={customField.name}
           onChange={(e) => {
             setCustomField({ ...customField, name: e.target.value });
