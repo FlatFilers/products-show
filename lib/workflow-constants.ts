@@ -51,6 +51,7 @@ export type WorkflowItem = NavItem & {
   highlightColor: string;
   description: string;
   steps?: Step[];
+  heroUri: string;
 };
 
 export const HOME_ITEM: NavItem = {
@@ -67,7 +68,7 @@ export const WORKFLOW_ITEMS: {
     name: "Project Onboarding",
     href: "/project-onboarding",
     imageUri: "/images/project-onboarding.svg",
-    // heroUri: "/images/project-onboarding-hero.svg",
+    heroUri: "/images/project-onboarding-hero.svg",
     color: "border-project-onboarding text-project-onboarding",
     // hoverColor:
     //   "group-hover:border-project-onboarding group-hover:text-project-onboarding",
@@ -81,7 +82,7 @@ export const WORKFLOW_ITEMS: {
     name: "Embedded Portal",
     href: "/embedded-portal",
     imageUri: "/images/embedded-portal.svg",
-    // heroUri: "/images/embedded-portal-hero.svg",
+    heroUri: "/images/embedded-portal-hero.svg",
     color: "border-embedded-portal text-embedded-portal",
     // hoverColor:
     //   "group-hover:border-embedded-portal group-hover:text-embedded-portal",
@@ -95,7 +96,7 @@ export const WORKFLOW_ITEMS: {
     name: "File Feed",
     href: "/file-feed",
     imageUri: "/images/file-feed.svg",
-    // heroUri: "/images/file-feed-hero.svg",
+    heroUri: "/images/file-feed-hero.svg",
     color: "border-file-feed text-file-feed",
     // hoverColor: "group-hover:border-file-feed group-hover:text-file-feed",
     highlightColor: "hover:border-file-feed",
@@ -107,7 +108,7 @@ export const WORKFLOW_ITEMS: {
     name: "Dynamic Portal",
     href: "/dynamic-portal",
     imageUri: "/images/dynamic-portal.svg",
-    // heroUri: "/images/dynamic-portal-hero.svg",
+    heroUri: "",
     color: "border-dynamic-portal text-dynamic-portal",
     // hoverColor:
     //   "group-hover:border-dynamic-portal group-hover:text-dynamic-portal",

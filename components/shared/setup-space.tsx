@@ -11,6 +11,7 @@ import {
 } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
 import { useEffect, useState } from "react";
+import SVG from "react-inlinesvg";
 
 export default function SetupSpace({
   workflowType,
@@ -38,7 +39,7 @@ export default function SetupSpace({
   }, [steps, storageKey]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 md:relative">
       <HeaderContent item={item} steps={steps} />
 
       {steps[0].status === "current" && (
@@ -79,6 +80,10 @@ export default function SetupSpace({
           </p>
         </div>
       )}
+      <SVG
+        src={item.heroUri}
+        className="w-full md:w-2/3 lg:w-1/2 md:mx-auto md:absolute md:left-[45%] md:top-[100%] lg:left-[30%] lg:top-[100%]"
+      />
     </div>
   );
 }
