@@ -29,7 +29,7 @@ export class UserService {
         },
       });
 
-      await SeedService.upsertAttributes(user.id);
+      await SeedService.reseed({ userId: user.id });
 
       return user;
     } catch (e) {
