@@ -10,6 +10,7 @@ import {
   FILE_FEED_ITEM,
 } from "@/lib/workflow-constants";
 import { useState, useEffect } from "react";
+import SVG from "react-inlinesvg";
 
 export default function Workspace({
   spaceId,
@@ -39,9 +40,8 @@ export default function Workspace({
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 md:relative">
       <HeaderContent item={FILE_FEED_ITEM} steps={steps} />
-
       <div className="flex flex-row justify-between lg:justify-start lg:space-x-12 items-start">
         <div className="space-y-2 md:max-w-md">
           <p className="text-2xl">Ready and listening for events.&nbsp;🎉</p>
@@ -117,6 +117,10 @@ export default function Workspace({
           </tbody>
         </table>
       </div>
+      <SVG
+        src={FILE_FEED_ITEM.heroUri}
+        className="w-full md:w-2/3 lg:w-1/2 md:mx-auto md:absolute md:left-[35%] md:top-[100%] lg:left-[40%] lg:top-[60%]"
+      />
     </div>
   );
 }
