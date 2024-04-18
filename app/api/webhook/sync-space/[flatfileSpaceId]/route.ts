@@ -11,8 +11,9 @@ export const GET = (
     const flatfileSpaceId = context.params.flatfileSpaceId;
     invariant(flatfileSpaceId, "No spaceId provided");
 
+    let syncedFlatfileRecordIds;
     try {
-      await SyncService.syncSpace({
+      syncedFlatfileRecordIds = await SyncService.syncSpace({
         flatfileSpaceId,
       });
     } catch (e) {
@@ -27,7 +28,7 @@ export const GET = (
     }
 
     return NextResponse.json(
-      { message: "Synced space" },
+      { syncedFlatfileRecordIds },
       {
         status: 200,
       }
