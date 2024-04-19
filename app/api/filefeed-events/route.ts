@@ -7,6 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @swagger
  * /api/filefeed-events:
  *   get:
+ *     tags: [/api/]
  *     summary: Retrieve all filefeed events for the logged-in user
  *     description: Returns a list of filefeed events associated with the logged-in user.
  *     parameters:

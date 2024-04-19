@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @swagger
  * /api/custom-field:
  *   post:
+ *     tags: [/api/]
  *     summary: Create a new custom field
  *     description: Creates a new custom field for the logged-in user.
  *     parameters:
@@ -126,6 +127,7 @@ export const POST = async (request: NextRequest, context: { params: any }) => {
  * @swagger
  * /api/custom-field:
  *   delete:
+ *     tags: [/api/]
  *     summary: Delete custom field
  *     description: Deletes the custom field for the logged-in user.
  *     parameters:

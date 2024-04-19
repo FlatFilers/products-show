@@ -1,0 +1,11 @@
+a,
+button,
+div,
+h2,
+p,
+th,
+td,
+.info,
+.opblock-summary-description {
+  @apply text-white !important;
+}

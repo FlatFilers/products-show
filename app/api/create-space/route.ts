@@ -10,6 +10,7 @@ import invariant from "ts-invariant";
  * @swagger
  * /api/create-space:
  *   post:
+ *     tags: [/api/]
  *     summary: Create a new space
  *     description: Creates a new space for the logged-in user.
  *     parameters:

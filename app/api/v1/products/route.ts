@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @swagger
  * /api/v1/products:
  *   get:
+ *     tags: [/api/v1/]
  *     summary: Retrieve all products for the logged-in user
  *     description: Returns a list of products associated with the logged-in user.
  *     parameters:

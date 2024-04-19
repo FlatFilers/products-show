@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @swagger
  * /api/reset-account:
  *   post:
+ *     tags: [/api/]
  *     summary: Reset the account
  *     description: Resets the account for the logged-in user.
  *     parameters:

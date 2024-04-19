@@ -7,6 +7,7 @@ import { SpaceService } from "@/lib/services/space";
  * @swagger
  * /api/visit-space/{spaceId}:
  *   get:
+ *     tags: [/api/]
  *     summary: Get guest link for space
  *     description: Returns the guest link for the space.
  *     parameters:

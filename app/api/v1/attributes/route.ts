@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
  * @swagger
  * /api/v1/attributes:
  *   get:
+ *     tags: [/api/v1/]
  *     summary: Retrieve all attributes for the logged-in user
  *     description: Returns a list of attributes associated with the logged-in user.
  *     parameters:
