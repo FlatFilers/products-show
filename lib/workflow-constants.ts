@@ -74,7 +74,7 @@ export const WORKFLOW_ITEMS: {
     //   "group-hover:border-project-onboarding group-hover:text-project-onboarding",
     highlightColor: "hover:border-project-onboarding",
     description:
-      "Flatfile enables multiple team members to collaborate over the course of a project in real-time, validating, transforming, and loading data into plm.show while ensuring everyone is on the same page.",
+      "Flatfile enables multiple team members to collaborate over the course of a project in real-time, validating, transforming, and loading data into PLM Show while ensuring everyone is on the same page.",
     steps: PROJECT_ONBOARDING_INITIAL_STEPS,
   },
   [WorkflowType.Embed]: {
