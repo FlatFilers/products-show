@@ -5,7 +5,7 @@ import { ArrowPathRoundedSquareIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
-export default async function Page() {
+export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
