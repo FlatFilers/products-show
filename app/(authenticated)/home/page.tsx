@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="my-8">
-        <div className="card-bg mb-6 text-white flex flex-col-reverse md:flex-row items-center justify-between">
+        <div className="card-bg mb-6 flex flex-col-reverse md:flex-row items-center justify-between">
           <div className="md:mr-8">
             <h1 className="text-4xl font-semibold mb-8">PLM Products</h1>
             {/* TODO: Change text */}
@@ -57,7 +57,7 @@ export default function Home() {
               <Link
                 key={item.slug}
                 href={item.href}
-                className={`card-bg flex flex-col justify-between space-y-6 text-white border-2 border-transparent ${item.highlightColor} rounded-xl p-6 transform hover:scale-[101%] transition duration-200`}
+                className={`card-bg flex flex-col justify-between space-y-6 border-2 border-transparent ${item.highlightColor} rounded-xl p-6 transform hover:scale-[101%] transition duration-200`}
               >
                 <div className="">
                   <div className="flex flex-row items-center mb-2">

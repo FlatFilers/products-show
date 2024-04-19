@@ -18,7 +18,7 @@ export const MobileNav = ({ children }: { children: React.ReactNode }) => {
   const [showNav, setShowNav] = useState(false);
 
   return (
-    <div className="flex flex-row justify-end bg-dark-gray">
+    <div className="flex flex-row justify-end bg-bg-primary-light">
       <div
         onClick={() => setShowNav(true)}
         className="p-8 cursor-pointer flex flex-row items-center"
