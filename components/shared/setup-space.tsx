@@ -57,7 +57,7 @@ export default function SetupSpace({
       )}
 
       {steps[0].status !== "current" && (
-        <div className="text-white space-y-4 md:max-w-lg">
+        <div className=" space-y-4 md:max-w-lg">
           <h2 className="text-2xl font-semibold">
             🎉 Great! Now let&apos;s setup Flatfile to import those records.
           </h2>

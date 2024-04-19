@@ -51,7 +51,7 @@ export default function EmbeddedPortal({
   return (
     <div className="space-y-6">
       <HeaderContent item={EMBEDDED_PORTAL_ITEM} steps={steps} />
-      <div className="text-white">
+      <div className="">
         <p className="text-2xl mb-8 md:max-w-lg">
           Your embedded Flatfile space is configured and ready for import. 🎉
         </p>

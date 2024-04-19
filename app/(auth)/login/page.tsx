@@ -7,7 +7,7 @@ export default function Page() {
     <div className="space-y-8">
       <div className="flex flex-col items-center space-y-8">
         <span className="text-5xl">📦</span>
-        <p className="text-white text-center text-xl">Sign in to plm.show</p>
+        <p className=" text-center text-xl">Sign in to plm.show</p>
       </div>
 
       <LoginForm />

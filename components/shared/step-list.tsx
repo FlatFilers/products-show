@@ -39,9 +39,7 @@ export default function StepList({ steps }: Props) {
                     className={`bg-white relative block h-2 w-2 rounded-full`}
                   />
                 </span>
-                <span className={`text-white text-sm font-medium`}>
-                  {step.name}
-                </span>
+                <span className={` text-sm font-medium`}>{step.name}</span>
               </a>
             ) : (
               <a className="group">

@@ -154,7 +154,7 @@ export default function Workspace({
   };
 
   return (
-    <div className="text-white space-y-8 md:relative lg:max-w-3xl">
+    <div className=" space-y-8 md:relative lg:max-w-3xl">
       <div className="flex flex-col space-y-4 md:flex-row md:justify-between md:items-center">
         <div className="space-y-4">
           <SVG src={item.imageUri} className={`icon-${item.slug} w-16 h-16`} />

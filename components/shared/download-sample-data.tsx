@@ -10,7 +10,7 @@ export default function DownloadSampleData({
   onClick: () => void;
 }) {
   return (
-    <div className="text-white space-y-4">
+    <div className=" space-y-4">
       <h2 className="text-xl font-semibold">
         Let&apos;s get ready to upload data into Flatfile.
       </h2>

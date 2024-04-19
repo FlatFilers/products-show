@@ -8,20 +8,20 @@ export default function Home() {
       <div className="my-8">
         <div className="card-bg mb-6 flex flex-col-reverse md:flex-row items-center justify-between">
           <div className="md:mr-8">
-            <h1 className="text-4xl font-semibold mb-8">PLM Products</h1>
+            <h1 className="text-4xl font-semibold mb-8">PLM.show</h1>
             {/* TODO: Change text */}
             <div className="md:max-w-4xl space-y-8 font-light leading-7">
               <p>
-                During the search for PLM solutions, our Operations Director 
-                discovered plm.show, a sleek and fully-functional PLM SaaS 
-                product that made all other options seem like clunky relics 
-                from the past.
+                During the search for PLM solutions, our Operations Director
+                discovered plm.show, a sleek and fully-functional PLM SaaS
+                product that made all other options seem like clunky relics from
+                the past.
               </p>
 
               <p>
                 As they delved deeper into the capabilities of plm.show, they
                 realized they needed a reliable method for capturing,
-                validating, and loading product information and supplier data 
+                validating, and loading product information and supplier data
                 into the system.
               </p>
 
@@ -29,7 +29,7 @@ export default function Home() {
                 With Flatfile, the team had the ability to configure a variety
                 of data onboarding options, from long-term onboarding projects
                 to an ongoing file feed from a supplier. Thanks to Flatfile, the
-                Operations Director was able to streamline their various data 
+                Operations Director was able to streamline their various data
                 onboarding workflows and elevate their product game.
               </p>
 
@@ -45,8 +45,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-
-          <span className="text-5xl">📦</span>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">

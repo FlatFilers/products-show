@@ -15,7 +15,7 @@ export default async function Layout({
   }
 
   return (
-    <div className="h-full text-white flex flex-col lg:flex-row space-8 lg:space-0">
+    <div className="h-full  flex flex-col lg:flex-row space-8 lg:space-0">
       <div className="lg:hidden">
         <MobileNav>
           <NavItems />

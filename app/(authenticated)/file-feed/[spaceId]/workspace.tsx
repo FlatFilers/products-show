@@ -79,7 +79,7 @@ export default function Workspace({
 
       <div className="md:max-w-lg">
         <div className="border-1 border border-gray-100 mt-6"></div>
-        <table className="min-w-full divide-y divide-gray-300 text-white">
+        <table className="min-w-full divide-y divide-gray-300 ">
           <thead>
             <tr>
               <th
