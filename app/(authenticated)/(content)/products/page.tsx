@@ -17,16 +17,16 @@ export default async function Page() {
   const products = await ProductService.getAll({ userId: session.user.id });
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 ">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
+    <div className="px-4 lg:px-0">
+      <div className="">
+        <div className="">
           <h1 className="text-xl font-semibold">Products</h1>
           <p className="mt-2 text-sm text-gray-400">Product details</p>
         </div>
       </div>
       <div className="mt-8 flex flex-col">
-        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div className="overflow-x-auto">
+          <div className="inline-block min-w-full py-2 align-middle">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
               <Table className="resource-index-table">
                 <TableHeader>
