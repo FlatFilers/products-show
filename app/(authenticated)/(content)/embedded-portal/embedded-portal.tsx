@@ -69,9 +69,9 @@ export default function EmbeddedPortal({
                   <Button className="contrast" onClick={onOpenSpace}>
                     {showSpace ? "Close Portal" : "Import Data"}
                     {showSpace ? (
-                      <ArrowsPointingInIcon className="w-4 h-4 ml-2" />
+                      <ArrowsPointingInIcon className="w-4 h-4 ml-2 stroke-white" />
                     ) : (
-                      <ArrowsPointingOutIcon className="w-4 h-4 ml-2" />
+                      <ArrowsPointingOutIcon className="w-4 h-4 ml-2 stroke-white" />
                     )}
                   </Button>
                   {showSpace && <Space />}

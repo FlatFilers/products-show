@@ -15,23 +15,7 @@ export default async function Layout({
   }
 
   return (
-    <div className="h-full  flex flex-col lg:flex-row space-8 lg:space-0">
-      <div className="lg:hidden">
-        <MobileNav>
-          <NavItems />
-        </MobileNav>
-      </div>
-
-      <div
-        className="hidden lg:flex flex-col"
-        style={{
-          background:
-            "linear-gradient(0deg, #161A23, #161A23), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
-        }}
-      >
-        <NavItems />
-      </div>
-
+    <div className="p-6 md:p-16 lg:p-24 w-full overflow-auto bg-bg-primary-dark">
       {children}
     </div>
   );

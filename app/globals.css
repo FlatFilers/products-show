@@ -62,7 +62,7 @@
 
 .card-bg {
   box-shadow: 0px 48px 48px 0px #00000033;
-  @apply p-6 md:p-10 rounded-xl bg-white;
+  @apply p-6 md:p-10 rounded-xl bg-bg-primary-lighter;
 }
 
 .card-bg.light-shadow {

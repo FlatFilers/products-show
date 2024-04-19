@@ -1,4 +1,4 @@
-import EmbeddedPortal from "@/app/(authenticated)/embedded-portal/embedded-portal";
+import EmbeddedPortal from "@/app/(authenticated)/(content)/embedded-portal/embedded-portal";
 import { FlatfileService } from "@/lib/services/flatfile";
 import { SpaceService } from "@/lib/services/space";
 import { redirect } from "next/navigation";

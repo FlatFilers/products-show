@@ -1,4 +1,4 @@
-import Workspace from "@/app/(authenticated)/dynamic-portal/workspace";
+import Workspace from "@/app/(authenticated)/(content)/dynamic-portal/workspace";
 import {
   Option,
   CustomField,

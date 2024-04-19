@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <div className="space-y-8">
       <div className="flex flex-col items-center w-full">
-        <span className="text-5xl">📦</span>
+        <SVG src="/images/plm-logo.svg" className="w-36" />
         <p className="mt-8  text-center text-xl">Create your account</p>
       </div>
 

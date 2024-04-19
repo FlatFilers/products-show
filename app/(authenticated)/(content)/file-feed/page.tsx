@@ -3,7 +3,7 @@ import { SpaceService } from "@/lib/services/space";
 import invariant from "ts-invariant";
 import { getServerSession } from "@/lib/get-server-session";
 import { redirect } from "next/navigation";
-import SetupSpace from "@/app/(authenticated)/file-feed/setup-space";
+import SetupSpace from "@/app/(authenticated)/(content)/file-feed/setup-space";
 
 export default async function Page() {
   const session = await getServerSession();

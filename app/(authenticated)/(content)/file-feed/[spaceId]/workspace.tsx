@@ -4,7 +4,7 @@ import HeaderContent from "@/components/shared/header-content";
 import { Step } from "@/components/shared/step-list";
 import VisitSpaceForm from "@/components/shared/visit-space-form";
 import { FilefeedEvent } from "@/lib/action";
-import { Event } from "@/app/(authenticated)/file-feed/[spaceId]/event";
+import { Event } from "@/app/(authenticated)/(content)/file-feed/[spaceId]/event";
 import {
   FILE_FEED_INITIAL_STEPS,
   FILE_FEED_ITEM,

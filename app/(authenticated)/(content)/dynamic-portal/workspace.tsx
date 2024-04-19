@@ -4,7 +4,7 @@ import { WORKFLOW_ITEMS } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
 import SVG from "react-inlinesvg";
 import { blueprint } from "@/lib/dynamic/blueprint";
-import { CustomFieldBuilder } from "@/app/(authenticated)/dynamic-portal/custom-field-builder";
+import { CustomFieldBuilder } from "@/app/(authenticated)/(content)/dynamic-portal/custom-field-builder";
 import {
   Option,
   CustomField,
