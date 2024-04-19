@@ -29,4 +29,18 @@ export class ActionService {
       },
     });
   }
+
+  static async getActions({ userId }: { userId: string }) {
+    return await prismaClient.action.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        user: true,
+      },
+    });
+  }
 }
