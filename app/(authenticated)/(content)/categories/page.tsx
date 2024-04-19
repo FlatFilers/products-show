@@ -23,7 +23,7 @@ export default async function Page() {
       <div className="">
         <div className="">
           <h1 className="text-xl font-semibold">Categories</h1>
-          <p className="mt-2 text-sm text-gray-400">Category details</p>
+          <p className="mt-2 text-sm">Category details</p>
         </div>
       </div>
       <div className="mt-8 flex flex-col">

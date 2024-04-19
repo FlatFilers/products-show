@@ -21,7 +21,7 @@ export default async function Page() {
       <div className="">
         <div className="">
           <h1 className="text-xl font-semibold">Suppliers</h1>
-          <p className="mt-2 text-sm text-gray-400">
+          <p className="mt-2 text-sm">
             A list of all the suppliers in your account.
           </p>
         </div>
