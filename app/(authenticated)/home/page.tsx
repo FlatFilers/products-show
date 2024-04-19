@@ -14,13 +14,13 @@ export default function Home() {
             <div className="md:max-w-4xl space-y-8 font-light leading-7">
               <p>
                 During the search for online marketplace solutions, our Operations 
-                Director discovered plm.show, a sleek and fully-functional SaaS 
+                Director discovered PLM.show, a sleek and fully-functional SaaS 
                 product that made all other options seem like clunky relics from
                 the past.
               </p>
 
               <p>
-                As they delved deeper into the capabilities of plm.show, they
+                As they delved deeper into the capabilities of PLM.show, they
                 realized they needed a reliable method for capturing, validating, 
                 and loading product information and supplier data into the system.
               </p>
