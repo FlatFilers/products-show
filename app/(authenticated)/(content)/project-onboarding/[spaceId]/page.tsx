@@ -1,4 +1,4 @@
-import Workspace from "@/app/(authenticated)/project-onboarding/workspace";
+import Workspace from "@/app/(authenticated)/(content)/project-onboarding/workspace";
 import { SpaceService } from "@/lib/services/space";
 import { redirect } from "next/navigation";
 

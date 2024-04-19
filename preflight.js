@@ -15,6 +15,7 @@ VARS = [
   "GOOGLE_DRIVE_FILE_ID",
   "NEXT_PUBLIC_GOOGLE_DRIVE_FILE_ID",
   "GOOGLE_DRIVE_API_KEY",
+  "GITHUB_PROJECT_URL",
 ];
 
 function preflight() {

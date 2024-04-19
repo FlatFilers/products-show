@@ -15,21 +15,14 @@ export const NavItems = () => {
   const path = usePathname();
 
   return (
-    <div className="h-full bg-dark-gray flex flex-col justify-between">
-      <div className="flex justify-center items-center p-6 lg:p-4 ">
-        <Link href="/home" className="flex flex-col items-center space-y-2">
-          <span className="text-3xl">📦</span>
-          <span className="font-semibold">plm.show</span>
+    <div className="h-full bg-bg-primary-light flex flex-col justify-between w-56">
+      <div className="flex p-6 lg:p-4 ">
+        <Link href="/home">
+          <SVG src="/images/plm-logo.svg" className="w-36" />
         </Link>
       </div>
 
-      <div
-        className="flex flex-col justify-between space-y-3 p-6 lg:p-4 h-full"
-        style={{
-          background:
-            "linear-gradient(0deg, #161A23, #161A23), linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1))",
-        }}
-      >
+      <div className="bg-bg-primary-light flex flex-col justify-between space-y-3 p-6 lg:p-4 h-full">
         <div className="space-y-6">
           <Link
             href={HOME_ITEM.href}
@@ -59,7 +52,7 @@ export const NavItems = () => {
                     })}
                   >
                     <SVG src={item.imageUri} />
-                    {item.name}
+                    <span className="break-keep">{item.name}</span>
                   </Link>
                 );
               })}
@@ -108,10 +101,10 @@ export const NavItems = () => {
             ${path === "/api-docs" ? "active" : ""} nav-item group`}
           >
             <SVG src={"/images/api-doc.svg"} />
-            Products.Show API Docs
+            PLM.show API Docs
           </a>
 
-          <div className="flex flex-col w-full border-t-2 border-[#FFFFFF25] pt-2 mt-2">
+          <div className="flex flex-col w-full border-t-2 border-gray-400 pt-2 mt-2">
             <a
               href="#"
               onClick={() => signOut({ callbackUrl: "/login" })}

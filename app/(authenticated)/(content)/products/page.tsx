@@ -17,7 +17,7 @@ export default async function Page() {
   const products = await ProductService.getAll({ userId: session.user.id });
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8 text-white">
+    <div className="px-4 sm:px-6 lg:px-8 ">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <h1 className="text-xl font-semibold">Products</h1>

@@ -16,7 +16,7 @@ export default function SetupSpace() {
       <HeaderContent item={FILE_FEED_ITEM} steps={steps} />
 
       {steps[0].status === "current" && (
-        <div className="text-white space-y-4 md:max-w-lg">
+        <div className=" space-y-4 md:max-w-lg">
           <h2 className="text-2xl font-semibold">
             Let&apos;s get ready to listen for file feed uploads.
           </h2>

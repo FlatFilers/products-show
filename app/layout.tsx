@@ -16,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full bg-dark">
-      <body className={`${raleway.className} h-full bg-dark`}>
+    <html lang="en" className="h-full bg-bg-primary-lighter">
+      <body className={`${raleway.className} h-full bg-bg-primary-lighter`}>
         {children}
 
         <Toaster />

@@ -1,4 +1,4 @@
-import Workspace from "@/app/(authenticated)/file-feed/[spaceId]/workspace";
+import Workspace from "@/app/(authenticated)/(content)/file-feed/[spaceId]/workspace";
 import { getServerSession } from "@/lib/get-server-session";
 import { serializeFilefeedEvents } from "@/lib/serializers/filefeed-event";
 import { ActionService } from "@/lib/services/action";

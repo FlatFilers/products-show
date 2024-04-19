@@ -64,14 +64,7 @@ export const CustomFieldBuilder = ({ customField, setCustomField }: Props) => {
   };
 
   return (
-    <div
-      className="card-bg card-sm space-y-4"
-      style={{
-        boxShadow:
-          "8.74046516418457px 9.711627960205078px 18.45209312438965px 0px rgba(61, 73, 100, 0.3) inset",
-        backgroundColor: "white",
-      }}
-    >
+    <div className="card-bg light-shadow card-sm space-y-4 bg-white shadow-sm">
       <div className="grid grid-cols-3 space-x-2 text-sm items-center">
         <input
           name="custom-field-name"
@@ -131,7 +124,7 @@ export const CustomFieldBuilder = ({ customField, setCustomField }: Props) => {
                     title: "Saved custom field",
                   });
                 }}
-                className="bg-dynamic-portal px-5 md:px-12 py-1 md:py-2 rounded-xl"
+                className="bg-dynamic-portal text-white px-5 md:px-12 py-1 md:py-2 rounded-xl"
                 style={{
                   boxShadow:
                     "8.74046516418457px 9.711627960205078px 18.45209312438965px 0px rgba(61, 73, 100, 0.3) inset",
