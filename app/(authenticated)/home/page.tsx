@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { WORKFLOW_ITEMS } from "@/lib/workflow-constants";
 import Link from "next/link";
+import SVG from "react-inlinesvg";
 
 export default function Home() {
   return (
@@ -59,7 +60,10 @@ export default function Home() {
               >
                 <div className="">
                   <div className="flex flex-row items-center mb-2">
-                    <img src={item.imageUri} className="mr-3" />
+                    <SVG
+                      src={item.imageUri}
+                      className="mr-3 fill-text-primary-dark"
+                    />
                     <p className="text-xl font-semibold">{item.name}</p>
                   </div>
 

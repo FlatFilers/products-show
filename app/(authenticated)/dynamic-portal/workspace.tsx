@@ -100,9 +100,6 @@ export default function Workspace({
       sheet,
       customFieldConfig,
     }),
-    spaceInfo: {
-      // userId,
-    },
     sidebarConfig: {
       showDataChecklist: false,
       showSidebar: true,
@@ -193,11 +190,7 @@ export default function Workspace({
               return (
                 <div
                   key={f.key}
-                  className="grid grid-cols-3 card-bg card-sm space-x-2 text-sm items-center"
-                  style={{
-                    boxShadow:
-                      "8.74046516418457px 9.711627960205078px 18.45209312438965px 0px rgba(61, 73, 100, 0.3) inset",
-                  }}
+                  className="grid grid-cols-3 card-bg card-sm space-x-2 text-sm items-center shadow-sm"
                 >
                   <div>{f.label}</div>
                   <div className="capitalize">{f.type}</div>
@@ -227,7 +220,7 @@ export default function Workspace({
       <div className="space-y-4">
         <div className="space-y-1">
           <p className="font-semibold">Generate your workspace</p>
-          <p className="text-gray-400 text-sm">
+          <p className="text-sm">
             Click to generate the workspace with your custom config and input
             your data.
           </p>
@@ -236,7 +229,7 @@ export default function Workspace({
         <div className="flex flex-row items-center space-x-8">
           <button
             onClick={() => setShowSpace(!showSpace)}
-            className={`space-x-2 px-4 py-2 inline-flex items-center justify-center rounded-md border text-sm font-medium shadow-sm button-bg`}
+            className={`space-x-2 px-4 py-2 inline-flex items-center justify-center rounded-md border text-sm font-medium button-bg`}
           >
             <SVG
               src="/images/sparkles-icon.svg"

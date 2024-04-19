@@ -68,10 +68,10 @@ export default function SetupSpace({
 
           <CreateSpaceForm workflowType={workflowType} spaceName={item.name} />
 
-          <p className="text-xs block text-gray-400">
+          <p className="text-xs block">
             To download the sample data again,{" "}
             <a
-              className={`text-gray-400 underline`}
+              className={`underline`}
               download={SAMPLE_DATA_FILENAME}
               href={SAMPLE_DATA_FILENAME}
             >

@@ -8,15 +8,7 @@
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-6,
-input,
-p,
-span {
+* {
   @apply text-text-primary-dark;
 }
 
@@ -24,6 +16,10 @@ span {
   box-shadow: 8.74046516418457px 9.711627960205078px 18.45209312438965px 0px
     #3d49644d inset;
   @apply text-white bg-button-primary inline-flex flex-row justify-center items-center px-8 py-4 font-semibold rounded-xl cursor-pointer hover:brightness-90;
+}
+
+.button-bg span {
+  @apply text-white;
 }
 
 .icon-project-onboarding path {
@@ -67,6 +63,10 @@ span {
 .card-bg {
   box-shadow: 0px 48px 48px 0px #00000033;
   @apply p-6 md:p-10 rounded-xl bg-white;
+}
+
+.card-bg.light-shadow {
+  box-shadow: 0px 12px 12px 0px #00000033;
 }
 
 .card-sm {
@@ -157,4 +157,14 @@ span {
 
   box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
   transform: scale(1);
+}
+
+.flatfile_iframe-wrapper {
+  height: 100% !important;
+  width: 100% !important;
+  margin-top: 0px !important;
+}
+
+.flatfile_primary {
+  @apply bg-dynamic-portal;
 }
