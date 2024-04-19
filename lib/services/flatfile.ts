@@ -56,10 +56,7 @@ export class FlatfileService {
       );
     }
 
-    // TODO: There are two workbooks being created here, how can we identiy them?
-    const workbook = workbooks.data.sort((a, b) => {
-      return b.createdAt.getTime() - a.createdAt.getTime();
-    })[0];
+    const workbook = workbooks.data.find((w) => w.name === "PLM Import");
 
     if (!workbook) {
       throw new Error(
