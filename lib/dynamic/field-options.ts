@@ -30,28 +30,28 @@ export const DATE_FORMATS = {
 export const INITIAL_OPTIONS: Option[] = [
   {
     id: 1,
-    input: "Insurance_Coverage_Type_Insurance",
-    output: "Insurance",
+    input: "Sprint",
+    output: "Q1",
   },
 
   {
     id: 2,
-    input: "Health_Care_Coverage_Type_Medical",
-    output: "Medical",
+    input: "Summer",
+    output: "Q2",
   },
   {
     id: 3,
-    input: "Health_Care_Coverage_Type_Dental",
-    output: "Dental",
+    input: "Fall",
+    output: "Q3",
   },
   {
     id: 4,
-    input: "Retirement_Savings_Coverage_Type_Retirement",
-    output: "Retirement",
+    input: "Winter",
+    output: "Q4",
   },
   {
     id: 5,
-    input: "Additional_Benefits_Coverage_Type_Other",
+    input: "Other",
     output: "Other",
   },
 ];
