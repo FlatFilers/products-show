@@ -37,7 +37,7 @@ export default async function Page() {
         className={`rounded-xl text-base focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 sm:w-auto}`}
       >
         {isSubmitting ? "Resetting Account..." : "Reset Account"}
-        <ArrowPathRoundedSquareIcon className="w-5 h-5 ml-2" />
+        <ArrowPathRoundedSquareIcon className="w-5 h-5 ml-2 stroke-white" />
       </Button>
     </div>
   );

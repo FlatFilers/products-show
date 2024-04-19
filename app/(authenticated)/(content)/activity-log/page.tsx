@@ -4,7 +4,7 @@ import ResetAccountButton from "@/app/(authenticated)/(content)/activity-log/res
 export default async function Page() {
   return (
     <div>
-      <div className="px-4 sm:px-6 lg:px-8 text-white">
+      <div className="px-4 lg:px-0">
         <div className="sm:flex sm:items-center">
           <div className="w-full flex flex-row justify-between mb-8">
             <div className="sm:flex-auto">

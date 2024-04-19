@@ -74,20 +74,16 @@
 }
 
 .ui-table thead th {
-  @apply bg-[#282F3F] text-white p-4 text-left text-sm font-semibold;
+  @apply bg-bg-primary-light p-4 text-left text-sm font-semibold;
 }
 
 .ui-table,
 .ui-table tbody {
-  @apply divide-y divide-[#282F3F];
+  @apply divide-y divide-bg-primary-light;
 }
 
 .ui-table tbody tr td {
-  @apply bg-[#1C2029] text-white whitespace-nowrap p-4 text-sm font-medium;
-}
-
-.ui-table tbody tr td.secondary {
-  @apply text-[#FFFFFFCC];
+  @apply bg-bg-primary-lighter whitespace-nowrap p-4 text-sm font-medium;
 }
 
 .ui-table tbody tr td a {
