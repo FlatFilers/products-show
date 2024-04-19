@@ -56,7 +56,9 @@ export class FlatfileService {
       );
     }
 
-    const workbook = workbooks.data.find((w) => w.name === "PLM Import");
+    const workbook = workbooks.data.find(
+      (w) => w.name === process.env.WORKBOOK_NAME
+    );
 
     if (!workbook) {
       throw new Error(
