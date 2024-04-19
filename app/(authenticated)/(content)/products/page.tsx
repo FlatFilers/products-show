@@ -21,7 +21,7 @@ export default async function Page() {
       <div className="">
         <div className="">
           <h1 className="text-xl font-semibold">Products</h1>
-          <p className="mt-2 text-sm text-gray-400">Product details</p>
+          <p className="mt-2 text-sm">Product details</p>
         </div>
       </div>
       <div className="mt-8 flex flex-col">
