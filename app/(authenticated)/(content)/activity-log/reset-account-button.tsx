@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowPathRoundedSquareIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   async function onSubmit() {
     if (confirm("Are you sure you want to reset your account?")) {
@@ -27,6 +29,8 @@ export default function Page() {
     }
 
     setIsSubmitting(false);
+
+    router.refresh();
   }
 
   return (
