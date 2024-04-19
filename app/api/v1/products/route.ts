@@ -28,7 +28,7 @@ import { NextRequest, NextResponse } from "next/server";
  *           type: string
  *     responses:
  *       200:
- *         description: Successfully retrieved the attributes.
+ *         description: Successfully retrieved the products.
  *         content:
  *           application/json:
  *             schema:
