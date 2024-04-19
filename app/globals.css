@@ -76,7 +76,7 @@
 /** Resource Index */
 
 .resource-index-table thead th {
-  @apply bg-[#282F3F]  p-4 text-left text-sm font-semibold;
+  @apply bg-bg-primary-light  p-4 text-left text-sm font-semibold;
 }
 
 .resource-index-table,
@@ -85,7 +85,7 @@
 }
 
 .resource-index-table tbody tr td {
-  @apply bg-[#1C2029]  whitespace-nowrap p-4 text-sm font-medium border-none;
+  @apply bg-bg-primary-lighter  whitespace-nowrap p-4 text-sm font-medium border-none;
 }
 
 .resource-index-table tbody tr td.secondary {
@@ -123,11 +123,11 @@
 }
 
 .resource-show > div:first-child {
-  @apply bg-[#282F3F]  p-4 text-left text-sm font-semibold;
+  @apply bg-bg-primary-light  p-4 text-left text-sm font-semibold;
 }
 
 .resource-show > div:last-child {
-  @apply bg-[#1C2029]  whitespace-nowrap p-4 text-sm font-medium;
+  @apply bg-bg-primary-lighter  whitespace-nowrap p-4 text-sm font-medium;
 }
 
 .resource-show dl {
