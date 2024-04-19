@@ -201,3 +201,37 @@
 .flatfile_primary {
   @apply bg-dynamic-portal;
 }
+
+div[data-testid="space-contents"] {
+  width: 100% !important;
+  height: 100% !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+[data-testid="close-confirm-modal"] > * {
+  color: #000;
+}
+
+.swagger-ui * {
+  @apply text-primary-dark !important;
+}
+
+.swagger-ui select {
+  background-color: #c0d1d8 !important;
+}
+
+.swagger-ui .opblock-summary-description {
+  color: #39435a !important;
+}
+
+.swagger-ui .opblock-body {
+  color: #39435a !important;
+}
+
+.swagger-ui pre {
+  background-color: #c0d1d8 !important;
+}
+
+.swagger-ui button {
+}
