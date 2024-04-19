@@ -1,7 +1,7 @@
 import { Step } from "@/components/shared/step-list";
 import { WorkflowType } from "@/lib/workflow-type";
 
-export const SAMPLE_DATA_FILENAME = "/jobs_employees.xlsx";
+export const SAMPLE_DATA_FILENAME = "/products-sample-data.csv";
 
 export const PROJECT_ONBOARDING_INITIAL_STEPS: Step[] = [
   {
