@@ -13,6 +13,7 @@ import {
 } from "@/lib/workflow-constants";
 import { Step } from "@/components/shared/step-list";
 import HeaderContent from "@/components/shared/header-content";
+import SVG from "react-inlinesvg";
 
 export default function EmbeddedPortal({
   flatfileSpaceId,
@@ -81,6 +82,11 @@ export default function EmbeddedPortal({
           </div>
         </div>
       </div>
+
+      <SVG
+        src={EMBEDDED_PORTAL_ITEM.heroUri}
+        className="w-full md:w-2/3 lg:w-1/4 md:mx-auto md:absolute md:left-[35%] md:top-[52%] lg:left-[50%] lg:top-[35%]"
+      />
     </div>
   );
 }
