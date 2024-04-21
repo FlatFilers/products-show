@@ -8,6 +8,7 @@ import {
   PROJECT_ONBOARDING_ITEM,
   SAMPLE_DATA_FILENAME,
 } from "@/lib/workflow-constants";
+import SVG from "react-inlinesvg";
 
 export default function Workspace({ spaceId }: { spaceId: string }) {
   const steps: Step[] = [
@@ -54,6 +55,11 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
           </div>
         </div>
       </div>
+
+      <SVG
+        src={PROJECT_ONBOARDING_ITEM.heroUri}
+        className="w-full md:w-2/3 lg:w-1/3 md:mx-auto md:absolute md:left-[35%] md:top-[52%] lg:left-[45%] lg:top-[35%]"
+      />
     </div>
   );
 }

@@ -13,7 +13,6 @@ export class SeedService {
     await this.upsertAttributes(userId);
     await this.upsertCategories(userId);
     await this.upsertSuppliers(userId);
-    // await this.upsertProducts(userId);
   }
 
   static async upsertAttributes(userId: string) {
@@ -917,80 +916,6 @@ export class SeedService {
     const randomIndex = Math.floor(Math.random() * suppliers.length);
     return suppliers[randomIndex].id;
   }
-
-  // static async upsertProducts(userId: string) {
-  //   const attrs = [
-  //     {
-  //       externalProductId: "prod100",
-  //       name: faker.commerce.product(),
-  //       description: faker.commerce.productDescription(),
-  //       price: 100,
-  //       quantity: 1,
-  //       imageUrl: "https://loremflickr.com/100/100?lock=7826533007753216",
-  //       supplierId: await this.getRandomSupplierId(userId), // Random supplier
-  //       categoryId: await this.getRandomCategoryId(userId), // Random category
-  //     },
-  //     {
-  //       externalProductId: "prod200",
-  //       name: faker.commerce.product(),
-  //       description: faker.commerce.productDescription(),
-  //       price: 100,
-  //       quantity: 1,
-  //       imageUrl: "https://loremflickr.com/100/100?lock=7826533007753216",
-  //       supplierId: await this.getRandomSupplierId(userId), // Random supplier
-  //       categoryId: await this.getRandomCategoryId(userId), // Random category
-  //     },
-  //     {
-  //       externalProductId: "prod300",
-  //       name: faker.commerce.product(),
-  //       description: faker.commerce.productDescription(),
-  //       price: 100,
-  //       quantity: 1,
-  //       imageUrl: "https://loremflickr.com/100/100?lock=7826533007753216",
-  //       supplierId: await this.getRandomSupplierId(userId), // Random supplier
-  //       categoryId: await this.getRandomCategoryId(userId), // Random category
-  //     },
-  //     {
-  //       externalProductId: "prod400",
-  //       name: faker.commerce.product(),
-  //       description: faker.commerce.productDescription(),
-  //       price: 100,
-  //       quantity: 1,
-  //       imageUrl: "https://loremflickr.com/100/100?lock=7826533007753216",
-  //       supplierId: await this.getRandomSupplierId(userId), // Random supplier
-  //       categoryId: await this.getRandomCategoryId(userId), // Random category
-  //     },
-  //     {
-  //       externalProductId: "prod500",
-  //       name: faker.commerce.product(),
-  //       description: faker.commerce.productDescription(),
-  //       price: 100,
-  //       quantity: 1,
-  //       imageUrl: "https://loremflickr.com/100/100?lock=7826533007753216",
-  //       supplierId: await this.getRandomSupplierId(userId), // Random supplier
-  //       categoryId: await this.getRandomCategoryId(userId), // Random category
-  //     },
-  //   ];
-
-  //   for (const a of attrs) {
-  //     await prismaClient.product.upsert({
-  //       where: {
-  //         userId_externalProductId: {
-  //           userId,
-  //           externalProductId: a.externalProductId,
-  //         },
-  //       },
-  //       create: {
-  //         ...a,
-  //         userId,
-  //       },
-  //       update: {
-  //         ...a,
-  //         userId,
-  //       },
-  //     });
-  //   }
-  // }
 
   private static async upsertUser() {
     const data = {
