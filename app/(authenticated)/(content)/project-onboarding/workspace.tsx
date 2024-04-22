@@ -17,14 +17,14 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
   ];
 
   return (
-    <div className="space-y-6 md:relative">
+    <div className="space-y-6">
       <HeaderContent item={PROJECT_ONBOARDING_ITEM} steps={steps} />
 
       <div className=" space-y-4">
         <p className="text-2xl">Your Flatfile space is configured. 🎉</p>
 
         <div className="flex flex-col md:flex-row justify-between lg:justify-start lg:space-x-12 space-y-12 md:space-y-0">
-          <div className="md:max-w-lg space-y-4">
+          <div className="md:max-w-md space-y-4">
             <p className="font-semibold">Upload Records in Flatfile</p>
             <p>
               Click the &ldquo;Visit Flatfile Space&rdquo; button below to
