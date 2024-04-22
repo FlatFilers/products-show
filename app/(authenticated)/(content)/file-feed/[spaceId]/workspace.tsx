@@ -119,7 +119,7 @@ export default function Workspace({
       </div>
       <SVG
         src={FILE_FEED_ITEM.heroUri}
-        className="w-full md:w-2/3 lg:w-1/3 md:mx-auto md:absolute md:left-[35%] md:top-[100%] lg:left-[50%] lg:top-[60%]"
+        className="w-full md:w-2/3 lg:w-1/3 md:mx-auto md:absolute md:left-[35%] md:top-[100%] lg:left-[70%] lg:top-[60%] xl:left-[50%]"
       />
     </div>
   );

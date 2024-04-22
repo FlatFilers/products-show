@@ -53,13 +53,12 @@ export default function Workspace({ spaceId }: { spaceId: string }) {
               </a>
             </p>
           </div>
+          <SVG
+            src={PROJECT_ONBOARDING_ITEM.heroUri}
+            className="w-full md:w-2/3 lg:w-1/2 md:mx-auto md:absolute md:left-[45%] md:top-[100%] lg:left-[30%] lg:top-[100%]"
+          />
         </div>
       </div>
-
-      <SVG
-        src={PROJECT_ONBOARDING_ITEM.heroUri}
-        className="w-full md:w-2/3 lg:w-1/3 md:mx-auto md:absolute md:left-[35%] md:top-[52%] lg:left-[45%] lg:top-[35%]"
-      />
     </div>
   );
 }
