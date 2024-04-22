@@ -7,9 +7,11 @@ import {
   FILE_FEED_ITEM,
 } from "@/lib/workflow-constants";
 import { WorkflowType } from "@/lib/workflow-type";
+import SVG from "react-inlinesvg";
 
 export default function SetupSpace() {
   const steps = FILE_FEED_INITIAL_STEPS;
+  const item = FILE_FEED_ITEM;
 
   return (
     <div className="space-y-6">
@@ -30,6 +32,10 @@ export default function SetupSpace() {
           />
         </div>
       )}
+      <SVG
+        src={item.heroUri}
+        className="w-full md:w-2/3 lg:w-1/2 md:mx-auto md:absolute md:left-[35%] md:top-[100%] lg:left-[40%] lg:top-[60%]"
+      />
     </div>
   );
 }

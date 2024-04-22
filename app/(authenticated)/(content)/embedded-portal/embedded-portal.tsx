@@ -50,14 +50,14 @@ export default function EmbeddedPortal({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:relative">
       <HeaderContent item={EMBEDDED_PORTAL_ITEM} steps={steps} />
       <div className="">
         <p className="text-2xl mb-8 md:max-w-lg">
           Your embedded Flatfile space is configured and ready for import. 🎉
         </p>
         <div className="flex flex-col md:flex-row justify-between lg:justify-start lg:space-x-12 space-y-12 md:space-y-0">
-          <div className="md:max-w-md">
+          <div className="md:max-w-lg">
             <p className="font-semibold mb-4">Launch Flatfile</p>
             <p>Launch Flatfile via the &quot;Import&quot; button below.</p>
             <p>
@@ -81,12 +81,11 @@ export default function EmbeddedPortal({
             </div>
           </div>
         </div>
+        <SVG
+          src={EMBEDDED_PORTAL_ITEM.heroUri}
+          className="w-full md:w-2/3 lg:w-1/2 md:mx-auto md:absolute md:left-[35%] md:top-[100%] lg:left-[30%] lg:top-[100%]"
+        />
       </div>
-
-      <SVG
-        src={EMBEDDED_PORTAL_ITEM.heroUri}
-        className="w-full md:w-2/3 lg:w-1/4 md:mx-auto md:absolute md:left-[35%] md:top-[52%] lg:left-[50%] lg:top-[35%]"
-      />
     </div>
   );
 }
