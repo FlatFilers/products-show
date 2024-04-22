@@ -15,7 +15,7 @@ export default function SetupSpace() {
 
   return (
     <div className="space-y-6">
-      <HeaderContent item={FILE_FEED_ITEM} steps={steps} />
+      <HeaderContent item={item} steps={steps} />
 
       {steps[0].status === "current" && (
         <div className=" space-y-4 md:max-w-lg">
