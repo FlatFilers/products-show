@@ -11,9 +11,17 @@ export default async function Page({
   };
 }) {
   const spaceId = params.spaceId;
-  const space = await SpaceService.getSpace({
-    id: spaceId,
-  });
+
+  let space;
+
+  try {
+    space = await SpaceService.getSpace({
+      id: spaceId,
+    });
+  } catch (e) {
+    console.warn(`Space not found: ${spaceId}`);
+  }
+
   if (!space) {
     redirect("/embedded-portal");
   }
