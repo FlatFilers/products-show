@@ -1,6 +1,5 @@
 import { prismaClient } from "@/lib/prisma-client";
 import { UserService } from "@/lib/services/user";
-import { faker } from "@faker-js/faker";
 
 export class SeedService {
   static async seed() {
