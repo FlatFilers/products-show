@@ -15,10 +15,12 @@ export class FlatfileService {
     userId,
     workflowType,
     spaceName,
+    language,
   }: {
     userId: string;
     workflowType: WorkflowType;
     spaceName: string;
+    language: string;
   }) => {
     const { data } = await api.spaces.create({
       name: spaceName,
@@ -28,6 +30,7 @@ export class FlatfileService {
       metadata: {
         userId,
       },
+      languageOverride: language,
     });
     return data;
   };
@@ -118,6 +121,18 @@ export class FlatfileService {
     return await api.files.upload(file, {
       spaceId: flatfileSpaceId,
       environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
+    });
+  }
+
+  static async updateSpace({
+    flatfileSpaceId,
+    language,
+  }: {
+    flatfileSpaceId: string;
+    language: string;
+  }) {
+    return await api.spaces.update(flatfileSpaceId, {
+      languageOverride: language,
     });
   }
 }

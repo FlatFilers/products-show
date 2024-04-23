@@ -7,15 +7,18 @@ export class SpaceService {
     workflowType,
     userId,
     spaceName,
+    language,
   }: {
     workflowType: string;
     userId: string;
     spaceName: string;
+    language: string;
   }) {
     const flatfileSpace = await FlatfileService.createSpace({
       userId,
       workflowType: workflowType as WorkflowType,
       spaceName,
+      language,
     });
 
     return await prismaClient.space.create({
@@ -55,11 +58,22 @@ export class SpaceService {
     });
   }
 
-  static async getSpaceGuestLink({ spaceId }: { spaceId: string }) {
+  static async getSpaceGuestLink({
+    spaceId,
+    language,
+  }: {
+    spaceId: string;
+    language: string;
+  }) {
     const space = await prismaClient.space.findUniqueOrThrow({
       where: {
         id: spaceId,
       },
+    });
+
+    await FlatfileService.updateSpace({
+      flatfileSpaceId: space.flatfileSpaceId,
+      language,
     });
 
     const flatfileSpace = await FlatfileService.getSpace({

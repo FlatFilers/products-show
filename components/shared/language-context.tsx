@@ -1,10 +1,12 @@
 "use client";
-import {
+
+import React, {
   createContext,
   useState,
+  useEffect,
+  useContext,
   Dispatch,
   SetStateAction,
-  useEffect,
 } from "react";
 
 export const SUPPORTED_LANGUAGES = {
@@ -34,27 +36,13 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<SupportedLanguage>("en");
+  const [language, setLanguage] = useState<SupportedLanguage>(() => {
+    const savedLanguage = localStorage.getItem("language");
+    return (savedLanguage as SupportedLanguage) || "en";
+  });
 
   useEffect(() => {
-    const getStoredLanguage = () => {
-      if (typeof window !== "undefined") {
-        const savedLanguage = localStorage.getItem("language");
-        return (savedLanguage as SupportedLanguage) || "en";
-      }
-      return "en";
-    };
-
-    const storedLanguage = getStoredLanguage();
-    if (storedLanguage !== language) {
-      setLanguage(storedLanguage);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("language", language);
-    }
+    localStorage.setItem("language", language);
   }, [language]);
 
   return (
@@ -62,4 +50,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
       {children}
     </LanguageContext.Provider>
   );
+};
+
+export const useLanguage = (): SupportedLanguage => {
+  const { language } = useContext(LanguageContext);
+  return language;
 };
