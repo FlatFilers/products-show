@@ -7,7 +7,6 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/components/shared/language-context";
 
 const formSchema = z.object({
@@ -82,11 +81,6 @@ export default function VisitSpaceForm({ spaceId }: { spaceId: string }) {
             {error}
           </div>
         )}
-        <Input
-          type={"hidden"}
-          value={language}
-          {...form.register("language")}
-        />
         <Button disabled={isPending} type="submit" className="w-full">
           {isPending ? "Loading..." : "Visit Flatfile Space"}
         </Button>
