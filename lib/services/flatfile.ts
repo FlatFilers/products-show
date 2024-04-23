@@ -92,7 +92,7 @@ export class FlatfileService {
     const ps = Object.keys(records).map(async (key) => {
       const sheetId = sheets.data.find((s) => s.slug === key)!.id;
 
-      const recordsResult = await api.records.get(sheetId);
+      const recordsResult = await api.records.get(sheetId, { filter: "valid" });
 
       if (!recordsResult?.data) {
         throw new Error(`No records found for sheetId ${sheetId}`);
