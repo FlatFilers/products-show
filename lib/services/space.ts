@@ -68,14 +68,16 @@ export class SpaceService {
       },
     });
 
-    await FlatfileService.updateSpace({
-      flatfileSpaceId: space.flatfileSpaceId,
-      language,
-    });
-
     const flatfileSpace = await FlatfileService.getSpace({
       flatfileSpaceId: space.flatfileSpaceId,
     });
+
+    if (flatfileSpace.languageOverride !== language) {
+      await FlatfileService.updateSpace({
+        flatfileSpaceId: flatfileSpace.id,
+        language,
+      });
+    }
 
     return flatfileSpace.guestLink;
   }
