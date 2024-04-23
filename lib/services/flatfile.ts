@@ -15,12 +15,10 @@ export class FlatfileService {
     userId,
     workflowType,
     spaceName,
-    language,
   }: {
     userId: string;
     workflowType: WorkflowType;
     spaceName: string;
-    language: string;
   }) => {
     const { data } = await api.spaces.create({
       name: spaceName,
@@ -30,7 +28,6 @@ export class FlatfileService {
       metadata: {
         userId,
       },
-      languageOverride: language,
     });
     return data;
   };

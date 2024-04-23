@@ -7,18 +7,15 @@ export class SpaceService {
     workflowType,
     userId,
     spaceName,
-    language,
   }: {
     workflowType: string;
     userId: string;
     spaceName: string;
-    language: string;
   }) {
     const flatfileSpace = await FlatfileService.createSpace({
       userId,
       workflowType: workflowType as WorkflowType,
       spaceName,
-      language,
     });
 
     return await prismaClient.space.create({

@@ -21,7 +21,6 @@ export const POST = async (request: NextRequest, context: { params: any }) => {
         workflowType: json.workflowType,
         userId,
         spaceName: json.spaceName,
-        language: json.language,
       });
     } catch (e) {
       console.error(`Error creating space for ${userId}`, e);

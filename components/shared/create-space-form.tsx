@@ -9,12 +9,10 @@ import { useRouter, usePathname } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { WorkflowType } from "@/lib/workflow-type";
-import { useLanguage } from "@/components/shared/language-context";
 
 const formSchema = z.object({
   workflowType: z.nativeEnum(WorkflowType),
   spaceName: z.string(),
-  language: z.string(),
 });
 
 export default function CreateSpaceForm({
@@ -26,7 +24,6 @@ export default function CreateSpaceForm({
 }) {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
-  const language = useLanguage();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -37,7 +34,6 @@ export default function CreateSpaceForm({
     defaultValues: {
       workflowType,
       spaceName,
-      language,
     },
   });
 
