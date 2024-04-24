@@ -20,9 +20,11 @@ import { useToast } from "@/components/ui/use-toast";
 export default function EmbeddedPortal({
   flatfileSpaceId,
   flatfileSpaceAccessToken,
+  spaceId,
 }: {
   flatfileSpaceId: string;
   flatfileSpaceAccessToken: string;
+  spaceId: string;
 }) {
   const [showSpace, setShowSpace] = useState(false);
   const steps: Step[] = [
@@ -50,7 +52,7 @@ export default function EmbeddedPortal({
 
   const onOpenSpace = async () => {
     const response = await fetch(
-      `/api/update-space/${flatfileSpaceId}?language=${language}`,
+      `/api/update-space-language/${spaceId}?language=${language}`,
       {
         method: "PUT",
       }

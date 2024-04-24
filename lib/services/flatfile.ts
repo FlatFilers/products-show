@@ -121,7 +121,7 @@ export class FlatfileService {
     });
   }
 
-  static async updateSpace({
+  static async updateLanguage({
     flatfileSpaceId,
     language,
   }: {

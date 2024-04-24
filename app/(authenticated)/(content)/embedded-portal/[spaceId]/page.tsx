@@ -33,6 +33,7 @@ export default async function Page({
     <EmbeddedPortal
       flatfileSpaceId={flatfileSpace.id}
       flatfileSpaceAccessToken={flatfileSpace.accessToken as string}
+      spaceId={spaceId}
     />
   );
 }

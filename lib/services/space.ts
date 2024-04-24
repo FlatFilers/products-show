@@ -73,7 +73,7 @@ export class SpaceService {
     });
 
     if (flatfileSpace.languageOverride !== language) {
-      await FlatfileService.updateSpace({
+      await FlatfileService.updateLanguage({
         flatfileSpaceId: flatfileSpace.id,
         language,
       });
