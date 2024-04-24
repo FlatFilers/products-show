@@ -19,6 +19,7 @@ import { SheetConfig } from "@flatfile/api/api";
 import { listener } from "@/lib/dynamic/listener";
 import { theme } from "@/lib/dynamic/theme";
 import { document } from "@/lib/dynamic/document";
+import { useLanguage } from "@/components/shared/language-context";
 
 const DynamicEmbeddedSpace = dynamic(
   () => import("@/components/shared/embedded-space"),
@@ -71,6 +72,7 @@ export default function Workspace({
 }) {
   const item = WORKFLOW_ITEMS[WorkflowType.Dynamic];
   const sheet = blueprint[0];
+  const language = useLanguage();
 
   const [showSpace, setShowSpace] = useState(false);
   const [customField, setCustomField] = useState<CustomField>(
@@ -88,7 +90,6 @@ export default function Workspace({
       customField.enumOptions &&
       customOptionsConfig(customField.enumOptions)),
   };
-
   const spaceProps: ISpace = {
     publishableKey: process.env.NEXT_PUBLIC_FLATFILE_PUBLISHABLE_KEY,
     environmentId: process.env.NEXT_PUBLIC_FLATFILE_ENVIRONMENT_ID,
@@ -105,7 +106,7 @@ export default function Workspace({
       showSidebar: true,
     },
     spaceBody: {
-      // languageOverride: language,
+      languageOverride: language,
       metadata: {
         customFieldValidations: {
           decimals: customField.decimals,
