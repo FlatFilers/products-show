@@ -8,7 +8,7 @@ export const GET = async (request: NextRequest, context: { params: any }) => {
     const spaceId = ctx.params.spaceId;
     invariant(spaceId, "Requires space id");
 
-    const language = req.nextUrl.searchParams.get("language") || "en";
+    const language = req.nextUrl.searchParams.get("language") as string;
 
     try {
       const guestLink = await SpaceService.getSpaceGuestLink({
