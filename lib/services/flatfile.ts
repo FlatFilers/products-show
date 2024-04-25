@@ -120,4 +120,16 @@ export class FlatfileService {
       environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
     });
   }
+
+  static async updateLanguage({
+    flatfileSpaceId,
+    language,
+  }: {
+    flatfileSpaceId: string;
+    language: string;
+  }) {
+    return await api.spaces.update(flatfileSpaceId, {
+      languageOverride: language,
+    });
+  }
 }

@@ -55,7 +55,13 @@ export class SpaceService {
     });
   }
 
-  static async getSpaceGuestLink({ spaceId }: { spaceId: string }) {
+  static async getSpaceGuestLink({
+    spaceId,
+    language,
+  }: {
+    spaceId: string;
+    language: string;
+  }) {
     const space = await prismaClient.space.findUniqueOrThrow({
       where: {
         id: spaceId,
@@ -65,6 +71,13 @@ export class SpaceService {
     const flatfileSpace = await FlatfileService.getSpace({
       flatfileSpaceId: space.flatfileSpaceId,
     });
+
+    if (flatfileSpace.languageOverride !== language) {
+      await FlatfileService.updateLanguage({
+        flatfileSpaceId: flatfileSpace.id,
+        language,
+      });
+    }
 
     return flatfileSpace.guestLink;
   }

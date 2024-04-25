@@ -7,20 +7,24 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
+import { useLanguage } from "@/components/shared/language-context";
 
 const formSchema = z.object({
   spaceId: z.string(),
+  language: z.string(),
 });
 
 export default function VisitSpaceForm({ spaceId }: { spaceId: string }) {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState("");
   const { toast } = useToast();
+  const language = useLanguage();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       spaceId,
+      language,
     },
   });
 
@@ -30,12 +34,15 @@ export default function VisitSpaceForm({ spaceId }: { spaceId: string }) {
     setIsPending(true);
 
     try {
-      const result = await fetch(`/api/visit-space/${spaceId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const result = await fetch(
+        `/api/visit-space/${spaceId}?language=${language}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       console.log("Visiting space", result);
 
@@ -74,7 +81,6 @@ export default function VisitSpaceForm({ spaceId }: { spaceId: string }) {
             {error}
           </div>
         )}
-
         <Button disabled={isPending} type="submit" className="w-full">
           {isPending ? "Loading..." : "Visit Flatfile Space"}
         </Button>

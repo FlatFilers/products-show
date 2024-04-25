@@ -14,19 +14,25 @@ import {
 import { Step } from "@/components/shared/step-list";
 import HeaderContent from "@/components/shared/header-content";
 import SVG from "react-inlinesvg";
+import { useLanguage } from "@/components/shared/language-context";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function EmbeddedPortal({
   flatfileSpaceId,
   flatfileSpaceAccessToken,
+  spaceId,
 }: {
   flatfileSpaceId: string;
   flatfileSpaceAccessToken: string;
+  spaceId: string;
 }) {
   const [showSpace, setShowSpace] = useState(false);
   const steps: Step[] = [
     { ...EMBEDDED_PORTAL_INITIAL_STEPS[0], status: "complete" },
     { ...EMBEDDED_PORTAL_INITIAL_STEPS[1], status: "current" },
   ];
+  const { toast } = useToast();
+  const language = useLanguage();
 
   const spaceProps: ISpace = {
     space: {
@@ -45,6 +51,19 @@ export default function EmbeddedPortal({
   });
 
   const onOpenSpace = async () => {
+    const response = await fetch(
+      `/api/update-space-language/${spaceId}?language=${language}`,
+      {
+        method: "PUT",
+      }
+    );
+
+    if (!response.ok) {
+      toast({
+        title: "Error",
+        description: "Error updating space language",
+      });
+    }
     setShowSpace(!showSpace);
     OpenEmbed();
   };
