@@ -1,5 +1,5 @@
-import { MobileNav } from "@/app/(authenticated)/mobile-nav";
-import { NavItems } from "@/app/(authenticated)/nav-items";
+import { LanguageProvider } from "@/components/shared/language-context";
+import LanguageSwitcher from "@/components/shared/language-switcher";
 import { getServerSession } from "@/lib/get-server-session";
 import { redirect } from "next/navigation";
 
@@ -15,6 +15,13 @@ export default async function Layout({
   }
 
   return (
-    <div className="p-6 md:p-16 lg:p-24 w-full overflow-auto">{children}</div>
+    <div className="p-6 md:p-16 lg:p-24 w-full overflow-auto">
+      <LanguageProvider>
+        <div className="flex justify-end mb-10">
+          <LanguageSwitcher />
+        </div>
+        {children}
+      </LanguageProvider>
+    </div>
   );
 }

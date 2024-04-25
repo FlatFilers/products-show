@@ -33,12 +33,7 @@ export default async function Layout({
       >
         <NavItems />
       </div>
-      <LanguageProvider>
-        {children}
-        <div className="fixed top-4 right-4 z-50">
-          <LanguageSwitcher />
-        </div>
-      </LanguageProvider>
+      {children}
     </div>
   );
 }
