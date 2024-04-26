@@ -237,7 +237,7 @@ div[data-testid="space-contents"] {
 }
 
 .flatfile_primary {
-  @apply bg-dynamic-portal text-white !important;
+  @apply bg-dynamic-portal !important;
   div {
     @apply text-white !important;
   }
