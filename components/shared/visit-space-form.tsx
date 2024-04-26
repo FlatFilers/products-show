@@ -81,7 +81,11 @@ export default function VisitSpaceForm({ spaceId }: { spaceId: string }) {
             {error}
           </div>
         )}
-        <Button disabled={isPending} type="submit" className="w-full">
+        <Button
+          disabled={isPending}
+          type="submit"
+          className="sm:w-auto md:w-2/3 lg:w-3/4 h-14"
+        >
           {isPending ? "Loading..." : "Visit Flatfile Space"}
         </Button>
       </form>
