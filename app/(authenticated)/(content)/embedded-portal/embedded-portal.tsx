@@ -87,7 +87,8 @@ export default function EmbeddedPortal({
               <div className="content">
                 <div>
                   <Button
-                    className="contrast sm:w-auto md:w-2/3 lg:w-3/4 h-14"
+                    className="contrast"
+                    size={"action"}
                     onClick={onOpenSpace}
                   >
                     {showSpace ? "Close Portal" : "Import Data"}
