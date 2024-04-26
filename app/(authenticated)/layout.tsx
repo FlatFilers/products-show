@@ -1,7 +1,5 @@
 import { MobileNav } from "@/app/(authenticated)/mobile-nav";
 import { NavItems } from "@/app/(authenticated)/nav-items";
-import { LanguageProvider } from "@/components/shared/language-context";
-import LanguageSwitcher from "@/components/shared/language-switcher";
 import { getServerSession } from "@/lib/get-server-session";
 import { redirect } from "next/navigation";
 
@@ -33,6 +31,7 @@ export default async function Layout({
       >
         <NavItems />
       </div>
+
       {children}
     </div>
   );
