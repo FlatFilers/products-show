@@ -21,7 +21,7 @@ export default function Workspace({
 }) {
   const steps: Step[] = [
     { ...FILE_FEED_INITIAL_STEPS[0], status: "complete" },
-    { ...FILE_FEED_INITIAL_STEPS[1], status: "current" },
+    { ...FILE_FEED_INITIAL_STEPS[1], status: "complete" },
   ];
 
   const [events, setEvents] = useState<FilefeedEvent[]>(initialEvents);
