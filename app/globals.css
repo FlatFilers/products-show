@@ -235,3 +235,10 @@ div[data-testid="space-contents"] {
 
 .swagger-ui button {
 }
+
+.flatfile_primary {
+  @apply bg-dynamic-portal text-white !important;
+  div {
+    @apply text-white !important;
+  }
+}
