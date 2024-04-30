@@ -235,3 +235,18 @@ div[data-testid="space-contents"] {
 
 .swagger-ui button {
 }
+
+.embed-wrapper {
+  .flatfile_primary {
+    @apply bg-embedded-portal !important;
+  }
+}
+
+.dynamic-wrapper {
+  .flatfile_primary {
+    @apply bg-dynamic-portal !important;
+    div {
+      @apply text-white !important;
+    }
+  }
+}

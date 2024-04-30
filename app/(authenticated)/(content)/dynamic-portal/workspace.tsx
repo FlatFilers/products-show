@@ -244,8 +244,9 @@ export default function Workspace({
           </button>
         </div>
       </div>
-
-      {showSpace && <DynamicEmbeddedSpace spaceProps={spaceProps} />}
+      <div className="dynamic-wrapper">
+        {showSpace && <DynamicEmbeddedSpace spaceProps={spaceProps} />}
+      </div>
     </div>
   );
 }

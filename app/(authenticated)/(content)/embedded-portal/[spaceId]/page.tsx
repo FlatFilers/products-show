@@ -30,10 +30,12 @@ export default async function Page({
   });
 
   return (
-    <EmbeddedPortal
-      flatfileSpaceId={flatfileSpace.id}
-      flatfileSpaceAccessToken={flatfileSpace.accessToken as string}
-      spaceId={spaceId}
-    />
+    <div className="embed-wrapper">
+      <EmbeddedPortal
+        flatfileSpaceId={flatfileSpace.id}
+        flatfileSpaceAccessToken={flatfileSpace.accessToken as string}
+        spaceId={spaceId}
+      />
+    </div>
   );
 }
