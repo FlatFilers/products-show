@@ -18,22 +18,9 @@ export default async function Page({
   return (
     <div className="px-4 sm:px-6 lg:px-8 w-1/2">
       <div className="resource-show">
-        <div className="flex space-x-2 justify-between items-center align-middle">
-          <div>
-            <h3>{product.name}</h3>
-            <p>Product details</p>
-          </div>
-          {product.imageUrl && (
-            <div>
-              <Image
-                src={product.imageUrl}
-                alt="Product Image"
-                width={100}
-                height={100}
-                className="mr-4"
-              />
-            </div>
-          )}
+        <div className="space-y-2">
+          <h3>{product.name}</h3>
+          <p>Product details</p>
         </div>
         <div>
           <dl>
