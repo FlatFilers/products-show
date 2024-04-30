@@ -90,7 +90,7 @@ export default function CreateSpaceForm({
           </div>
         )}
 
-        <Button disabled={isPending} type="submit">
+        <Button disabled={isPending} type="submit" size={"action"}>
           {isPending ? "Setting Up Flatfile..." : "Setup Flatfile"}
         </Button>
       </form>

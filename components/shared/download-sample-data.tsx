@@ -1,6 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function DownloadSampleData({
   fileName,
@@ -17,15 +19,12 @@ export default function DownloadSampleData({
 
       <p className="">First, download the sample data. 👇</p>
 
-      <a
-        className={`button-bg space-x-2 w-full md:w-1/3 inline-flex items-center justify-center rounded-md border px-4 py-2 text-sm font-semibold shadow-sm`}
-        download={fileName}
-        href={fileName}
-        onClick={onClick}
-      >
-        <span>Download sample data</span>
-        <ArrowDownTrayIcon className="w-4 h-4 stroke-white" />
-      </a>
+      <Link download={fileName} href={fileName} onClick={onClick}>
+        <Button className="space-x-2 mt-4 h-14 w-full md:w-1/3">
+          <span>Download sample data</span>
+          <ArrowDownTrayIcon className="w-4 h-4 stroke-white" />
+        </Button>
+      </Link>
 
       <div className="flex text-xs text-gray-400 w-fit space-x-1">
         <div className="block">Already have example data?</div>
