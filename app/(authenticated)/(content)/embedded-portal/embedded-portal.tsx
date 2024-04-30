@@ -29,7 +29,7 @@ export default function EmbeddedPortal({
   const [showSpace, setShowSpace] = useState(false);
   const steps: Step[] = [
     { ...EMBEDDED_PORTAL_INITIAL_STEPS[0], status: "complete" },
-    { ...EMBEDDED_PORTAL_INITIAL_STEPS[1], status: "current" },
+    { ...EMBEDDED_PORTAL_INITIAL_STEPS[1], status: "complete" },
   ];
   const { toast } = useToast();
   const language = useLanguage();

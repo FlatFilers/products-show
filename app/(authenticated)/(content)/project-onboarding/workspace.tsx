@@ -13,7 +13,7 @@ import SVG from "react-inlinesvg";
 export default function Workspace({ spaceId }: { spaceId: string }) {
   const steps: Step[] = [
     { ...PROJECT_ONBOARDING_INITIAL_STEPS[0], status: "complete" },
-    { ...PROJECT_ONBOARDING_INITIAL_STEPS[1], status: "current" },
+    { ...PROJECT_ONBOARDING_INITIAL_STEPS[1], status: "complete" },
   ];
 
   return (
