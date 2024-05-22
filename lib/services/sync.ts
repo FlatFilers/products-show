@@ -19,14 +19,14 @@ export class SyncService {
     for (const r of supplierRecords) {
       const mappedRecord = {
         userId: space.userId,
-        externalSupplierId: r.supplier_id.value as string,
-        name: r.name.value as string,
-        email: r.email.value as string,
-        phone: r.phone.value as string,
-        address: r.address.value as string,
-        city: r.city.value as string,
-        state: r.state.value as string,
-        country: r.country.value as string,
+        externalSupplierId: r.values.supplier_id.value as string,
+        name: r.values.name.value as string,
+        email: r.values.email.value as string,
+        phone: r.values.phone.value as string,
+        address: r.values.address.value as string,
+        city: r.values.city.value as string,
+        state: r.values.state.value as string,
+        country: r.values.country.value as string,
       };
 
       await prismaClient.supplier.upsert({
@@ -50,9 +50,9 @@ export class SyncService {
     for (const r of categoryRecords) {
       const mappedRecord = {
         userId: space.userId,
-        externalCategoryId: r.category_id.value as string,
-        name: r.name.value as string,
-        description: r.description.value as string,
+        externalCategoryId: r.values.category_id.value as string,
+        name: r.values.name.value as string,
+        description: r.values.description.value as string,
       };
 
       await prismaClient.category.upsert({
@@ -76,10 +76,10 @@ export class SyncService {
     for (const r of attributeRecords) {
       const mappedRecord = {
         userId: space.userId,
-        externalAttributeId: r.attribute_id.value as string,
-        name: r.name.value as string,
-        value: r.value.value as string,
-        unit: r.unit.value as string,
+        externalAttributeId: r.values.attribute_id.value as string,
+        name: r.values.name.value as string,
+        value: r.values.value.value as string,
+        unit: r.values.unit.value as string,
       };
 
       await prismaClient.attribute.upsert({
@@ -104,24 +104,24 @@ export class SyncService {
       const category = await prismaClient.category.findFirst({
         where: {
           userId: space.userId,
-          name: r.category.value as string,
+          name: r.values.category.value as string,
         },
       });
       const supplier = await prismaClient.supplier.findFirst({
         where: {
           userId: space.userId,
-          name: r.supplier.value as string,
+          name: r.values.supplier.value as string,
         },
       });
 
       const mappedRecord = {
         userId: space.userId,
-        externalProductId: r.product_id.value as string,
-        name: r.name.value as string,
-        description: r.description.value as string,
-        price: Number.parseFloat(r.price.value as string),
-        quantity: Number.parseFloat(r.quantity.value as string),
-        imageUrl: r.image_url.value as string,
+        externalProductId: r.values.product_id.value as string,
+        name: r.values.name.value as string,
+        description: r.values.description.value as string,
+        price: Number.parseFloat(r.values.price.value as string),
+        quantity: Number.parseFloat(r.values.quantity.value as string),
+        imageUrl: r.values.image_url.value as string,
         categoryId: category ? (category.id as string) : undefined,
         supplierId: supplier ? (supplier.id as string) : undefined,
       };
@@ -138,10 +138,10 @@ export class SyncService {
       });
     }
 
-    const productIds = productRecords?.map((r) => r.product_id.value as string);
+    const flatfileRecordIds = productRecords?.map((r) => r.id);
 
     console.log("Done upserting products.");
 
-    return productIds;
+    return flatfileRecordIds;
   }
 }

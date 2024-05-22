@@ -1,6 +1,6 @@
 import { WorkflowType } from "@/lib/workflow-type";
 import api from "@flatfile/api";
-import { RecordDataWithLinks } from "@flatfile/api/api";
+import { RecordDataWithLinks, RecordsWithLinks } from "@flatfile/api/api";
 import { ReadStream } from "fs";
 
 const NAMESPACE_FOR_WORKFLOW = {
@@ -78,10 +78,10 @@ export class FlatfileService {
     }
 
     const records: {
-      attributes: RecordDataWithLinks[];
-      suppliers: RecordDataWithLinks[];
-      product_categories: RecordDataWithLinks[];
-      products: RecordDataWithLinks[];
+      attributes: RecordsWithLinks;
+      suppliers: RecordsWithLinks;
+      product_categories: RecordsWithLinks;
+      products: RecordsWithLinks;
     } = {
       attributes: [],
       suppliers: [],
@@ -98,9 +98,7 @@ export class FlatfileService {
         throw new Error(`No records found for sheetId ${sheetId}`);
       }
 
-      records[key as keyof typeof records] = recordsResult.data.records.map(
-        (r) => r.values
-      );
+      records[key as keyof typeof records] = recordsResult.data.records;
     });
 
     await Promise.allSettled(ps);
