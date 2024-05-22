@@ -1,6 +1,6 @@
 import { WorkflowType } from "@/lib/workflow-type";
 import api from "@flatfile/api";
-import { RecordDataWithLinks, RecordsWithLinks } from "@flatfile/api/api";
+import { RecordsWithLinks } from "@flatfile/api/api";
 import { ReadStream } from "fs";
 
 const NAMESPACE_FOR_WORKFLOW = {
