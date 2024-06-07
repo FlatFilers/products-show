@@ -2,7 +2,6 @@ import { prismaClient } from "@/lib/prisma-client";
 import { FlatfileService } from "@/lib/services/flatfile";
 import { SeedService } from "@/lib/services/seed";
 import { SpaceService } from "@/lib/services/space";
-import { Flatfile } from "@flatfile/api";
 import { Prisma } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 
