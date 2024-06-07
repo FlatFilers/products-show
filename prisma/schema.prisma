@@ -21,7 +21,6 @@ model User {
   firstName   String
   lastName    String
   companyName String
-  flatfileGuestId String?   @unique
 
   Space       Space[]
   suppliers   Supplier[]

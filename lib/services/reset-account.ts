@@ -23,13 +23,6 @@ export class ResetAccountService {
         where: { userId },
       });
 
-      await prisma.user.update({
-        where: { id: userId },
-        data: {
-          flatfileGuestId: null,
-        },
-      });
-
       await prisma.action.deleteMany({
         where: { userId },
       });

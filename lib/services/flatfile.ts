@@ -155,7 +155,7 @@ export class FlatfileService {
 
     // don't send email in development
     if (process.env.NODE_ENV === "production") {
-      this.inviteGuest({
+      await this.inviteGuest({
         guestId: guest.data[0].id,
         flatfileSpaceId: flatfileSpaceId,
       });
