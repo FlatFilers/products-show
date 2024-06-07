@@ -130,4 +130,52 @@ export class FlatfileService {
       languageOverride: language,
     });
   }
+
+  static async createAndInviteGuest({
+    flatfileSpaceId,
+    email,
+    name,
+  }: {
+    flatfileSpaceId: string;
+    email: string;
+    name: string;
+  }) {
+    const guest = await api.guests.create([
+      {
+        environmentId: process.env.FLATFILE_ENVIRONMENT_ID,
+        email,
+        name,
+        spaces: [
+          {
+            id: flatfileSpaceId,
+          },
+        ],
+      },
+    ]);
+
+    // don't send email in development
+    if (process.env.NODE_ENV === "production") {
+      this.inviteGuest({
+        guestId: guest.data[0].id,
+        flatfileSpaceId: flatfileSpaceId,
+      });
+    }
+
+    return guest;
+  }
+
+  private static async inviteGuest({
+    guestId,
+    flatfileSpaceId,
+  }: {
+    guestId: string;
+    flatfileSpaceId: string;
+  }) {
+    return await api.guests.invite([
+      {
+        guestId,
+        spaceId: flatfileSpaceId,
+      },
+    ]);
+  }
 }

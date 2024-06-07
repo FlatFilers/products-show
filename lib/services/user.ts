@@ -1,6 +1,8 @@
 import { prismaClient } from "@/lib/prisma-client";
+import { FlatfileService } from "@/lib/services/flatfile";
 import { SeedService } from "@/lib/services/seed";
 import { SpaceService } from "@/lib/services/space";
+import { Flatfile } from "@flatfile/api";
 import { Prisma } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 
@@ -98,5 +100,34 @@ export class UserService {
     hashedPassword: string;
   }) {
     return await bcrypt.compare(password, hashedPassword);
+  }
+
+  static async createAndInviteGuest({
+    spaceId,
+    userId,
+  }: {
+    spaceId: string;
+    userId: string;
+  }) {
+    const space = await SpaceService.getSpace({ id: spaceId });
+
+    const user = await prismaClient.user.findUniqueOrThrow({
+      where: { id: userId },
+    });
+
+    if (!user.flatfileGuestId) {
+      const guest = await FlatfileService.createAndInviteGuest({
+        flatfileSpaceId: space.flatfileSpaceId,
+        email: user.email,
+        name: `${user.firstName} ${user.lastName}`,
+      });
+
+      return await prismaClient.user.update({
+        where: { id: userId },
+        data: {
+          flatfileGuestId: guest.data[0].id,
+        },
+      });
+    }
   }
 }

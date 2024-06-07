@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import invariant from "ts-invariant";
 import { authenticatedRoute } from "@/lib/api-helpers";
 import { SpaceService } from "@/lib/services/space";
+import { FlatfileService } from "@/lib/services/flatfile";
+import { UserService } from "@/lib/services/user";
 
 export const GET = async (request: NextRequest, context: { params: any }) => {
   return authenticatedRoute(request, context, async (req, ctx) => {
@@ -9,14 +11,13 @@ export const GET = async (request: NextRequest, context: { params: any }) => {
     invariant(spaceId, "Requires space id");
 
     const language = req.nextUrl.searchParams.get("language") as string;
+    let guestLink;
 
     try {
-      const guestLink = await SpaceService.getSpaceGuestLink({
+      guestLink = await SpaceService.getSpaceGuestLink({
         spaceId,
         language,
       });
-
-      return NextResponse.json({ guestLink }, { status: 200 });
     } catch (e) {
       console.error(`Error getting guest link for space ${spaceId}`, e);
       return NextResponse.json(
@@ -24,5 +25,12 @@ export const GET = async (request: NextRequest, context: { params: any }) => {
         { status: 500 }
       );
     }
+
+    await UserService.createAndInviteGuest({
+      spaceId: spaceId,
+      userId: ctx.user.id,
+    });
+
+    return NextResponse.json({ guestLink }, { status: 200 });
   });
 };
