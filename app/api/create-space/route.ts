@@ -2,6 +2,7 @@ import { authenticatedRoute } from "@/lib/api-helpers";
 import { fetchFileFromDrive } from "@/lib/google-drive";
 import { FlatfileService } from "@/lib/services/flatfile";
 import { SpaceService } from "@/lib/services/space";
+import { UserService } from "@/lib/services/user";
 import { WorkflowType } from "@/lib/workflow-type";
 import { NextRequest, NextResponse } from "next/server";
 import invariant from "ts-invariant";
@@ -32,6 +33,18 @@ export const POST = async (request: NextRequest, context: { params: any }) => {
       await FlatfileService.postFileToSpace({
         flatfileSpaceId: space.flatfileSpaceId,
         file,
+      });
+    }
+
+    if (space.workflowType === WorkflowType.ProjectOnboarding) {
+      const user = await UserService.findUserBySpaceOrThrow({
+        flatfileSpaceId: space.flatfileSpaceId,
+      });
+
+      await FlatfileService.createAndInviteGuest({
+        flatfileSpaceId: space.flatfileSpaceId,
+        email: user.email,
+        name: `${user.firstName} ${user.lastName}`,
       });
     }
 
