@@ -945,5 +945,90 @@ export class SeedService {
     });
   }
 
-  static async upsertProducts(userId: string) {}
+  static async upsertProducts(userId: string) {
+    const attrs = [
+      {
+        externalProductId: "101",
+        name: "Stainless Steel Refrigerator",
+        description:
+          "A sleek and modern refrigerator with a stainless steel finish.",
+        categoryId: await prismaClient.category
+          .findFirst({
+            where: {
+              userId,
+              name: "Refrigerators",
+            },
+            select: {
+              id: true,
+            },
+          })
+          .then((c) => c?.id),
+        price: 999.99,
+        quantity: 10,
+        imageUrl: "https://via.placeholder.com/150",
+        supplierId: await this.getRandomSupplierId(userId),
+      },
+      {
+        externalProductId: "107",
+        name: "Front Load Washing Machine",
+        description:
+          "A high-efficiency front load washing machine with multiple wash cycles.",
+        categoryId: await prismaClient.category
+          .findFirst({
+            where: {
+              userId,
+              name: "Washing Machines",
+            },
+            select: {
+              id: true,
+            },
+          })
+          .then((c) => c?.id),
+        price: 599.99,
+        quantity: 5,
+        imageUrl: "https://via.placeholder.com/150",
+        supplierId: await this.getRandomSupplierId(userId),
+      },
+      {
+        externalProductId: "199",
+        name: "Gas Dryer",
+        description:
+          "A gas dryer with moisture sensors and energy-efficient features.",
+        categoryId: await prismaClient.category
+          .findFirst({
+            where: {
+              userId,
+              name: "Dryers",
+            },
+            select: {
+              id: true,
+            },
+          })
+          .then((c) => c?.id),
+        price: 499.99,
+        quantity: 3,
+        imageUrl: "https://via.placeholder.com/150",
+        supplierId: await this.getRandomSupplierId(userId),
+      },
+    ];
+
+    for (const a of attrs) {
+      await prismaClient.product.upsert({
+        where: {
+          userId_externalProductId: {
+            userId,
+            externalProductId: a.externalProductId,
+          },
+        },
+        create: {
+          ...a,
+          userId,
+        },
+        update: {
+          ...a,
+          userId,
+        },
+      });
+    }
+  }
 }
