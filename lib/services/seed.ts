@@ -946,46 +946,13 @@ export class SeedService {
   }
 
   static async upsertProducts(userId: string) {
-    const washingMachineCategoryId = await prismaClient.category
-      .findFirst({
-        where: {
-          externalCategoryId: "1002",
-        },
-        select: {
-          id: true,
-        },
-      })
-      .then((c) => c?.id);
-
-    const refrigeratorCategoryId = await prismaClient.category
-      .findFirst({
-        where: {
-          externalCategoryId: "1001",
-        },
-        select: {
-          id: true,
-        },
-      })
-      .then((c) => c?.id);
-
-    const dryerCategoryId = await prismaClient.category
-      .findFirst({
-        where: {
-          externalCategoryId: "1003",
-        },
-        select: {
-          id: true,
-        },
-      })
-      .then((c) => c?.id);
-
     const attrs = [
       {
         externalProductId: "101",
         name: "Stainless Steel Refrigerator",
         description:
           "A sleek and modern refrigerator with a stainless steel finish.",
-        categoryId: refrigeratorCategoryId,
+        categoryId: await this.getRandomCategoryId(userId),
         price: 999.99,
         quantity: 10,
         imageUrl: "https://via.placeholder.com/150",
@@ -996,7 +963,7 @@ export class SeedService {
         name: "Front Load Washing Machine",
         description:
           "A high-efficiency front load washing machine with multiple wash cycles.",
-        categoryId: washingMachineCategoryId,
+        categoryId: await this.getRandomCategoryId(userId),
         price: 599.99,
         quantity: 5,
         imageUrl: "https://via.placeholder.com/150",
@@ -1007,7 +974,7 @@ export class SeedService {
         name: "Gas Dryer",
         description:
           "A gas dryer with moisture sensors and energy-efficient features.",
-        categoryId: dryerCategoryId,
+        categoryId: await this.getRandomCategoryId(userId),
         price: 499.99,
         quantity: 3,
         imageUrl: "https://via.placeholder.com/150",
@@ -1018,7 +985,7 @@ export class SeedService {
         name: "Refrigerator",
         description:
           "A refrigerator with multiple compartments and adjustable shelves.",
-        categoryId: refrigeratorCategoryId,
+        categoryId: await this.getRandomCategoryId(userId),
         price: 999.99,
         quantity: 10,
         imageUrl: "https://via.placeholder.com/150",
@@ -1028,7 +995,7 @@ export class SeedService {
         externalProductId: "202",
         name: "Top Load Washing Machine",
         description: "A top load washing machine with multiple wash cycles.",
-        categoryId: washingMachineCategoryId,
+        categoryId: await this.getRandomCategoryId(userId),
         price: 599.99,
         quantity: 5,
         imageUrl: "https://via.placeholder.com/150",
