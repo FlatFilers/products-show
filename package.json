@@ -14,7 +14,7 @@
     "seed": "ts-node  -r tsconfig-paths/register -P ./tsconfig-scripts.json prisma/seed.ts"
   },
   "dependencies": {
-    "@flatfile/api": "^1.7.10",
+    "@flatfile/api": "^1.9.13",
     "@flatfile/plugin-json-extractor": "^0.7.1",
     "@flatfile/plugin-space-configure": "^0.3.4",
     "@flatfile/plugin-xlsx-extractor": "^1.11.4",
