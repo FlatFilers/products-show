@@ -16,7 +16,7 @@
   "dependencies": {
     "@flatfile/api": "^1.9.13",
     "@flatfile/plugin-json-extractor": "^0.8.2",
-    "@flatfile/plugin-space-configure": "^0.3.4",
+    "@flatfile/plugin-space-configure": "^0.5.2",
     "@flatfile/plugin-xlsx-extractor": "^1.11.4",
     "@flatfile/react": "^7.8.11",
     "@headlessui/react": "^1.7.18",
